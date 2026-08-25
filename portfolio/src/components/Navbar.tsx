@@ -7,10 +7,12 @@ interface NavbarProps {
 }
 
 const NAV_ITEMS = [
-  { id: 'home', label: 'home.tsx' },
-  { id: 'about', label: 'about.tsx' },
-  { id: 'projects', label: 'projects.tsx' },
-  { id: 'contact', label: 'contact.tsx' },
+  { id: 'home', label: 'home', step: '00' },
+  { id: 'about', label: 'about', step: '01' },
+  { id: 'skills', label: 'skills', step: '02' },
+  { id: 'projects', label: 'projects', step: '03' },
+  { id: 'journey', label: 'journey', step: '04' },
+  { id: 'contact', label: 'contact', step: '05' },
 ]
 
 export default function Navbar({ theme, onToggleTheme }: NavbarProps) {
@@ -35,6 +37,18 @@ export default function Navbar({ theme, onToggleTheme }: NavbarProps) {
     return () => observer.disconnect()
   }, [])
 
+  // The menu covers the page on a phone; Escape should always get you out.
+  useEffect(() => {
+    if (!mobileOpen) return
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Escape') setMobileOpen(false)
+    }
+    document.addEventListener('keydown', onKeyDown)
+    return () => document.removeEventListener('keydown', onKeyDown)
+  }, [mobileOpen])
+
+  const activeItem = NAV_ITEMS.find((n) => n.id === activeId)
+
   return (
     <header className="fixed top-0 inset-x-0 z-50">
       <nav
@@ -42,19 +56,20 @@ export default function Navbar({ theme, onToggleTheme }: NavbarProps) {
         aria-label="Primary"
       >
         <a href="#home" className="flex items-center gap-2 font-display font-bold text-lg" aria-label="Go to top">
-          <span className="w-9 h-9 rounded-xl grid place-items-center text-white btn-primary shadow-md">AR</span>
+          <span className="w-9 h-9 rounded-xl grid place-items-center text-white btn-primary shadow-md">G</span>
           <span className="hidden sm:inline">
-            alex<span className="text-primary">.</span>dev
+            Gilmier<span className="text-secondary">.</span>
           </span>
         </a>
 
-        <ul className="hidden md:flex items-center gap-7 font-mono text-sm">
+        <ul className="hidden md:flex items-center gap-6 font-mono text-sm">
           {NAV_ITEMS.map((item) => (
             <li key={item.id}>
               <a
                 href={`#${item.id}`}
-                className={`nav-tab hover:text-primary transition-colors ${
-                  activeId === item.id ? 'active' : ''
+                aria-current={activeId === item.id ? 'true' : undefined}
+                className={`nav-tab transition-colors ${
+                  activeId === item.id ? 'active text-primary font-semibold' : 'hover:text-primary'
                 }`}
               >
                 {item.label}
@@ -83,19 +98,31 @@ export default function Navbar({ theme, onToggleTheme }: NavbarProps) {
             )}
           </button>
 
+          {/*
+            On a phone the nav labels are hidden behind this button, so the
+            button itself has to say where you currently are.
+          */}
           <button
             type="button"
-            aria-label="Open menu"
+            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={mobileOpen}
             aria-controls="mobileMenu"
             onClick={() => setMobileOpen((v) => !v)}
-            className="md:hidden w-10 h-10 rounded-xl grid place-items-center border border-border"
+            className="md:hidden h-10 pl-3 pr-2.5 rounded-xl flex items-center gap-2 border border-border font-mono text-sm"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="3" y1="6" x2="21" y2="6" />
-              <line x1="3" y1="12" x2="21" y2="12" />
-              <line x1="3" y1="18" x2="21" y2="18" />
-            </svg>
+            <span className="text-muted">{activeItem?.label ?? 'menu'}</span>
+            {mobileOpen ? (
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            ) : (
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="12" x2="21" y2="12" />
+                <line x1="3" y1="18" x2="21" y2="18" />
+              </svg>
+            )}
           </button>
         </div>
       </nav>
@@ -108,9 +135,22 @@ export default function Navbar({ theme, onToggleTheme }: NavbarProps) {
                 <a
                   href={`#${item.id}`}
                   onClick={() => setMobileOpen(false)}
-                  className="block px-4 py-3 rounded-xl hover:bg-surface2"
+                  aria-current={activeId === item.id ? 'true' : undefined}
+                  className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${
+                    activeId === item.id
+                      ? 'bg-primary/10 text-primary font-semibold'
+                      : 'hover:bg-surface2'
+                  }`}
                 >
+                  <span className={activeId === item.id ? 'text-primary' : 'text-muted'}>
+                    {item.step}
+                  </span>
                   {item.label}
+                  {activeId === item.id && (
+                    <span className="ml-auto text-xs">
+                      you are here<span className="sr-only"> — current section</span>
+                    </span>
+                  )}
                 </a>
               </li>
             ))}

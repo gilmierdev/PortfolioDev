@@ -1,12 +1,16 @@
 import { useState } from 'react'
 import Navbar from './components/Navbar'
+import ScrollProgress from './components/ScrollProgress'
 import Hero from './components/Hero'
 import About from './components/About'
+import Skills from './components/Skills'
 import Projects from './components/Projects'
+import Journey from './components/Journey'
 import ProjectModal from './components/ProjectModal'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import ChatWidget from './components/ChatWidget'
+import BackToTop from './components/BackToTop'
 import { useTheme } from './hooks/useTheme'
 import type { Project } from './types'
 
@@ -23,18 +27,22 @@ export default function App() {
         Skip to content
       </a>
 
+      <ScrollProgress />
       <Navbar theme={theme} onToggleTheme={toggleTheme} />
 
       <main id="main">
         <Hero />
         <About />
+        <Skills />
         <Projects onSelect={setSelectedProject} />
+        <Journey />
         <Contact />
       </main>
 
       <Footer />
 
       <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
+      <BackToTop />
       <ChatWidget />
     </>
   )

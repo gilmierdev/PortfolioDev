@@ -64,7 +64,15 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             <p id="modalTitle" className="font-display font-bold text-2xl sm:text-3xl pr-10">
               {project.title}
             </p>
-            <p className="text-muted mt-1">{project.tagline}</p>
+            <p className="flex items-center gap-2.5 flex-wrap tag uppercase tracking-[.12em] text-muted mt-2">
+              {project.kind}
+              {project.flag && (
+                <span className={project.flag.tone === 'idea' ? 'pill pill--explore' : 'pill pill--ok'}>
+                  {project.flag.label}
+                </span>
+              )}
+            </p>
+            <p className="text-muted mt-2">{project.tagline}</p>
 
             <div className={`w-full aspect-video rounded-xl bg-gradient-to-br ${project.accent} grid place-items-center text-5xl mb-5 mt-5 select-none`}>
               {project.emoji}
@@ -95,13 +103,28 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               ))}
             </div>
 
-            <div className="flex flex-wrap gap-3">
-              <a href={project.demo} target="_blank" rel="noopener noreferrer" className="btn-primary text-white font-semibold px-5 py-2.5 rounded-xl text-sm">
-                Live demo ↗
-              </a>
-              <a href={project.github} target="_blank" rel="noopener noreferrer" className="border border-border font-semibold px-5 py-2.5 rounded-xl text-sm hover:border-primary transition-colors">
-                View on GitHub ↗
-              </a>
+            <div className="flex flex-wrap items-center gap-3">
+              {project.demo ? (
+                <a href={project.demo} target="_blank" rel="noopener noreferrer" className="btn-primary text-white font-semibold px-5 py-2.5 rounded-xl text-sm">
+                  Live demo ↗
+                </a>
+              ) : (
+                <span className="plink" aria-disabled="true">
+                  Live Demo<span className="sr-only"> — link coming soon</span>
+                </span>
+              )}
+              {project.github ? (
+                <a href={project.github} target="_blank" rel="noopener noreferrer" className="border border-border font-semibold px-5 py-2.5 rounded-xl text-sm hover:border-primary transition-colors">
+                  View on GitHub ↗
+                </a>
+              ) : (
+                <span className="plink" aria-disabled="true">
+                  GitHub<span className="sr-only"> — link coming soon</span>
+                </span>
+              )}
+              <p className="tag text-muted ml-auto" aria-hidden="true">
+                Esc or click outside to close
+              </p>
             </div>
           </div>
         </div>

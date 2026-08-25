@@ -2,98 +2,264 @@ import type { SiteConfig } from '../types'
 
 /**
  * PERSONALIZE ME
- * Everything on the site — About, Projects, Timeline, and the chat bot's
- * answers — is rendered from this object. Edit the values below and the
- * whole site updates. No need to touch component files unless you want
+ * Everything on the site — About, Skills, Projects, Journey, and the chat
+ * bot's answers — is rendered from this object. Edit the values below and
+ * the whole site updates. No need to touch component files unless you want
  * to change layout/structure.
+ *
+ * TODO: `email` is still a placeholder domain — swap in the real address.
+ * TODO: projects have no `github`/`demo` URLs yet, so the UI shows inert
+ *       "coming soon" placeholders. Add the keys once the repos are public.
  */
 export const CONFIG: SiteConfig = {
-  name: 'Gilmier Cabil',
+  name: 'Gilmier',
+  role: 'IT Student • Developer • Builder',
+  eyebrow: 'Currently studying Information Technology',
+  tagline: 'Learning technology by building real things.',
   email: 'gilmiercabil@example.com',
   github: 'https://github.com/gilmierdev',
-  linkedin: 'https://linkedin.com/in/gilmiercabil',
 
-  interests: [
-    'Open source',
-    'Game jams',
-    'Competitive programming',
-    'Coffee ☕',
-    'UI tinkering',
-    'Rubber duck debugging',
+  aboutParagraphs: [
+    "I'm a college Information Technology student teaching myself full-stack development the practical way. Reading about a concept rarely makes it stick for me, so I start a project instead and find out where my understanding runs out.",
+    'My interests spread wider than web development: programming languages and how they differ, backend and API design, UI design and making things feel good to use, building games and systems in Roblox, using AI tools as a coding partner, computer hardware, video editing, and sports. They feed each other more than I expected — designing a Roblox leaderboard taught me about data persistence, and editing video taught me about pacing and attention.',
+    "I'm early in this. There's plenty I haven't learned yet, and I'd rather say that than pretend otherwise. What I can say is that I finish things, break them, and understand them better afterward.",
+  ],
+
+  traits: [
+    {
+      name: 'Curiosity',
+      desc: 'I want to know why it works, not just that it works.',
+    },
+    {
+      name: 'Hands-on problem solving',
+      desc: 'I debug my way to understanding rather than around it.',
+    },
+    {
+      name: 'Things that look good and work',
+      desc: 'A working app with a bad interface is only half done.',
+    },
+    {
+      name: 'Continuous growth',
+      desc: "Every project should teach me something the last one didn't.",
+    },
+  ],
+
+  loopSteps: [
+    {
+      key: 'learn',
+      note: 'Read it, watch it, follow along. This part is the easiest and the least useful on its own.',
+    },
+    {
+      key: 'build',
+      note: 'Make the thing for real. Working beats perfect, and finished beats clever.',
+    },
+    {
+      key: 'break',
+      note: 'Push it until something fails. This is the step most people skip, and it teaches me the most.',
+    },
+    {
+      key: 'fix',
+      note: 'Find out why it broke, not just what broke. That answer is the actual lesson.',
+      emphasis: 'why',
+    },
+    {
+      key: 'improve',
+      note: 'Go back and clean it up. If the next version is not clearer than the last, I have not learned anything yet.',
+    },
   ],
 
   skillGroups: [
-    { label: 'Languages', items: ['JavaScript', 'Python', 'Java', 'PortgreSQL', 'HTML/CSS'] },
-    { label: 'Frameworks & Tools', items: ['React', 'Node.js', 'Tailwind CSS', 'Git & GitHub', 'Express', 'MongoDB'] },
-    { label: 'Currently learning', items: ['TypeScript', 'Java', 'System Design basics', 'Functional Programming'] },
-    { label: 'Soft skills', items: ['Problem solving', 'Team collaboration', 'Time management'] },
+    {
+      label: 'Programming',
+      items: [
+        { name: 'Java', level: 'comfortable' },
+        { name: 'JavaScript', level: 'comfortable' },
+        { name: 'TypeScript', level: 'learning' },
+        { name: 'Python', level: 'learning' },
+        { name: 'C++', level: 'exploring' },
+      ],
+    },
+    {
+      label: 'Frontend',
+      items: [
+        { name: 'React', level: 'learning' },
+        { name: 'Tailwind CSS', level: 'comfortable' },
+        { name: 'SCSS', level: 'learning' },
+        { name: 'Vite', level: 'learning' },
+      ],
+    },
+    {
+      label: 'Backend',
+      items: [
+        { name: 'Node.js', level: 'learning' },
+        { name: 'Express.js', level: 'learning' },
+        { name: 'MongoDB', level: 'learning' },
+        { name: 'JWT auth', level: 'exploring' },
+      ],
+    },
+    {
+      label: 'Tools',
+      items: [
+        { name: 'VS Code', level: 'comfortable' },
+        { name: 'Git', level: 'learning' },
+        { name: 'GitHub', level: 'learning' },
+        { name: 'Postman', level: 'learning' },
+        { name: 'MongoDB Atlas', level: 'learning' },
+      ],
+    },
+    {
+      label: 'Other interests',
+      items: [
+        { name: 'Roblox / Lua', level: 'learning' },
+        { name: 'AI coding tools', level: 'comfortable' },
+        { name: 'Computer hardware', level: 'learning' },
+        { name: 'Video editing', level: 'learning' },
+        { name: 'UI / UX', level: 'exploring' },
+      ],
+    },
   ],
 
   timeline: [
-    { hash: 'a1c93f', date: 'Aug 2023', msg: 'Started B.S. in Computer Science' },
-    { hash: '7e02b1', date: 'Jan 2024', msg: 'Built first full-stack app (and broke my local DB twice)' },
-    { hash: '44d8aa', date: 'Jun 2024', msg: 'Landed a summer research assistant role in the CS dept' },
-    { hash: '9f31c0', date: 'Nov 2024', msg: 'Merged first pull request into an open-source project' },
-    { hash: 'c02e17', date: 'Present', msg: 'Building this portfolio + prepping for internship season' },
+    {
+      step: '01',
+      title: 'Programming fundamentals',
+      desc: "Variables, loops, conditionals. Slow going, but it's the vocabulary everything else is written in.",
+    },
+    {
+      step: '02',
+      title: 'Java and programming logic',
+      desc: 'Where structure clicked — classes, methods, and thinking about a program as parts that talk to each other.',
+    },
+    {
+      step: '03',
+      title: 'Exploring JavaScript',
+      desc: 'First time my code changed something I could see in a browser. That feedback loop is what got me hooked.',
+    },
+    {
+      step: '04',
+      title: 'React and TypeScript',
+      desc: 'Components, state, and types catching my mistakes before the browser did. Also my first real encounter with reading error messages properly.',
+    },
+    {
+      step: '05',
+      title: 'Backend with Node.js and Express',
+      desc: 'Learning what actually happens after a form is submitted, and that the server is the only place you can trust.',
+    },
+    {
+      step: '06',
+      title: 'MongoDB and working with APIs',
+      desc: 'Designing how data is stored and shaped, then testing endpoints in Postman until they behaved.',
+    },
+    {
+      step: '07',
+      title: 'C++, Python, and Roblox',
+      desc: 'Deliberately going sideways. Different languages solve problems differently, and seeing that made me better in the ones I already knew.',
+    },
+    {
+      step: '08',
+      title: 'AI-assisted development',
+      desc: "Using AI tools as a study partner rather than an answer key. Useful when I read what it gives me and ask why, less useful when I don't.",
+    },
+    {
+      step: 'Now',
+      title: 'Toward full-stack — and later, cybersecurity',
+      desc: 'Getting properly solid across the stack first. Security is the direction I want to grow into after that, once the foundations hold.',
+      now: true,
+    },
   ],
 
   projects: [
     {
-      title: 'StudySync',
-      tagline: 'A collaborative study-planner for busy college students.',
+      title: 'Church Members Management System',
+      kind: 'Management system',
+      tagline: 'Record-keeping for a church community, in one place instead of scattered spreadsheets.',
       description:
-        'StudySync helps students coordinate group study sessions, split up reading assignments, and track shared deadlines. I built it after one too many chaotic group-project group chats — the goal was something simple enough that people would actually use it.',
+        'A record-keeping app for a church community — member profiles, attendance, and groups in one place instead of scattered spreadsheets. My first real taste of designing data that other people would depend on.',
       features: [
-        'Shared calendars synced across group members in real time',
-        'Auto-splits reading assignments evenly by page count',
-        'Deadline reminders via email',
-        'Simple kanban board for group project tasks',
+        'Member profiles with search and filtering',
+        'Attendance tracking per service',
+        'Group and ministry assignments',
+        'Role-based access for admins',
       ],
       challenges:
-        'The hardest part was getting real-time sync working without the UI feeling laggy. I underestimated how tricky state management gets once multiple people are editing the same board — I ended up learning WebSockets from scratch to fix it, and that alone taught me more than a whole semester of lectures.',
-      tech: ['React', 'Node.js', 'MongoDB', 'Socket.io', 'Tailwind CSS'],
-      demo: '#',
-      github: 'https://github.com/gilmierdev/studysync',
+        'Designing data that other people would actually depend on. It stopped being an exercise the moment I realised a wrong record was someone real being marked absent — that changed how carefully I thought about editing, permissions, and what should never be deletable.',
+      tech: ['React', 'Node.js', 'Express', 'MongoDB'],
       accent: 'from-primary to-secondary',
-      emoji: '📚',
+      emoji: '⛪',
     },
     {
-      title: 'PixelPantry',
-      tagline: 'A pixel-art recipe app that turns your fridge into meal ideas.',
+      title: 'MERN E-Commerce Application',
+      kind: 'E-commerce',
+      tagline: 'A storefront built to learn the full MERN stack end to end.',
       description:
-        'A fun side project combining two things I like: cooking badly and pixel art. You type in a few ingredients you have, and it suggests simple recipes — no sign-up, no ads, just a lightweight tool built for a weekend hackathon.',
+        'A storefront built to learn the full MERN stack end to end. Authentication was the part that really taught me something — tokens, protected routes, and why you never trust the client.',
       features: [
-        'Ingredient-based recipe search',
-        'Hand-drawn pixel-art icons for common ingredients',
-        'Saves favorite recipes locally (no account needed)',
-        'Fully responsive, installable as a PWA',
+        'Product catalog with categories',
+        'Cart and checkout flow',
+        'JWT login and protected routes',
+        'Admin view for managing products',
       ],
       challenges:
-        'I originally tried to build my own recipe-matching algorithm and it was... not great. Switching to a simpler scoring system (matching ingredient overlap %) was way more reliable, and taught me that the simplest solution is often the right one, even if it feels less impressive.',
-      tech: ['JavaScript', 'HTML/CSS', 'LocalStorage API', 'PWA'],
-      demo: '#',
-      github: 'https://github.com/yourusername/pixelpantry',
+        'Authentication. I had it "working" long before I had it right — hiding an admin button on the client felt like protection until I realised anyone could just call the endpoint directly. Learning to check permissions on the server was the lesson that stuck.',
+      tech: ['MongoDB', 'Express', 'React', 'Node.js', 'JWT'],
       accent: 'from-secondary to-primary',
-      emoji: '🍳',
+      emoji: '🛒',
     },
     {
-      title: 'CampusConnect',
-      tagline: 'A course-review platform built for my university (used by 500+ students).',
+      title: 'Notes Application',
+      kind: 'Productivity',
+      tagline: 'Small on purpose — rebuilt more than once to get the CRUD basics clean.',
       description:
-        "My biggest project so far. CampusConnect lets students leave honest reviews of courses and professors, so people can make better registration decisions than guessing from a name. It's currently used by a few hundred students at my school.",
+        'Small on purpose. I rebuilt it more than once to get the CRUD basics clean — a proper API, sensible state on the client, and an interface that stays out of the way.',
       features: [
-        'Anonymous, moderated course & professor reviews',
-        'Search and filter by department, difficulty, workload',
-        'Admin dashboard for flagged content review',
-        'JWT-based authentication with university email verification',
+        'Create, edit, and delete notes',
+        'Search and tag organisation',
+        'REST API with clear route structure',
+        'Responsive layout for phone and desktop',
       ],
       challenges:
-        "Moderation was the real challenge — not the code, but designing a system that stays fair and doesn't get abused. I read a lot about trust & safety design patterns for this one, and ended up building a simple flag-and-review queue instead of full automation, since I didn't fully trust an algorithm to make that call yet (and honestly, neither should I).",
-      tech: ['React', 'Express', 'PostgreSQL', 'JWT', 'Tailwind CSS'],
-      demo: '#',
-      github: 'https://github.com/yourusername/campusconnect',
+        'Restraint, mostly. Every rebuild I wanted to add features, and every rebuild the useful change was removing something. Getting the route structure and client state genuinely simple taught me more than a bigger version of the same app would have.',
+      tech: ['React', 'Node.js', 'Express', 'MongoDB'],
       accent: 'from-primary to-secondary',
-      emoji: '🎓',
+      emoji: '📝',
+    },
+    {
+      title: 'Roblox Projects',
+      kind: 'Game development',
+      flag: { label: 'Ongoing', tone: 'ongoing' },
+      tagline: 'Where I first learned that data has to survive a player leaving.',
+      description:
+        'Where I first learned that data has to survive a player leaving. A running set of systems and experiments in Roblox Studio, still being added to.',
+      features: [
+        'DataStore saving and loading player data',
+        'Leaderboards and stat tracking',
+        'Custom UI built in Studio',
+        'Server / client script separation',
+      ],
+      challenges:
+        "Persistence. A leaderboard that resets when someone rejoins isn't a leaderboard, and finding that out the hard way is what made DataStores — and the whole idea of server-authoritative state — finally make sense to me.",
+      tech: ['Lua', 'Roblox Studio', 'DataStore'],
+      accent: 'from-secondary to-primary',
+      emoji: '🎮',
+    },
+    {
+      title: 'Sports Analysis Concept',
+      kind: 'Concept',
+      flag: { label: 'Not built yet', tone: 'idea' },
+      tagline: 'An idea I keep sketching rather than shipping: match numbers made readable.',
+      description:
+        "An idea I keep sketching rather than shipping: turning match and player numbers into something readable. Right now it's planning and rough charts — I'm listing it because it's honest about what I want to learn next, not because it's done.",
+      features: [
+        'Planned: import match and player stats',
+        'Planned: charts for form and trends over a season',
+        'Planned: simple comparison between players',
+        'Learning goal: working with real datasets',
+      ],
+      challenges:
+        "Nothing yet — that's the honest answer. The gap I already know about is real data: my other projects all used data I made up, and I expect messy real-world datasets to be the part that actually teaches me something here.",
+      tech: ['Python', 'Data viz', 'Concept'],
+      accent: 'from-primary to-secondary',
+      emoji: '📊',
     },
   ],
 }

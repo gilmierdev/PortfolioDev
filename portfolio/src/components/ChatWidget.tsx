@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react'
-import { CONFIG } from '../data/config'
-import { EXAMPLE_PROMPTS, getBotReply } from '../data/chatBot'
+import { BOT_LABEL, EXAMPLE_PROMPTS, GREETING, getBotReply } from '../data/chatBot'
 import type { ChatMessage } from '../types'
 
 let nextId = 1
@@ -31,13 +30,7 @@ export default function ChatWidget() {
     setOpen(willOpen)
     if (willOpen) {
       if (!hasOpenedRef.current) {
-        setMessages([
-          {
-            id: nextId++,
-            from: 'bot',
-            text: `Hey there 👋 I'm AlexBot, ${CONFIG.name.split(' ')[0]}'s (very simple) AI assistant. Ask me anything about the projects, skills, or how to get in touch!`,
-          },
-        ])
+        setMessages([{ id: nextId++, from: 'bot', text: GREETING }])
         hasOpenedRef.current = true
       }
       setTimeout(() => inputRef.current?.focus(), 50)
@@ -93,8 +86,8 @@ export default function ChatWidget() {
           <div className="px-4 py-3 border-b border-border flex items-center gap-3 btn-primary text-white">
             <span className="w-9 h-9 rounded-full bg-white/20 grid place-items-center font-mono text-sm">🤖</span>
             <div>
-              <p className="font-display font-semibold leading-tight">AlexBot</p>
-              <p className="text-xs text-white/80 leading-tight">Ask me about Alex — I'm still learning too</p>
+              <p className="font-display font-semibold leading-tight">{BOT_LABEL}</p>
+              <p className="text-xs text-white/80 leading-tight">A keyword script, not a real AI</p>
             </div>
           </div>
 

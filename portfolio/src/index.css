@@ -8,10 +8,23 @@
   --surface-2: #EEF2FA;
   --text: #161B22;
   --text-muted: #5B6577;
-  --primary: #4F6BFF;
-  --secondary: #0FADA6;
+  /* Darkened from the dark-theme accents so they clear WCAG AA (4.5:1) both as
+     text on --bg and as a background under white button labels. The brighter
+     originals scored 4.08 and 2.64 here, which is why they are dark-only. */
+  --primary: #4258E8;
+  --secondary: #0A7B76;
   --border: #E3E8F5;
   --shadow-color: 220 40% 65%;
+
+  /* Skill levels & project flags. Darkened from the source palette so they
+     stay legible on the light surface — the dark theme uses the originals. */
+  --ok: #147d3a;
+  --ok-dim: rgba(20, 125, 58, .1);
+  --learn: #2f5bd0;
+  --learn-dim: rgba(47, 91, 208, .1);
+  --explore: #96650b;
+  --explore-dim: rgba(150, 101, 11, .1);
+  --danger: #c0332b;
 }
 
 html.dark {
@@ -24,6 +37,14 @@ html.dark {
   --secondary: #2DD4C8;
   --border: #22314E;
   --shadow-color: 220 70% 4%;
+
+  --ok: #3fb950;
+  --ok-dim: rgba(63, 185, 80, .12);
+  --learn: #58a6ff;
+  --learn-dim: rgba(88, 166, 255, .12);
+  --explore: #d29922;
+  --explore-dim: rgba(210, 153, 34, .12);
+  --danger: #f85149;
 }
 
 * {
@@ -130,10 +151,62 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .typing-dot:nth-child(2) { animation-delay: .2s; }
 .typing-dot:nth-child(3) { animation-delay: .4s; }
 
+/* Skill levels and project flags — small mono capsules. */
+.pill {
+  flex: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .66rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid;
+  white-space: nowrap;
+}
+.pill--ok { color: var(--ok); background: var(--ok-dim); border-color: color-mix(in srgb, var(--ok) 35%, transparent); }
+.pill--learn { color: var(--learn); background: var(--learn-dim); border-color: color-mix(in srgb, var(--learn) 35%, transparent); }
+.pill--explore { color: var(--explore); background: var(--explore-dim); border-color: color-mix(in srgb, var(--explore) 35%, transparent); }
+
+/* Deliberately non-interactive stand-in for a link that has no URL yet. */
+.plink {
+  font-size: .85rem;
+  color: var(--text-muted);
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+  padding: 7px 14px;
+  cursor: not-allowed;
+}
+
+/* The `while (curious)` block in About. */
+.loop-line {
+  display: block;
+  padding-inline: 18px;
+  border-left: 2px solid transparent;
+  transition: background-color .4s ease, color .4s ease, border-color .4s ease;
+}
+.loop-line--in { padding-left: 42px; }
+.loop-line.is-on {
+  background: var(--ok-dim);
+  border-left-color: var(--ok);
+  color: var(--text);
+}
+.loop-line.is-on .c-fn { color: var(--ok); }
+.c-key { color: #d1425a; }
+.c-var { color: var(--explore); }
+.c-fn { color: var(--learn); }
+html.dark .c-key { color: #ff7b72; }
+
+.field-invalid { border-color: var(--danger) !important; }
+
 @media (prefers-reduced-motion: reduce) {
   * {
     animation: none !important;
     transition: none !important;
     scroll-behavior: auto !important;
+  }
+  /* Never gate content behind a scroll-reveal it will not see animate. */
+  .reveal {
+    opacity: 1;
+    transform: none;
   }
 }

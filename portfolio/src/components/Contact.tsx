@@ -1,104 +1,176 @@
-import { useState, type FormEvent } from 'react'
+import { useRef, useState, type FormEvent } from 'react'
 import { CONFIG } from '../data/config'
 import Reveal from './Reveal'
+import SectionHeading from './SectionHeading'
+
+type FieldName = 'name' | 'email' | 'message'
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
+
+/** Returns an error message, or '' when the value is acceptable. */
+function validateField(field: FieldName, raw: string): string {
+  const value = raw.trim()
+  if (!value) return 'This field is still empty.'
+  if (field === 'email' && !EMAIL_RE.test(value)) return 'That email address does not look right.'
+  if (field === 'message' && value.length < 10) {
+    return 'A few more words would help — at least 10 characters.'
+  }
+  return ''
+}
+
+const EMPTY = { name: '', email: '', message: '' }
+const ORDER: FieldName[] = ['name', 'email', 'message']
+
+const githubHandle = `@${CONFIG.github.replace(/\/+$/, '').split('/').pop()}`
 
 export default function Contact() {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [message, setMessage] = useState('')
-  const [showStatus, setShowStatus] = useState(false)
+  const [values, setValues] = useState({ ...EMPTY })
+  const [errors, setErrors] = useState({ ...EMPTY })
+  const [status, setStatus] = useState<{ tone: 'ok' | 'error'; text: string } | null>(null)
+
+  const refs = {
+    name: useRef<HTMLInputElement>(null),
+    email: useRef<HTMLInputElement>(null),
+    message: useRef<HTMLTextAreaElement>(null),
+  }
+
+  function handleChange(field: FieldName, value: string) {
+    setValues((prev) => ({ ...prev, [field]: value }))
+    // Only re-check live once a field is already flagged, so we don't shout
+    // at someone halfway through typing their email.
+    if (errors[field]) {
+      setErrors((prev) => ({ ...prev, [field]: validateField(field, value) }))
+    }
+  }
+
+  function handleBlur(field: FieldName) {
+    setErrors((prev) => ({ ...prev, [field]: validateField(field, values[field]) }))
+  }
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    if (!e.currentTarget.checkValidity()) {
-      e.currentTarget.reportValidity()
+
+    const next = { ...EMPTY }
+    ORDER.forEach((field) => {
+      next[field] = validateField(field, values[field])
+    })
+    setErrors(next)
+
+    const firstBad = ORDER.find((field) => next[field])
+    if (firstBad) {
+      setStatus({ tone: 'error', text: 'Check the highlighted fields above.' })
+      refs[firstBad].current?.focus()
       return
     }
-    // PERSONALIZE: hook this up to Formspree / EmailJS / your own backend.
-    // Right now it just simulates a submission client-side.
-    setShowStatus(true)
-    setName('')
-    setEmail('')
-    setMessage('')
-    setTimeout(() => setShowStatus(false), 6000)
+
+    // No backend, and no request of any kind — this is deliberate.
+    const firstName = values.name.trim().split(' ')[0] || 'there'
+    setStatus({
+      tone: 'ok',
+      text: `Thanks ${firstName} — but nothing was sent. This form is front-end only, so your message stayed in your browser. Reach me on GitHub and it will get there.`,
+    })
+    setValues({ ...EMPTY })
+    setErrors({ ...EMPTY })
   }
 
   return (
     <section id="contact" className="py-24 px-4 sm:px-6">
       <div className="max-w-6xl mx-auto">
-        <Reveal as="p" className="tag text-secondary mb-2">
-          // 03 — contact
-        </Reveal>
-        <Reveal as="h2" className="font-display font-bold text-3xl sm:text-4xl mb-4">
-          Let's connect
-        </Reveal>
-        <Reveal as="p" className="text-muted max-w-xl mb-12">
-          Whether you've got feedback on a project, a question about something I built, or an internship /
-          junior-dev opportunity — my inbox is open. I reply to basically everything, usually within a day.
-        </Reveal>
+        <SectionHeading
+          step="05"
+          eyebrow="contact"
+          title="Say hello"
+          intro="Happy to talk about projects, study resources, or anything I've built here. I'm still learning, so good questions are welcome in both directions."
+        />
 
-        <div className="grid lg:grid-cols-5 gap-10">
-          <Reveal as="div" className="lg:col-span-3 p-6 sm:p-8 rounded-2xl border border-border bg-surface">
-            <FormFields
-              name={name}
-              email={email}
-              message={message}
-              onNameChange={setName}
-              onEmailChange={setEmail}
-              onMessageChange={setMessage}
-              onSubmit={handleSubmit}
-              showStatus={showStatus}
-            />
+        <div className="grid lg:grid-cols-5 gap-10 items-start mt-12">
+          <Reveal
+            as="div"
+            className="lg:col-span-3 p-6 sm:p-8 rounded-2xl border border-border bg-surface"
+          >
+            <p className="text-sm text-muted rounded-lg border border-[color:var(--explore)]/30 border-l-[3px] border-l-[color:var(--explore)] bg-[color:var(--explore-dim)] px-3.5 py-3 mb-6">
+              Heads up: this form is front-end only. There's no server behind it, so nothing gets sent
+              or stored — use GitHub to reach me for real.
+            </p>
+
+            <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+              <Field
+                field="name"
+                label="Name"
+                error={errors.name}
+                value={values.name}
+                inputRef={refs.name}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              <Field
+                field="email"
+                label="Email"
+                type="email"
+                error={errors.email}
+                value={values.email}
+                inputRef={refs.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              <Field
+                field="message"
+                label="Message"
+                textarea
+                error={errors.message}
+                value={values.message}
+                inputRef={refs.message}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+
+              <button
+                type="submit"
+                className="btn-primary text-white font-semibold px-6 py-3 rounded-xl w-full hover:shadow-lg hover:-translate-y-0.5 transition-all"
+              >
+                Send message
+              </button>
+
+              <p
+                role="status"
+                aria-live="polite"
+                className={`text-sm min-h-[1.4em] ${
+                  status?.tone === 'error' ? 'text-[color:var(--danger)]' : 'text-secondary'
+                }`}
+              >
+                {status?.text ?? ''}
+              </p>
+            </form>
           </Reveal>
 
-          <Reveal as="div" className="lg:col-span-2 space-y-4">
-            <a
-              href={`mailto:${CONFIG.email}`}
-              className="flex items-center gap-4 p-5 rounded-2xl border border-border bg-surface hover:border-primary transition-colors"
-            >
-              <span className="w-11 h-11 rounded-xl grid place-items-center btn-primary text-white shrink-0">
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M22 6 12 13 2 6" />
-                  <path d="M2 6h20v12H2z" />
-                </svg>
-              </span>
-              <span>
+          <Reveal as="aside" className="lg:col-span-2 rounded-2xl border border-border bg-surface p-6">
+            <h3 className="font-display font-semibold text-lg pb-3.5 mb-4 border-b border-border">
+              Find me
+            </h3>
+
+            <div className="space-y-3">
+              <a
+                href={CONFIG.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block p-3.5 rounded-xl border border-border bg-surface2/60 hover:border-primary transition-colors"
+              >
+                <span className="block font-semibold">GitHub</span>
+                <span className="block text-muted text-sm">Where the code lives · {githubHandle}</span>
+              </a>
+              <a
+                href={`mailto:${CONFIG.email}`}
+                className="block p-3.5 rounded-xl border border-border bg-surface2/60 hover:border-primary transition-colors"
+              >
                 <span className="block font-semibold">Email</span>
                 <span className="block text-muted text-sm">{CONFIG.email}</span>
-              </span>
-            </a>
-            <a
-              href={CONFIG.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-4 p-5 rounded-2xl border border-border bg-surface hover:border-primary transition-colors"
-            >
-              <span className="w-11 h-11 rounded-xl grid place-items-center btn-primary text-white shrink-0">
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 .5C5.73.5.98 5.24.98 11.52c0 4.86 3.15 8.98 7.52 10.43.55.1.75-.24.75-.53v-1.87c-3.06.67-3.71-1.47-3.71-1.47-.5-1.28-1.22-1.62-1.22-1.62-1-.68.08-.67.08-.67 1.1.08 1.68 1.13 1.68 1.13.98 1.68 2.58 1.2 3.21.92.1-.71.38-1.2.7-1.48-2.44-.28-5.01-1.22-5.01-5.45 0-1.2.43-2.19 1.13-2.96-.11-.28-.49-1.4.11-2.92 0 0 .92-.3 3.02 1.13a10.5 10.5 0 0 1 5.5 0c2.1-1.43 3.02-1.13 3.02-1.13.6 1.52.22 2.64.11 2.92.7.77 1.13 1.76 1.13 2.96 0 4.24-2.58 5.16-5.03 5.44.39.34.74 1.01.74 2.03v3.01c0 .29.2.64.76.53 4.36-1.46 7.51-5.58 7.51-10.43C23.02 5.24 18.27.5 12 .5Z" />
-                </svg>
-              </span>
-              <span>
-                <span className="block font-semibold">GitHub</span>
-                <span className="block text-muted text-sm">@yourusername</span>
-              </span>
-            </a>
-            <a
-              href={CONFIG.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-4 p-5 rounded-2xl border border-border bg-surface hover:border-primary transition-colors"
-            >
-              <span className="w-11 h-11 rounded-xl grid place-items-center btn-primary text-white shrink-0">
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z" />
-                </svg>
-              </span>
-              <span>
-                <span className="block font-semibold">LinkedIn</span>
-                <span className="block text-muted text-sm">/in/yourusername</span>
-              </span>
-            </a>
+              </a>
+            </div>
+
+            <p className="text-muted text-sm mt-4">
+              GitHub is the only account I'm listing. I'd rather link one place I actually use than pad
+              this out.
+            </p>
           </Reveal>
         </div>
       </div>
@@ -106,87 +178,71 @@ export default function Contact() {
   )
 }
 
-interface FormFieldsProps {
-  name: string
-  email: string
-  message: string
-  onNameChange: (v: string) => void
-  onEmailChange: (v: string) => void
-  onMessageChange: (v: string) => void
-  onSubmit: (e: FormEvent<HTMLFormElement>) => void
-  showStatus: boolean
+interface FieldProps {
+  field: FieldName
+  label: string
+  value: string
+  error: string
+  type?: string
+  textarea?: boolean
+  inputRef: React.RefObject<HTMLInputElement> | React.RefObject<HTMLTextAreaElement>
+  onChange: (field: FieldName, value: string) => void
+  onBlur: (field: FieldName) => void
 }
 
-function FormFields({
-  name,
-  email,
-  message,
-  onNameChange,
-  onEmailChange,
-  onMessageChange,
-  onSubmit,
-  showStatus,
-}: FormFieldsProps) {
+function Field({
+  field,
+  label,
+  value,
+  error,
+  type = 'text',
+  textarea = false,
+  inputRef,
+  onChange,
+  onBlur,
+}: FieldProps) {
+  const id = `contact-${field}`
+  const errorId = `${id}-error`
+  const shared = {
+    id,
+    name: field,
+    value,
+    required: true,
+    'aria-invalid': error ? true : undefined,
+    'aria-describedby': errorId,
+    onBlur: () => onBlur(field),
+    className: `w-full px-4 py-3 rounded-xl bg-surface2 border border-border focus:border-primary outline-none transition-colors ${
+      error ? 'field-invalid' : ''
+    }`,
+  } as const
+
   return (
-    <form onSubmit={onSubmit} className="space-y-5" noValidate>
-      <div>
-        <label htmlFor="name" className="block text-sm font-medium mb-1.5">
-          Name
-        </label>
-        <input
-          required
-          id="name"
-          name="name"
-          type="text"
-          autoComplete="name"
-          value={name}
-          onChange={(e) => onNameChange(e.target.value)}
-          className="w-full px-4 py-3 rounded-xl bg-surface2 border border-border focus:border-primary outline-none transition-colors"
-          placeholder="Jordan Lee"
-        />
-      </div>
-      <div>
-        <label htmlFor="email" className="block text-sm font-medium mb-1.5">
-          Email
-        </label>
-        <input
-          required
-          id="email"
-          name="email"
-          type="email"
-          autoComplete="email"
-          value={email}
-          onChange={(e) => onEmailChange(e.target.value)}
-          className="w-full px-4 py-3 rounded-xl bg-surface2 border border-border focus:border-primary outline-none transition-colors"
-          placeholder="you@example.com"
-        />
-      </div>
-      <div>
-        <label htmlFor="message" className="block text-sm font-medium mb-1.5">
-          Message
-        </label>
+    <div>
+      <label htmlFor={id} className="block text-sm font-medium mb-1.5">
+        {label}
+      </label>
+
+      {textarea ? (
         <textarea
-          required
-          id="message"
-          name="message"
+          {...shared}
+          ref={inputRef as React.RefObject<HTMLTextAreaElement>}
           rows={5}
-          value={message}
-          onChange={(e) => onMessageChange(e.target.value)}
-          className="w-full px-4 py-3 rounded-xl bg-surface2 border border-border focus:border-primary outline-none transition-colors resize-none"
-          placeholder="Hey Alex, I saw your project and..."
+          onChange={(e) => onChange(field, e.target.value)}
+          className={`${shared.className} resize-y min-h-[110px]`}
         />
-      </div>
-      <button
-        type="submit"
-        className="btn-primary text-white font-semibold px-6 py-3 rounded-xl w-full sm:w-auto hover:shadow-lg hover:-translate-y-0.5 transition-all"
-      >
-        Send message
-      </button>
-      {showStatus && (
-        <p className="text-sm text-secondary" role="status">
-          Thanks! That's just a demo submission for now — email me directly and I'll actually see it. 🙂
-        </p>
+      ) : (
+        <input
+          {...shared}
+          ref={inputRef as React.RefObject<HTMLInputElement>}
+          type={type}
+          autoComplete={field === 'email' ? 'email' : 'name'}
+          onChange={(e) => onChange(field, e.target.value)}
+        />
       )}
-    </form>
+
+      <p id={errorId} className="text-[color:var(--danger)] text-xs min-h-[1.2em] mt-1">
+        {error}
+      </p>
+    </div>
   )
 }
