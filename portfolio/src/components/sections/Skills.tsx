@@ -1,8 +1,8 @@
-import { CONFIG } from '../data/config'
-import Reveal from './Reveal'
-import SectionHeading from './SectionHeading'
+import { CONFIG } from '../../data/config'
+import Reveal from '../ui/Reveal'
+import SectionHeading from '../ui/SectionHeading'
 import NextSection from './NextSection'
-import type { SkillLevel } from '../types'
+import type { SkillLevel } from '../../types'
 
 const LEVELS: Record<SkillLevel, { label: string; className: string; blurb: string }> = {
   comfortable: {

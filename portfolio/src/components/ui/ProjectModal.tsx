@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import type { Project } from '../types'
+import type { Project } from '../../types'
 
 interface ProjectModalProps {
   project: Project | null

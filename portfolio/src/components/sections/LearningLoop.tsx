@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { CONFIG } from '../data/config'
+import { CONFIG } from '../../data/config'
 
 const STEP_MS = 2600
 

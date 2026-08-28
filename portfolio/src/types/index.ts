@@ -67,12 +67,4 @@ export interface SiteConfig {
   projects: Project[]
 }
 
-export type ChatSender = 'bot' | 'user'
-
-export interface ChatMessage {
-  id: number
-  from: ChatSender
-  text: string
-}
-
 export type ThemeMode = 'light' | 'dark'

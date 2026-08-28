@@ -1,4 +1,4 @@
-import { CONFIG } from '../data/config'
+import { CONFIG } from '../../data/config'
 
 export default function Hero() {
   return (

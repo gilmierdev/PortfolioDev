@@ -1,16 +1,15 @@
 import { useState } from 'react'
-import Navbar from './components/Navbar'
-import ScrollProgress from './components/ScrollProgress'
-import Hero from './components/Hero'
-import About from './components/About'
-import Skills from './components/Skills'
-import Projects from './components/Projects'
-import Journey from './components/Journey'
-import ProjectModal from './components/ProjectModal'
-import Contact from './components/Contact'
-import Footer from './components/Footer'
-import ChatWidget from './components/ChatWidget'
-import BackToTop from './components/BackToTop'
+import Navbar from './components/layout/Navbar'
+import ScrollProgress from './components/layout/ScrollProgress'
+import Hero from './components/sections/Hero'
+import About from './components/sections/About'
+import Skills from './components/sections/Skills'
+import Projects from './components/sections/Projects'
+import Journey from './components/sections/Journey'
+import ProjectModal from './components/ui/ProjectModal'
+import Contact from './components/sections/Contact'
+import Footer from './components/layout/Footer'
+import BackToTop from './components/layout/BackToTop'
 import { useTheme } from './hooks/useTheme'
 import type { Project } from './types'
 
@@ -43,7 +42,6 @@ export default function App() {
 
       <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
       <BackToTop />
-      <ChatWidget />
     </>
   )
 }

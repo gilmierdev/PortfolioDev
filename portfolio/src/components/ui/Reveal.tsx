@@ -1,5 +1,5 @@
 import type { ElementType, ReactNode } from 'react'
-import { useReveal } from '../hooks/useReveal'
+import { useReveal } from '../../hooks/useReveal'
 
 interface RevealProps {
   as?: ElementType

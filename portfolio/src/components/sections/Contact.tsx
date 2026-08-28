@@ -1,7 +1,7 @@
 import { useRef, useState, type FormEvent } from 'react'
-import { CONFIG } from '../data/config'
-import Reveal from './Reveal'
-import SectionHeading from './SectionHeading'
+import { CONFIG } from '../../data/config'
+import Reveal from '../ui/Reveal'
+import SectionHeading from '../ui/SectionHeading'
 
 type FieldName = 'name' | 'email' | 'message'
 
