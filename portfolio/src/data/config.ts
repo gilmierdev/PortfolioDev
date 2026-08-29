@@ -1,16 +1,5 @@
 import type { SiteConfig } from '../types'
 
-/**
- * PERSONALIZE ME
- * Everything on the site — About, Skills, Projects, Journey, and the chat
- * bot's answers — is rendered from this object. Edit the values below and
- * the whole site updates. No need to touch component files unless you want
- * to change layout/structure.
- *
- * TODO: `email` is still a placeholder domain — swap in the real address.
- * TODO: projects have no `github`/`demo` URLs yet, so the UI shows inert
- *       "coming soon" placeholders. Add the keys once the repos are public.
- */
 export const CONFIG: SiteConfig = {
   name: 'Gilmier',
   role: 'IT Student • Developer • Builder',
