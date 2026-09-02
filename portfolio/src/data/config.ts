@@ -2,7 +2,7 @@ import type { SiteConfig } from '../types'
 
 export const CONFIG: SiteConfig = {
   name: 'Gilmier',
-  role: 'IT Student • Developer • Builder',
+  role: 'IT Student • Developer • Builder • Social media Manager',
   eyebrow: 'Currently studying Information Technology',
   tagline: 'Learning technology by building real things.',
   email: 'gilmiercabil@example.com',
@@ -10,7 +10,7 @@ export const CONFIG: SiteConfig = {
 
   aboutParagraphs: [
     "I'm a college Information Technology student teaching myself full-stack development the practical way. Reading about a concept rarely makes it stick for me, so I start a project instead and find out where my understanding runs out.",
-    'My interests spread wider than web development: programming languages and how they differ, backend and API design, UI design and making things feel good to use, building games and systems in Roblox, using AI tools as a coding partner, computer hardware, video editing, and sports. They feed each other more than I expected — designing a Roblox leaderboard taught me about data persistence, and editing video taught me about pacing and attention.',
+    'My interests spread wider than web development: programming languages and how they differ, backend and API design, UI design and making things feel good to use, using AI tools as a coding partner, computer hardware, and video editing. They feed each other more than I expected — and editing video taught me about pacing and attention.',
     "I'm early in this. There's plenty I haven't learned yet, and I'd rather say that than pretend otherwise. What I can say is that I finish things, break them, and understand them better afterward.",
   ],
 
@@ -61,20 +61,19 @@ export const CONFIG: SiteConfig = {
     {
       label: 'Programming',
       items: [
-        { name: 'Java', level: 'comfortable' },
         { name: 'JavaScript', level: 'comfortable' },
         { name: 'TypeScript', level: 'learning' },
+        { name: 'Java', level: 'learning' },
         { name: 'Python', level: 'learning' },
-        { name: 'C++', level: 'exploring' },
       ],
     },
     {
       label: 'Frontend',
       items: [
-        { name: 'React', level: 'learning' },
-        { name: 'Tailwind CSS', level: 'comfortable' },
-        { name: 'SCSS', level: 'learning' },
-        { name: 'Vite', level: 'learning' },
+        { name: 'React', level: 'comfortable' },
+        { name: 'SCSS', level: 'comfortable' },
+        { name: 'Vite', level: 'comfortable' },
+        { name: 'Tailwind CSS', level: 'learning' },
       ],
     },
     {
@@ -83,6 +82,7 @@ export const CONFIG: SiteConfig = {
         { name: 'Node.js', level: 'learning' },
         { name: 'Express.js', level: 'learning' },
         { name: 'MongoDB', level: 'learning' },
+        { name: 'PostgreSQL', level: 'learning' },
         { name: 'JWT auth', level: 'exploring' },
       ],
     },
@@ -94,12 +94,12 @@ export const CONFIG: SiteConfig = {
         { name: 'GitHub', level: 'learning' },
         { name: 'Postman', level: 'learning' },
         { name: 'MongoDB Atlas', level: 'learning' },
+        { name: 'Supabase', level: 'learning' },
       ],
     },
     {
       label: 'Other interests',
       items: [
-        { name: 'Roblox / Lua', level: 'learning' },
         { name: 'AI coding tools', level: 'comfortable' },
         { name: 'Computer hardware', level: 'learning' },
         { name: 'Video editing', level: 'learning' },
@@ -140,11 +140,6 @@ export const CONFIG: SiteConfig = {
       desc: 'Designing how data is stored and shaped, then testing endpoints in Postman until they behaved.',
     },
     {
-      step: '07',
-      title: 'C++, Python, and Roblox',
-      desc: 'Deliberately going sideways. Different languages solve problems differently, and seeing that made me better in the ones I already knew.',
-    },
-    {
       step: '08',
       title: 'AI-assisted development',
       desc: "Using AI tools as a study partner rather than an answer key. Useful when I read what it gives me and ask why, less useful when I don't.",
@@ -158,24 +153,6 @@ export const CONFIG: SiteConfig = {
   ],
 
   projects: [
-    {
-      title: 'Church Members Management System',
-      kind: 'Management system',
-      tagline: 'Record-keeping for a church community, in one place instead of scattered spreadsheets.',
-      description:
-        'A record-keeping app for a church community — member profiles, attendance, and groups in one place instead of scattered spreadsheets. My first real taste of designing data that other people would depend on.',
-      features: [
-        'Member profiles with search and filtering',
-        'Attendance tracking per service',
-        'Group and ministry assignments',
-        'Role-based access for admins',
-      ],
-      challenges:
-        'Designing data that other people would actually depend on. It stopped being an exercise the moment I realised a wrong record was someone real being marked absent — that changed how carefully I thought about editing, permissions, and what should never be deletable.',
-      tech: ['React', 'Node.js', 'Express', 'MongoDB'],
-      accent: 'from-primary to-secondary',
-      emoji: '⛪',
-    },
     {
       title: 'MERN E-Commerce Application',
       kind: 'E-commerce',
@@ -211,44 +188,6 @@ export const CONFIG: SiteConfig = {
       tech: ['React', 'Node.js', 'Express', 'MongoDB'],
       accent: 'from-primary to-secondary',
       emoji: '📝',
-    },
-    {
-      title: 'Roblox Projects',
-      kind: 'Game development',
-      flag: { label: 'Ongoing', tone: 'ongoing' },
-      tagline: 'Where I first learned that data has to survive a player leaving.',
-      description:
-        'Where I first learned that data has to survive a player leaving. A running set of systems and experiments in Roblox Studio, still being added to.',
-      features: [
-        'DataStore saving and loading player data',
-        'Leaderboards and stat tracking',
-        'Custom UI built in Studio',
-        'Server / client script separation',
-      ],
-      challenges:
-        "Persistence. A leaderboard that resets when someone rejoins isn't a leaderboard, and finding that out the hard way is what made DataStores — and the whole idea of server-authoritative state — finally make sense to me.",
-      tech: ['Lua', 'Roblox Studio', 'DataStore'],
-      accent: 'from-secondary to-primary',
-      emoji: '🎮',
-    },
-    {
-      title: 'Sports Analysis Concept',
-      kind: 'Concept',
-      flag: { label: 'Not built yet', tone: 'idea' },
-      tagline: 'An idea I keep sketching rather than shipping: match numbers made readable.',
-      description:
-        "An idea I keep sketching rather than shipping: turning match and player numbers into something readable. Right now it's planning and rough charts — I'm listing it because it's honest about what I want to learn next, not because it's done.",
-      features: [
-        'Planned: import match and player stats',
-        'Planned: charts for form and trends over a season',
-        'Planned: simple comparison between players',
-        'Learning goal: working with real datasets',
-      ],
-      challenges:
-        "Nothing yet — that's the honest answer. The gap I already know about is real data: my other projects all used data I made up, and I expect messy real-world datasets to be the part that actually teaches me something here.",
-      tech: ['Python', 'Data viz', 'Concept'],
-      accent: 'from-primary to-secondary',
-      emoji: '📊',
     },
   ],
 }

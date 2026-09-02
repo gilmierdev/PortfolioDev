@@ -1,6 +1,12 @@
 import { CONFIG } from '../../data/config'
+import type { ThemeMode } from '../../types'
 
-export default function Hero() {
+interface HeroProps {
+  theme: ThemeMode
+}
+
+export default function Hero({ theme }: HeroProps) {
+  const profileImage = theme === 'dark' ? '/1.jpg' : '/9.png'
   return (
     <section id="home" className="relative pt-40 pb-24 px-4 sm:px-6 overflow-hidden">
       <div className="absolute inset-0 grid-bg pointer-events-none" aria-hidden="true" />
@@ -17,6 +23,13 @@ export default function Hero() {
           <p className="tag inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border text-primary mb-5">
             <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" /> {CONFIG.eyebrow}
           </p>
+          <div className="mb-5 animate-fadeUp" style={{ animationDelay: '.1s' }}>
+            <img 
+              src={profileImage}
+              alt="Gilmier profile"
+              className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 rounded-full border-2 border-primary/50 shadow-[0_0_0_4px_var(--surface),0_0_30px_var(--primary)] dark:shadow-[0_0_0_4px_var(--surface),0_0_40px_var(--primary)] object-cover hover:scale-105 transition-transform duration-300"
+            />
+          </div>
           <h1 className="font-display font-bold text-5xl sm:text-6xl lg:text-7xl leading-[1.05] tracking-tight">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
               {CONFIG.name}
@@ -24,7 +37,7 @@ export default function Hero() {
           </h1>
           <p className="mt-4 font-mono text-sm sm:text-base tracking-wide">
             IT Student <span className="text-secondary px-1" aria-hidden="true">•</span>
-            Developer <span className="text-secondary px-1" aria-hidden="true">•</span> Builder
+            Developer <span className="text-secondary px-1" aria-hidden="true">•</span> Overthinker 
           </p>
           <p className="mt-5 text-muted text-lg sm:text-xl leading-relaxed max-w-[30ch]">
             {CONFIG.tagline}
@@ -70,7 +83,7 @@ export default function Hero() {
               <p className="mt-3">
                 <span className="text-secondary">$</span> cat currently_learning.txt
               </p>
-              <p className="text-muted">React · Node.js · Express · MongoDB · TypeScript · Roblox / Lua</p>
+              <p className="text-muted">React · Node.js · Express · MongoDB · TypeScript · JavaScript</p>
               <p className="mt-3">
                 <span className="text-secondary">$</span> ./run_intro
                 <span className="code-caret" />

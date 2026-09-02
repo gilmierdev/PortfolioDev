@@ -30,7 +30,7 @@ export default function App() {
       <Navbar theme={theme} onToggleTheme={toggleTheme} />
 
       <main id="main">
-        <Hero />
+        <Hero theme={theme} />
         <About />
         <Skills />
         <Projects onSelect={setSelectedProject} />

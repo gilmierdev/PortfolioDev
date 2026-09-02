@@ -7,12 +7,12 @@ interface NavbarProps {
 }
 
 const NAV_ITEMS = [
-  { id: 'home', label: 'home', step: '00' },
-  { id: 'about', label: 'about', step: '01' },
-  { id: 'skills', label: 'skills', step: '02' },
-  { id: 'projects', label: 'projects', step: '03' },
-  { id: 'journey', label: 'journey', step: '04' },
-  { id: 'contact', label: 'contact', step: '05' },
+  { id: 'home', label: 'HOME', step: '00' },
+  { id: 'about', label: 'ABOUT', step: '01' },
+  { id: 'skills', label: 'SKILLS', step: '02' },
+  { id: 'projects', label: 'PROJECTS', step: '03' },
+  { id: 'journey', label: 'JOURNEY', step: '04' },
+  { id: 'contact', label: 'CONTACT', step: '05' },
 ]
 
 export default function Navbar({ theme, onToggleTheme }: NavbarProps) {
