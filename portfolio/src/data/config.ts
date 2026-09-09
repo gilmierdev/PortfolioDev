@@ -172,22 +172,58 @@ export const CONFIG: SiteConfig = {
       emoji: '🛒',
     },
     {
-      title: 'Notes Application',
-      kind: 'Productivity',
-      tagline: 'Small on purpose — rebuilt more than once to get the CRUD basics clean.',
+      title: 'Luxury Watch Boutique',
+      kind: 'E-commerce',
+      tagline: 'Premium timepiece retailer with refined aesthetics.',
       description:
-        'Small on purpose. I rebuilt it more than once to get the CRUD basics clean — a proper API, sensible state on the client, and an interface that stays out of the way.',
+        'A high-end watch boutique emphasizing elegant typography, subtle micro-interactions, and a dark luxury theme. Focused on product presentation and smooth scroll-based animations.',
       features: [
-        'Create, edit, and delete notes',
-        'Search and tag organisation',
-        'REST API with clear route structure',
-        'Responsive layout for phone and desktop',
+        'Product grid with quick view',
+        'Filter by category and price',
+        'Image zoom on hover',
+        'Dark luxury color scheme',
       ],
       challenges:
-        'Restraint, mostly. Every rebuild I wanted to add features, and every rebuild the useful change was removing something. Getting the route structure and client state genuinely simple taught me more than a bigger version of the same app would have.',
-      tech: ['React', 'Node.js', 'Express', 'MongoDB'],
-      accent: 'from-primary to-secondary',
-      emoji: '📝',
+        'Balancing visual elegance with performant animations. Ensuring the dark theme felt premium rather than oppressive, and implementing image lazy-loading without disrupting the browsing flow.',
+      tech: ['React', 'SCSS', 'Framer Motion', 'Vite'],
+      accent: 'from-gray-900 to-gray-800',
+      emoji: '🕰️',
+    },
+    {
+      title: 'Farmers Market Stand',
+      kind: 'E-commerce',
+      tagline: 'Fresh produce with warm, organic feel.',
+      description:
+        'A farmers market market stall showcasing seasonal produce. Bright, earthy colors and a hand-drawn aesthetic communicate freshness and community. Built for mobile-first browsing.',
+      features: [
+        'Product cards with ingredient badges',
+        'Stock level indicators',
+        'Quick add-to-cart',
+        'Organic color palette',
+      ],
+      challenges:
+        'Creating a cohesive hand-drawn look with consistent visual hierarchy. Making grid layout feel natural on small screens while showcasing product images.',
+      tech: ['React', 'Tailwind CSS', 'Heroicons', 'Vite'],
+      accent: 'from-emerald-500 to-lime-500',
+      emoji: '🌽',
+    },
+    {
+      title: 'Retro Game Shop',
+      kind: 'E-commerce',
+      tagline: 'Vintage gaming store with pixel-art flair.',
+      description:
+        'A retro game emporium leaning into pixel art and nostalgic typography. The UI mimics classic game menus while offering modern checkout. Dark background makes the pixel graphics pop.',
+      features: [
+        'Pixel-art product showcases',
+        'Game category filters',
+        'Cart with quantity selector',
+        'Retro color scheme',
+      ],
+      challenges:
+        'Making pixel assets scale clearly across screen sizes. Balancing nostalgic aesthetics with readable typography and accessible contrast.',
+      tech: ['React', 'TypeScript', 'Vite', 'CSS custom properties'],
+      accent: 'from-purple-600 to-purple-900',
+      emoji: '🎮',
     },
   ],
 }
