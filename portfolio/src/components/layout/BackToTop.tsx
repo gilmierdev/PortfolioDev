@@ -1,10 +1,5 @@
 import { useEffect, useState } from 'react'
 
-/**
- * Appears once you are past the hero. Sits bottom-LEFT on purpose — the chat
- * widget owns bottom-right, and two stacked floating buttons in one corner is
- * how you end up tapping the wrong one on a phone.
- */
 export default function BackToTop() {
   const [visible, setVisible] = useState(false)
 

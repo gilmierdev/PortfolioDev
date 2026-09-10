@@ -5,7 +5,7 @@ export const CONFIG: SiteConfig = {
   role: 'IT Student • Developer • Builder • Social media Manager',
   eyebrow: 'Currently studying Information Technology',
   tagline: 'Learning technology by building real things.',
-  email: 'gilmiercabil@example.com',
+  email: 'gilmiercabil@gmail.com',
   github: 'https://github.com/gilmierdev',
 
   aboutParagraphs: [

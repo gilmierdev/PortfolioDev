@@ -14,9 +14,6 @@ export default function ScrollProgress() {
   useEffect(() => {
     const bar = barRef.current
     if (!bar) return
-
-    // Arrow function, not a declaration: hoisting a `function` above the null
-    // check would lose the narrowing on `bar`.
     const update = () => {
       const scrollable = document.documentElement.scrollHeight - window.innerHeight
       const progress = scrollable > 0 ? window.scrollY / scrollable : 0
