@@ -1,3 +1,4 @@
+import { useMemo, useState } from 'react'
 import { CONFIG } from '../../data/config'
 import Reveal from '../ui/Reveal'
 import SectionHeading from '../ui/SectionHeading'
@@ -8,40 +9,65 @@ interface ProjectsProps {
   onSelect: (project: Project) => void
 }
 
+const CATEGORIES = ['All', 'Full-stack', 'Frontend'] as const
+type Category = (typeof CATEGORIES)[number]
+
 export default function Projects({ onSelect }: ProjectsProps) {
+  const [category, setCategory] = useState<Category>('All')
+
+  const projects = useMemo(
+    () =>
+      category === 'All'
+        ? CONFIG.projects
+        : CONFIG.projects.filter((p) => p.category === category),
+    [category],
+  )
+
   return (
-    <section id="projects" className="py-24 px-4 sm:px-6">
+    <section id="work" className="py-24 px-4 sm:px-6">
       <div className="max-w-6xl mx-auto">
         <SectionHeading
-          step="03"
-          eyebrow="projects"
-          title="Things I've built to learn"
+          step="01"
+          eyebrow="work"
+          title="The work speaks first."
           intro="Student projects, not products. Each one exists because I wanted to understand something I couldn't get from a tutorial."
         />
 
-        {/* The status pills on the cards mean nothing without this. */}
-        <Reveal as="ul" className="mt-6 mb-10 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted">
-          <li className="flex items-center gap-2.5">
-            <span className="pill pill--ok">Ongoing</span> still actively being worked on
-          </li>
-          <li className="flex items-center gap-2.5">
-            <span className="pill pill--explore">Not built yet</span> a planned idea, listed honestly
-          </li>
-          <li className="flex items-center gap-2.5">
-            <span className="tag text-muted">{CONFIG.projects.length} total</span> tap any card for
-            the full write-up
-          </li>
+        <Reveal className="mt-8">
+          <div role="group" aria-label="Filter projects" className="flex flex-wrap gap-2">
+            {CATEGORIES.map((c) => {
+              const count =
+                c === 'All'
+                  ? CONFIG.projects.length
+                  : CONFIG.projects.filter((p) => p.category === c).length
+              return (
+                <button
+                  key={c}
+                  type="button"
+                  aria-pressed={category === c}
+                  onClick={() => setCategory(c)}
+                  className={`px-4 py-2 rounded-full border border-border font-mono text-sm transition-colors ${
+                    category === c
+                      ? 'bg-primary/10 border-primary text-primary font-semibold'
+                      : 'text-muted hover:text-primary hover:border-primary'
+                  }`}
+                >
+                  {c} <span className="opacity-60">{count}</span>
+                </button>
+              )
+            })}
+          </div>
         </Reveal>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {CONFIG.projects.map((project) => (
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+          {projects.map((project) => (
             <Reveal
               key={project.title}
               as="article"
               className="project-card relative rounded-2xl border border-border bg-surface p-5 flex flex-col"
             >
               <div
-                className={`w-full aspect-video rounded-xl bg-gradient-to-br ${project.accent} grid place-items-center text-4xl mb-4 select-none`}
+                className={`tile w-full aspect-video rounded-xl ${project.accent} grid place-items-center text-4xl mb-4 select-none`}
                 aria-hidden="true"
               >
                 {project.emoji}
@@ -88,7 +114,7 @@ export default function Projects({ onSelect }: ProjectsProps) {
           ))}
         </div>
 
-        <NextSection id="journey" label="Journey — how I got here" />
+        <NextSection id="approach" label="Approach — how each one was built" />
       </div>
     </section>
   )

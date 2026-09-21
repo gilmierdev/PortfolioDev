@@ -8,11 +8,11 @@ interface NavbarProps {
 
 const NAV_ITEMS = [
   { id: 'home', label: 'HOME', step: '00' },
-  { id: 'about', label: 'ABOUT', step: '01' },
-  { id: 'skills', label: 'SKILLS', step: '02' },
-  { id: 'projects', label: 'PROJECTS', step: '03' },
-  { id: 'journey', label: 'JOURNEY', step: '04' },
-  { id: 'contact', label: 'CONTACT', step: '05' },
+  { id: 'work', label: 'WORK', step: '01' },
+  { id: 'approach', label: 'APPROACH', step: '02' },
+  { id: 'services', label: 'SERVICES', step: '03' },
+  { id: 'about', label: 'ABOUT', step: '04' },
+  { id: 'contact', label: 'CONTACT', step: '06' },
 ]
 
 export default function Navbar({ theme, onToggleTheme }: NavbarProps) {
@@ -58,7 +58,7 @@ export default function Navbar({ theme, onToggleTheme }: NavbarProps) {
         <a href="#home" className="flex items-center gap-2 font-display font-bold text-lg" aria-label="Go to top">
           <span className="w-9 h-9 rounded-xl grid place-items-center text-white btn-primary shadow-md">G</span>
           <span className="hidden sm:inline">
-            Gilmier<span className="text-secondary">.</span>
+            GilmierDev<span className="text-secondary">.</span>
           </span>
         </a>
 

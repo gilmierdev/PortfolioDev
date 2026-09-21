@@ -33,7 +33,7 @@ export default function ScrollProgress() {
     <div className="fixed top-0 inset-x-0 h-[3px] z-[60] pointer-events-none" aria-hidden="true">
       <div
         ref={barRef}
-        className="h-full origin-left bg-gradient-to-r from-primary to-secondary"
+        className="h-full origin-left bg-primary"
         style={{ transform: 'scaleX(0)' }}
       />
     </div>

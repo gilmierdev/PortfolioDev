@@ -25,20 +25,13 @@ export interface LoopStep {
   emphasis?: string
 }
 
-export interface TimelineEntry {
-  /** "01"…"08", or "Now" for the current step. */
-  step: string
-  title: string
-  desc: string
-  /** Marks the final, in-progress step so it can be highlighted. */
-  now?: boolean
-}
-
 export type ProjectFlag = 'ongoing' | 'idea'
 
 export interface Project {
   title: string
   kind: string
+  /** Filter group used by the Work gallery tabs, e.g. "Full-stack". */
+  category: string
   flag?: { label: string; tone: ProjectFlag }
   tagline: string
   description: string
@@ -63,7 +56,6 @@ export interface SiteConfig {
   traits: Trait[]
   loopSteps: LoopStep[]
   skillGroups: SkillGroup[]
-  timeline: TimelineEntry[]
   projects: Project[]
 }
 

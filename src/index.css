@@ -3,23 +3,23 @@
 @tailwind utilities;
 
 :root {
-  --bg: #FDF8F3;
-  --surface: #FEFEFE;
-  --surface-2: #F5EDE3;
-  --text: #2D2A26;
-  --text-muted: #6B655F;
-  --primary: #C45B3D;
-  --secondary: #6B8E6B;
-  --border: #E8DFD4;
-  --shadow-color: 30 25% 55%;
+  --bg: #FAF3EB;
+  --surface: #FFFDF8;
+  --surface-2: #F3EADF;
+  --text: #3D3327;
+  --text-muted: #8C7B68;
+  --primary: #B75B30;
+  --secondary: #6F8170;
+  --border: #EADCCB;
+  --shadow-color: 28 26% 52%;
 
-  --ok: #5A7D5A;
-  --ok-dim: rgba(90, 125, 90, .12);
-  --learn: #B8860B;
-  --learn-dim: rgba(184, 134, 11, .12);
-  --explore: #C45B3D;
-  --explore-dim: rgba(196, 91, 61, .12);
-  --danger: #A64B4B;
+  --ok: #7A926C;
+  --ok-dim: rgba(122, 146, 108, .14);
+  --learn: #C4912B;
+  --learn-dim: rgba(196, 145, 43, .14);
+  --explore: #C96A3E;
+  --explore-dim: rgba(201, 106, 62, .14);
+  --danger: #C05B4D;
 }
 
 html.dark {
@@ -79,14 +79,14 @@ body {
   border: 1px solid var(--border);
 }
 
+.terminal-shadow {
+  box-shadow: 0 30px 60px -20px hsl(var(--shadow-color) / .45), 0 10px 24px -12px hsl(var(--shadow-color) / .35);
+}
+
 a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 3px;
   border-radius: 6px;
-}
-
-.terminal-shadow {
-  box-shadow: 0 30px 60px -20px hsl(var(--shadow-color) / .45), 0 10px 24px -12px hsl(var(--shadow-color) / .35);
 }
 
 .code-caret::after {
@@ -109,7 +109,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   position: absolute;
   left: 0; right: 0; bottom: -6px;
   height: 2px;
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  background: var(--primary);
   border-radius: 2px;
 }
 
@@ -139,8 +139,22 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 6px 18px -8px hsl(var(--shadow-color) / .55);
 }
+
+/* Cozy solid tint tiles for project/emoji panels. */
+.tile--sage { background: color-mix(in srgb, #8FA97E 26%, var(--surface)); }
+.tile--taupe { background: color-mix(in srgb, #8E7B70 30%, var(--surface)); }
+.tile--honey { background: color-mix(in srgb, #D9A84E 24%, var(--surface)); }
+.tile--plum { background: color-mix(in srgb, #9C6B5B 30%, var(--surface)); }
+
+/* Blue-and-black dark mode: tint the tiles with blues instead of warm tones. */
+html.dark .tile--sage { background: color-mix(in srgb, #2D88FF 22%, var(--surface)); }
+html.dark .tile--taupe { background: color-mix(in srgb, #1E6FD9 26%, var(--surface)); }
+html.dark .tile--honey { background: color-mix(in srgb, #5FA8FF 20%, var(--surface)); }
+html.dark .tile--plum { background: color-mix(in srgb, #2D88FF 14%, var(--surface)); }
 
 /* Skill levels and project flags — small mono capsules. */
 .pill {

@@ -74,7 +74,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             </p>
             <p className="text-muted mt-2">{project.tagline}</p>
 
-            <div className={`w-full aspect-video rounded-xl bg-gradient-to-br ${project.accent} grid place-items-center text-5xl mb-5 mt-5 select-none`}>
+            <div className={`tile w-full aspect-video rounded-xl ${project.accent} grid place-items-center text-5xl mb-5 mt-5 select-none`}>
               {project.emoji}
             </div>
 

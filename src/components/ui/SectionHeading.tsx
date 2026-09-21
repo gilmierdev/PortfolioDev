@@ -24,7 +24,7 @@ export default function SectionHeading({ step, eyebrow, title, intro }: SectionH
           {step}
         </span>
         <span className="text-secondary">{eyebrow}</span>
-        <span aria-hidden="true" className="h-px w-10 bg-gradient-to-r from-border to-transparent" />
+        <span aria-hidden="true" className="h-px w-10 bg-border" />
       </Reveal>
       <Reveal as="h2" className="font-display font-bold text-3xl sm:text-4xl tracking-tight">
         {title}

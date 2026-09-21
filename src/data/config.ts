@@ -1,7 +1,7 @@
 import type { SiteConfig } from '../types'
 
 export const CONFIG: SiteConfig = {
-  name: 'Gilmier',
+  name: 'GilmierDev',
   role: 'IT Student • Developer • Builder • Social media Manager',
   eyebrow: 'Currently studying Information Technology',
   tagline: 'Learning technology by building real things.',
@@ -94,7 +94,6 @@ export const CONFIG: SiteConfig = {
         { name: 'GitHub', level: 'learning' },
         { name: 'Postman', level: 'learning' },
         { name: 'MongoDB Atlas', level: 'learning' },
-        { name: 'Supabase', level: 'learning' },
       ],
     },
     {
@@ -108,54 +107,11 @@ export const CONFIG: SiteConfig = {
     },
   ],
 
-  timeline: [
-    {
-      step: '01',
-      title: 'Programming fundamentals',
-      desc: "Variables, loops, conditionals. Slow going, but it's the vocabulary everything else is written in.",
-    },
-    {
-      step: '02',
-      title: 'Java and programming logic',
-      desc: 'Where structure clicked — classes, methods, and thinking about a program as parts that talk to each other.',
-    },
-    {
-      step: '03',
-      title: 'Exploring JavaScript',
-      desc: 'First time my code changed something I could see in a browser. That feedback loop is what got me hooked.',
-    },
-    {
-      step: '04',
-      title: 'React and TypeScript',
-      desc: 'Components, state, and types catching my mistakes before the browser did. Also my first real encounter with reading error messages properly.',
-    },
-    {
-      step: '05',
-      title: 'Backend with Node.js and Express',
-      desc: 'Learning what actually happens after a form is submitted, and that the server is the only place you can trust.',
-    },
-    {
-      step: '06',
-      title: 'MongoDB and working with APIs',
-      desc: 'Designing how data is stored and shaped, then testing endpoints in Postman until they behaved.',
-    },
-    {
-      step: '08',
-      title: 'AI-assisted development',
-      desc: "Using AI tools as a study partner rather than an answer key. Useful when I read what it gives me and ask why, less useful when I don't.",
-    },
-    {
-      step: 'Now',
-      title: 'Toward full-stack — and later, cybersecurity',
-      desc: 'Getting properly solid across the stack first. Security is the direction I want to grow into after that, once the foundations hold.',
-      now: true,
-    },
-  ],
-
   projects: [
     {
       title: 'MERN E-Commerce Application',
       kind: 'E-commerce',
+      category: 'Full-stack',
       tagline: 'A storefront built to learn the full MERN stack end to end.',
       description:
         'A storefront built to learn the full MERN stack end to end. Authentication was the part that really taught me something — tokens, protected routes, and why you never trust the client.',
@@ -168,12 +124,13 @@ export const CONFIG: SiteConfig = {
       challenges:
         'Authentication. I had it "working" long before I had it right — hiding an admin button on the client felt like protection until I realised anyone could just call the endpoint directly. Learning to check permissions on the server was the lesson that stuck.',
       tech: ['MongoDB', 'Express', 'React', 'Node.js', 'JWT'],
-      accent: 'from-secondary to-primary',
+      accent: 'tile--sage',
       emoji: '🛒',
     },
     {
       title: 'Luxury Watch Boutique',
       kind: 'E-commerce',
+      category: 'Frontend',
       tagline: 'Premium timepiece retailer with refined aesthetics.',
       description:
         'A high-end watch boutique emphasizing elegant typography, subtle micro-interactions, and a dark luxury theme. Focused on product presentation and smooth scroll-based animations.',
@@ -186,12 +143,13 @@ export const CONFIG: SiteConfig = {
       challenges:
         'Balancing visual elegance with performant animations. Ensuring the dark theme felt premium rather than oppressive, and implementing image lazy-loading without disrupting the browsing flow.',
       tech: ['React', 'SCSS', 'Framer Motion', 'Vite'],
-      accent: 'from-gray-900 to-gray-800',
+      accent: 'tile--taupe',
       emoji: '🕰️',
     },
     {
       title: 'Farmers Market Stand',
       kind: 'E-commerce',
+      category: 'Frontend',
       tagline: 'Fresh produce with warm, organic feel.',
       description:
         'A farmers market market stall showcasing seasonal produce. Bright, earthy colors and a hand-drawn aesthetic communicate freshness and community. Built for mobile-first browsing.',
@@ -204,12 +162,13 @@ export const CONFIG: SiteConfig = {
       challenges:
         'Creating a cohesive hand-drawn look with consistent visual hierarchy. Making grid layout feel natural on small screens while showcasing product images.',
       tech: ['React', 'Tailwind CSS', 'Heroicons', 'Vite'],
-      accent: 'from-emerald-500 to-lime-500',
+      accent: 'tile--honey',
       emoji: '🌽',
     },
     {
       title: 'Retro Game Shop',
       kind: 'E-commerce',
+      category: 'Frontend',
       tagline: 'Vintage gaming store with pixel-art flair.',
       description:
         'A retro game emporium leaning into pixel art and nostalgic typography. The UI mimics classic game menus while offering modern checkout. Dark background makes the pixel graphics pop.',
@@ -222,7 +181,7 @@ export const CONFIG: SiteConfig = {
       challenges:
         'Making pixel assets scale clearly across screen sizes. Balancing nostalgic aesthetics with readable typography and accessible contrast.',
       tech: ['React', 'TypeScript', 'Vite', 'CSS custom properties'],
-      accent: 'from-purple-600 to-purple-900',
+      accent: 'tile--plum',
       emoji: '🎮',
     },
   ],

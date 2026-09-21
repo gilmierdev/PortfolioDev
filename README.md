@@ -1,9 +1,9 @@
 # Gilmier — Portfolio (React + TypeScript + Tailwind)
 
 A Vite + React 18 + TypeScript + Tailwind portfolio. This app is now the single
-source of truth for the site; it absorbed the content and the three signature
-sections (levelled skills, the journey timeline, and the animated learning loop)
-from the earlier hand-built static version, which has since been removed.
+source of truth for the site; it absorbed the content and two signature
+sections (levelled skills and the animated learning loop) from the earlier
+hand-built static version, which has since been removed.
 
 ## Getting started
 
@@ -19,13 +19,13 @@ Then open the local URL Vite prints (usually http://localhost:5173).
 ```
 src/
   data/
-    config.ts      ← PERSONALIZE HERE: bio, traits, skills, journey, projects
+    config.ts      ← PERSONALIZE HERE: bio, traits, skills, projects
     chatBot.ts     ← GilBot, a keyword-matching reply script (no API calls)
   hooks/
     useTheme.ts    ← dark/light mode, persisted to localStorage
     useReveal.ts   ← scroll-reveal animation hook
   components/
-    Navbar.tsx        ← 6-item nav + IntersectionObserver active-section spy
+    Navbar.tsx        ← 5-item nav + IntersectionObserver active-section spy
     ScrollProgress.tsx ← thin top bar showing progress through the page
     Hero.tsx
     About.tsx         ← bio paragraphs, traits, and the learning loop
@@ -33,8 +33,7 @@ src/
     Skills.tsx        ← skill groups with honest level pills
     Projects.tsx
     ProjectModal.tsx  ← native <dialog> + showModal()
-    Journey.tsx       ← numbered timeline with a highlighted "Now" step
-    Contact.tsx       ← front-end-only form with per-field validation
+    Contact.tsx       ← GitHub + email links (no form — front-end only)
     Footer.tsx
     ChatWidget.tsx
     BackToTop.tsx     ← bottom-left return link (chat widget owns bottom-right)
@@ -47,7 +46,7 @@ src/
   index.css        ← design tokens (light/dark) + custom utility classes
 ```
 
-Section order on the page: `home → about → skills → projects → journey → contact`.
+Section order on the page: `home → about → skills → projects → contact`.
 
 ## Personalizing
 
@@ -58,9 +57,6 @@ Everything on the page is data-driven from `src/data/config.ts` (typed by
   (`{ name, level }`), not a plain string. `level` is one of `comfortable` |
   `learning` | `exploring`, and it drives the coloured pill next to the skill.
   There are deliberately no percentage bars, since any number would be invented.
-- **`timeline: TimelineEntry[]`** — `{ step, title, desc, now? }`, where `step`
-  is `"01"`…`"08"` and then `"Now"`. Exactly one entry should set `now: true`;
-  it gets the ring highlight at the end of the rail.
 - **`projects: Project[]`** — `demo` and `github` are **optional**. Leave them
   out and the modal renders an inert dashed "link coming soon" placeholder
   rather than a dead `href="#"`. `flag` marks a project as `ongoing` or `idea`.
@@ -77,12 +73,11 @@ Everything on the page is data-driven from `src/data/config.ts` (typed by
 
 ## Behaviour worth preserving
 
-- **The contact form is front-end only.** Nothing is sent or stored, and the
-  page says so on the form itself. Validation (empty fields, email format,
-  10-character minimum message) runs on blur and on submit, focusing the first
-  invalid field. To make it real, replace the body of `handleSubmit` in
-  `src/components/Contact.tsx` with a call to Formspree, EmailJS, or your own
-  endpoint — and remove the "nothing gets sent" note when you do.
+- **Contact is links only.** No form is shipped — GitHub and email are the
+  two ways to reach the owner. If you add a form later, validation (empty
+  fields, email format, 10-character minimum message) and a
+  front-end-only submit that explains nothing was sent are the patterns that
+  were removed here; see git history for `src/components/sections/Contact.tsx`.
 - **The chat widget is not an AI.** `getBotReply` in `src/data/chatBot.ts` is
   keyword matching over `CONFIG`, and the widget header says so. Swap
   `getBotReply` for a `fetch()` to a backend that proxies the Anthropic API if

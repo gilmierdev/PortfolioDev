@@ -29,8 +29,8 @@ export default function Skills() {
     <section id="skills" className="py-24 px-4 sm:px-6 bg-surface2/40">
       <div className="max-w-6xl mx-auto">
         <SectionHeading
-          step="02"
-          eyebrow="skills"
+          step="05"
+          eyebrow="toolkit"
           title="Where I'm at, honestly"
           intro="No percentage bars — they'd be made up. These three labels are how I'd describe myself if you asked me in person."
         />
@@ -73,7 +73,7 @@ export default function Skills() {
           ))}
         </div>
 
-        <NextSection id="projects" label="Projects — what I built with it" />
+        <NextSection id="contact" label="Contact — say hello" />
       </div>
     </section>
   )
