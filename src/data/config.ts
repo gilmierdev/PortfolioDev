@@ -57,61 +57,11 @@ export const CONFIG: SiteConfig = {
     },
   ],
 
-  skillGroups: [
-    {
-      label: 'Programming',
-      items: [
-        { name: 'JavaScript', level: 'comfortable' },
-        { name: 'TypeScript', level: 'learning' },
-        { name: 'Java', level: 'learning' },
-        { name: 'Python', level: 'learning' },
-      ],
-    },
-    {
-      label: 'Frontend',
-      items: [
-        { name: 'React', level: 'comfortable' },
-        { name: 'SCSS', level: 'comfortable' },
-        { name: 'Vite', level: 'comfortable' },
-        { name: 'Tailwind CSS', level: 'learning' },
-      ],
-    },
-    {
-      label: 'Backend',
-      items: [
-        { name: 'Node.js', level: 'learning' },
-        { name: 'Express.js', level: 'learning' },
-        { name: 'MongoDB', level: 'learning' },
-        { name: 'PostgreSQL', level: 'learning' },
-        { name: 'JWT auth', level: 'exploring' },
-      ],
-    },
-    {
-      label: 'Tools',
-      items: [
-        { name: 'VS Code', level: 'comfortable' },
-        { name: 'Git', level: 'learning' },
-        { name: 'GitHub', level: 'learning' },
-        { name: 'Postman', level: 'learning' },
-        { name: 'MongoDB Atlas', level: 'learning' },
-      ],
-    },
-    {
-      label: 'Other interests',
-      items: [
-        { name: 'AI coding tools', level: 'comfortable' },
-        { name: 'Computer hardware', level: 'learning' },
-        { name: 'Video editing', level: 'learning' },
-        { name: 'UI / UX', level: 'exploring' },
-      ],
-    },
-  ],
-
   projects: [
     {
       title: 'MERN E-Commerce Application',
       kind: 'E-commerce',
-      category: 'Full-stack',
+      category: 'Website',
       tagline: 'A storefront built to learn the full MERN stack end to end.',
       description:
         'A storefront built to learn the full MERN stack end to end. Authentication was the part that really taught me something — tokens, protected routes, and why you never trust the client.',
@@ -128,61 +78,24 @@ export const CONFIG: SiteConfig = {
       emoji: '🛒',
     },
     {
-      title: 'Luxury Watch Boutique',
-      kind: 'E-commerce',
-      category: 'Frontend',
-      tagline: 'Premium timepiece retailer with refined aesthetics.',
+      title: 'Notepad Website',
+      kind: 'Utility',
+      category: 'Website',
+      demo: 'https://notepad-24hm.onrender.com/',
+      tagline: 'A no-frills notes app that autosaves as you type.',
       description:
-        'A high-end watch boutique emphasizing elegant typography, subtle micro-interactions, and a dark luxury theme. Focused on product presentation and smooth scroll-based animations.',
+        'A lightweight notepad in the browser — the kind of tool I reach for daily instead of an app I installed to admire. Notes autosave to localStorage as you type, so closing the tab never costs you work.',
       features: [
-        'Product grid with quick view',
-        'Filter by category and price',
-        'Image zoom on hover',
-        'Dark luxury color scheme',
+        'Autosave to localStorage',
+        'Multiple notes in a sidebar',
+        'Word and character count',
+        'Plain-text focus, zero clutter',
       ],
       challenges:
-        'Balancing visual elegance with performant animations. Ensuring the dark theme felt premium rather than oppressive, and implementing image lazy-loading without disrupting the browsing flow.',
-      tech: ['React', 'SCSS', 'Framer Motion', 'Vite'],
-      accent: 'tile--taupe',
-      emoji: '🕰️',
-    },
-    {
-      title: 'Farmers Market Stand',
-      kind: 'E-commerce',
-      category: 'Frontend',
-      tagline: 'Fresh produce with warm, organic feel.',
-      description:
-        'A farmers market market stall showcasing seasonal produce. Bright, earthy colors and a hand-drawn aesthetic communicate freshness and community. Built for mobile-first browsing.',
-      features: [
-        'Product cards with ingredient badges',
-        'Stock level indicators',
-        'Quick add-to-cart',
-        'Organic color palette',
-      ],
-      challenges:
-        'Creating a cohesive hand-drawn look with consistent visual hierarchy. Making grid layout feel natural on small screens while showcasing product images.',
-      tech: ['React', 'Tailwind CSS', 'Heroicons', 'Vite'],
+        'The elegant part of a notepad is restraint. No buttons for everything, no colour pickers — just a blank page that quietly saves. Keeping undo and cursor position feeling native was trickier than it sounds.',
+      tech: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
       accent: 'tile--honey',
-      emoji: '🌽',
-    },
-    {
-      title: 'Retro Game Shop',
-      kind: 'E-commerce',
-      category: 'Frontend',
-      tagline: 'Vintage gaming store with pixel-art flair.',
-      description:
-        'A retro game emporium leaning into pixel art and nostalgic typography. The UI mimics classic game menus while offering modern checkout. Dark background makes the pixel graphics pop.',
-      features: [
-        'Pixel-art product showcases',
-        'Game category filters',
-        'Cart with quantity selector',
-        'Retro color scheme',
-      ],
-      challenges:
-        'Making pixel assets scale clearly across screen sizes. Balancing nostalgic aesthetics with readable typography and accessible contrast.',
-      tech: ['React', 'TypeScript', 'Vite', 'CSS custom properties'],
-      accent: 'tile--plum',
-      emoji: '🎮',
+      emoji: '📝',
     },
   ],
 }

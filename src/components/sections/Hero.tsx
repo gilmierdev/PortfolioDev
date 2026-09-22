@@ -2,7 +2,7 @@ import { CONFIG } from '../../data/config'
 
 export default function Hero() {
   return (
-    <section id="home" className="relative pt-40 pb-24 px-4 sm:px-6 overflow-hidden">
+    <section id="home" className="relative min-h-svh flex items-center px-4 sm:px-6 overflow-hidden">
       <div className="absolute inset-0 grid-bg pointer-events-none" aria-hidden="true" />
 
       <div className="absolute inset-0 pointer-events-none hidden lg:block" aria-hidden="true">
@@ -10,6 +10,8 @@ export default function Hero() {
         <span className="absolute right-[10%] top-[18%] animate-floatSlow tag px-3 py-1 rounded-lg glass">git commit</span>
         <span className="absolute left-[14%] bottom-[16%] animate-floatSlow tag px-3 py-1 rounded-lg glass">me.build()</span>
         <span className="absolute right-[6%] bottom-[24%] animate-float tag px-3 py-1 rounded-lg glass">npm run dev</span>
+        <span className="absolute left-[8%] bottom-[2%] animate-float tag px-3 py-1 rounded-lg glass">GilmierDev</span>
+        <span className="absolute right-[6%] bottom-[2%] animate-float tag px-3 py-1 rounded-lg glass">BuildSomething</span>
       </div>
 
       <div className="relative max-w-6xl mx-auto grid lg:grid-cols-2 gap-14 items-center">
@@ -23,8 +25,8 @@ export default function Hero() {
             </span>
           </h1>
           <p className="mt-4 font-mono text-sm sm:text-base tracking-wide">
-            IT Student <span className="text-secondary px-1" aria-hidden="true">•</span> Software & AI
-            Developer
+            IT Student <span className="text-secondary px-1" aria-hidden="true">•</span>Software & AI
+            Developer <span className="text-secondary px-1" aria-hidden="true">•</span>Prompt Engineer
           </p>
           <p className="mt-5 text-muted text-lg sm:text-xl leading-relaxed max-w-[30ch]">
             {CONFIG.tagline}

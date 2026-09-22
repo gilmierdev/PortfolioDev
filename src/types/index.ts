@@ -1,15 +1,3 @@
-export type SkillLevel = 'comfortable' | 'learning' | 'exploring'
-
-export interface SkillItem {
-  name: string
-  level: SkillLevel
-}
-
-export interface SkillGroup {
-  label: string
-  items: SkillItem[]
-}
-
 export interface Trait {
   name: string
   desc: string
@@ -55,7 +43,6 @@ export interface SiteConfig {
   aboutParagraphs: string[]
   traits: Trait[]
   loopSteps: LoopStep[]
-  skillGroups: SkillGroup[]
   projects: Project[]
 }
 

@@ -19,14 +19,6 @@ const STEP_MARKERS: Record<string, string> = {
   improve: 'the polish',
 }
 
-const STORY_LINES: Record<string, { soundsLike: string; payoff: string }> = {
-  learn: { soundsLike: 'Read it, watch it, follow along', payoff: 'Context before code' },
-  build: { soundsLike: 'Start the real thing, not a tutorial clone', payoff: 'Working beats perfect' },
-  break: { soundsLike: 'Push it until something fails', payoff: 'The gap finally shows' },
-  fix: { soundsLike: "Find out why it broke, not just what broke", payoff: 'Cause, not symptom' },
-  improve: { soundsLike: 'Go back and clean it up', payoff: 'Clearer than the last version' },
-}
-
 /** The same build order behind every project on this page — five moves, then repeat. */
 export default function Approach() {
   return (
@@ -62,37 +54,16 @@ export default function Approach() {
           Five moves, then repeat. The last three are the ones that actually teach me something.
         </p>
 
-        <Reveal className="mt-10 overflow-x-auto rounded-2xl border border-border bg-surface">
-          <table className="w-full text-sm min-w-[520px]">
-            <caption className="sr-only">
-              Example build log showing the phrase for each step, what it sounds like, and the payoff.
-            </caption>
-            <thead>
-              <tr className="border-b border-border font-mono uppercase tracking-[.12em] text-muted">
-                <th scope="col" className="text-left px-5 py-3 font-medium">Phrase</th>
-                <th scope="col" className="text-left px-5 py-3 font-medium">What it sounds like</th>
-                <th scope="col" className="text-left px-5 py-3 font-medium">Payoff</th>
-              </tr>
-            </thead>
-            <tbody>
-              {CONFIG.loopSteps.map((step, i) => (
-                <tr key={step.key} className="border-b border-border last:border-b-0 align-top">
-                  <td className="px-5 py-3.5 font-mono whitespace-nowrap">
-                    {String(i + 1).padStart(2, '0')} <span className="text-secondary">·</span>{' '}
-                    <span className="font-semibold text-primary">
-                      {STEP_TITLES[step.key] ?? step.key}
-                    </span>
-                  </td>
-                  <td className="px-5 py-3.5 text-muted">
-                    {STORY_LINES[step.key]?.soundsLike ?? step.note}
-                  </td>
-                  <td className="px-5 py-3.5 text-muted">
-                    {STORY_LINES[step.key]?.payoff ?? '—'}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <Reveal className="mt-14 rounded-2xl border border-border bg-surface2/60 px-6 py-12 sm:px-12 text-center">
+          <p className="tag flex items-center justify-center gap-2.5 mb-5">
+            <span aria-hidden="true" className="h-px w-10 bg-border" />
+            <span className="text-secondary">manifesto</span>
+            <span aria-hidden="true" className="h-px w-10 bg-border" />
+          </p>
+          <blockquote className="font-display font-semibold text-2xl sm:text-3xl leading-snug tracking-tight max-w-3xl mx-auto">
+            A good build isn't luck. It's understanding the problem first, building the smallest
+            version that works, and breaking it until you actually understand it.
+          </blockquote>
         </Reveal>
 
         <NextSection id="services" label="Services — what I do with these skills" />

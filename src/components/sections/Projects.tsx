@@ -9,7 +9,7 @@ interface ProjectsProps {
   onSelect: (project: Project) => void
 }
 
-const CATEGORIES = ['All', 'Full-stack', 'Frontend'] as const
+const CATEGORIES = ['All', 'Website', 'Desktop', 'Mobile App', 'Other Build'] as const
 type Category = (typeof CATEGORIES)[number]
 
 export default function Projects({ onSelect }: ProjectsProps) {

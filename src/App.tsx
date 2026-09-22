@@ -1,14 +1,11 @@
 import { useState } from 'react'
 import Navbar from './components/layout/Navbar'
 import ScrollProgress from './components/layout/ScrollProgress'
-import Hero from './components/sections/Hero'
-import QuoteBand from './components/sections/QuoteBand'
 import Projects from './components/sections/Projects'
+import Hero from './components/sections/Hero'
 import Approach from './components/sections/Approach'
 import Services from './components/sections/Services'
 import About from './components/sections/About'
-import Skills from './components/sections/Skills'
-import CtaBand from './components/sections/CtaBand'
 import ProjectModal from './components/ui/ProjectModal'
 import Contact from './components/sections/Contact'
 import Footer from './components/layout/Footer'
@@ -34,13 +31,10 @@ export default function App() {
 
       <main id="main">
         <Hero />
-        <QuoteBand />
         <Projects onSelect={setSelectedProject} />
         <Approach />
         <Services />
         <About theme={theme} />
-        <Skills />
-        <CtaBand />
         <Contact />
       </main>
 

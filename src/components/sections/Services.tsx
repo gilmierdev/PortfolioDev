@@ -5,28 +5,23 @@ import NextSection from './NextSection'
 const SERVICES = [
   {
     id: 'web',
-    title: 'Frontend builds',
+    title: 'Website development',
     desc: 'React and TypeScript interfaces that respond, stay consistent and feel deliberate — not just functional.',
   },
   {
+    id: 'desktop',
+    title: 'Desktop application',
+    desc: 'Native-feeling desktop apps that keep the same craft as the web work — clear, responsive and fast.',
+  },
+  {
+    id: 'mobile',
+    title: 'Mobile application',
+    desc: 'Mobile builds tuned for touch and small screens, from layout to the little interactions that make it feel good.',
+  },
+  {
     id: 'api',
-    title: 'Backend & APIs',
-    desc: 'Node.js, Express and MongoDB — the data plumbing behind the UI, with auth enforced server-side, never hidden on the client.',
-  },
-  {
-    id: 'full',
-    title: 'Full-stack apps',
-    desc: 'Turning an idea into a working product end to end, from the data model to the deployed interface.',
-  },
-  {
-    id: 'ai',
-    title: 'AI-assisted development',
-    desc: 'Using LLM tools as a coding partner — scaffolding and review, always checked against my own understanding.',
-  },
-  {
-    id: 'edit',
-    title: 'Video editing',
-    desc: 'The same craft as the code: pacing, cutting, attention. Applied to edits that hold attention.',
+    title: 'Backend API',
+    desc: 'Node.js, Express and MongoDB — the data plumbing behind the interface, with auth enforced server-side, never hidden on the client.',
   },
 ]
 
@@ -41,7 +36,7 @@ export default function Services() {
           intro="Where I point these skills right now. Each one traces back to a project on this page."
         />
 
-        <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="mt-12 grid gap-5 sm:grid-cols-2">
           {SERVICES.map((service) => (
             <Reveal
               key={service.id}
