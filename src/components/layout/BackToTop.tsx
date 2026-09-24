@@ -17,7 +17,7 @@ export default function BackToTop() {
   return (
     <a
       href="#home"
-      className="fixed bottom-5 left-5 z-40 h-11 pl-3 pr-4 rounded-xl glass border border-border flex items-center gap-2 text-sm font-semibold hover:border-primary hover:text-primary transition-colors animate-fadeUp"
+      className="fixed bottom-5 left-5 z-40 h-11 pl-3 pr-4 rounded-xl glass border border-border flex items-center gap-2 text-sm font-semibold hover:border-primary hover:text-primary transition-all hover:-translate-y-1 animate-fadeUp btn-shine overflow-hidden"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

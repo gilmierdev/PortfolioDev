@@ -7,6 +7,7 @@ import Approach from './components/sections/Approach'
 import Services from './components/sections/Services'
 import About from './components/sections/About'
 import ProjectModal from './components/ui/ProjectModal'
+import CursorGlow from './components/ui/CursorGlow'
 import Contact from './components/sections/Contact'
 import Footer from './components/layout/Footer'
 import BackToTop from './components/layout/BackToTop'
@@ -27,6 +28,8 @@ export default function App() {
       </a>
 
       <ScrollProgress />
+      <CursorGlow />
+      <div className="noise-overlay" aria-hidden="true" />
       <Navbar theme={theme} onToggleTheme={toggleTheme} />
 
       <main id="main">
