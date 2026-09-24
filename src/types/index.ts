@@ -13,7 +13,7 @@ export interface LoopStep {
   emphasis?: string
 }
 
-export type ProjectFlag = 'ongoing' | 'idea'
+export type ProjectFlag = 'ok' | 'ongoing' | 'idea'
 
 export interface Project {
   title: string
