@@ -1,15 +1,23 @@
 import { useEffect, useState } from 'react'
+import { ArrowUp } from 'lucide-react'
 
 export default function BackToTop() {
   const [visible, setVisible] = useState(false)
+  const [scrollProgress, setScrollProgress] = useState(0)
 
   useEffect(() => {
-    function update() {
-      setVisible(window.scrollY > 700)
+    function handleScroll() {
+      const scrollY = window.scrollY
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight
+      setVisible(scrollY > 400)
+      if (totalHeight > 0) {
+        setScrollProgress(Math.round((scrollY / totalHeight) * 100))
+      }
     }
-    update()
-    window.addEventListener('scroll', update, { passive: true })
-    return () => window.removeEventListener('scroll', update)
+
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   if (!visible) return null
@@ -17,23 +25,12 @@ export default function BackToTop() {
   return (
     <a
       href="#home"
-      className="fixed bottom-5 left-5 z-40 h-11 pl-3 pr-4 rounded-xl glass border border-border flex items-center gap-2 text-sm font-semibold hover:border-primary hover:text-primary transition-all hover:-translate-y-1 animate-fadeUp btn-shine overflow-hidden"
+      aria-label="Scroll back to top of page"
+      className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-40 h-9 sm:h-10 px-3 sm:px-3.5 rounded-full border border-border bg-surface/90 backdrop-blur-md text-ink flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-mono font-semibold shadow-lg hover:border-primary hover:text-primary transition-all duration-200 hover:-translate-y-1 animate-fadeUp select-none active:scale-95"
+      style={{ bottom: 'max(1.25rem, env(safe-area-inset-bottom, 1.25rem))' }}
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-4 h-4"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden="true"
-      >
-        <line x1="12" y1="19" x2="12" y2="5" />
-        <polyline points="5 12 12 5 19 12" />
-      </svg>
-      Top
+      <ArrowUp className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+      <span>{scrollProgress}%</span>
     </a>
   )
 }

@@ -1,82 +1,195 @@
+import { useEffect, useState } from 'react'
+import {
+  Mail,
+  Copy,
+  Check,
+  Clock,
+  Send,
+  ArrowUpRight,
+} from 'lucide-react'
 import { CONFIG } from '../../data/config'
 import Reveal from '../ui/Reveal'
 import SectionHeading from '../ui/SectionHeading'
-
-const githubHandle = `@${CONFIG.github.replace(/\/+$/, '').split('/').pop()}`
+import { GithubIcon } from '../ui/Icons'
 
 export default function Contact() {
-  return (
-    <section id="contact" className="py-24 px-4 sm:px-6 relative overflow-hidden">
-      <div className="aurora aurora--1 pointer-events-none left-[-6%] bottom-[-20%] w-[380px] h-[380px] bg-primary/15" aria-hidden="true" />
-      <div className="aurora aurora--3 pointer-events-none right-[-8%] top-[10%] w-[320px] h-[320px] bg-secondary/15" aria-hidden="true" />
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" aria-hidden="true" />
+  const [copied, setCopied] = useState(false)
+  const [localTime, setLocalTime] = useState('')
 
-      <div className="max-w-6xl mx-auto relative">
+  // Live Philippine Time (GMT+8)
+  useEffect(() => {
+    function updateClock() {
+      const now = new Date()
+      const timeStr = now.toLocaleTimeString('en-US', {
+        timeZone: 'Asia/Manila',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true,
+      })
+      setLocalTime(timeStr)
+    }
+
+    updateClock()
+    const timer = setInterval(updateClock, 1000)
+    return () => clearInterval(timer)
+  }, [])
+
+  function copyEmail() {
+    navigator.clipboard.writeText(CONFIG.email)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2200)
+  }
+
+  const githubHandle = `@${CONFIG.github.replace(/\/+$/, '').split('/').pop()}`
+
+  return (
+    <section id="contact" className="py-16 sm:py-24 px-4 sm:px-6 relative overflow-hidden w-full max-w-full">
+      <div
+        className="aurora aurora--1 pointer-events-none left-0 sm:left-[-5%] bottom-[-20%] w-[280px] sm:w-[420px] h-[280px] sm:h-[420px] bg-primary/15"
+        aria-hidden="true"
+      />
+      <div
+        className="aurora aurora--2 pointer-events-none right-0 sm:right-[-5%] top-[10%] w-[260px] sm:w-[380px] h-[260px] sm:h-[380px] bg-secondary/15"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-border to-transparent"
+        aria-hidden="true"
+      />
+
+      <div className="max-w-6xl mx-auto relative w-full min-w-0">
         <SectionHeading
           step="06"
           eyebrow="contact"
-          title="Say hello"
-          intro="Happy to talk about projects, study resources, or anything I've built here. I'm still learning, so good questions are welcome in both directions."
+          title="Let's build something real"
+          intro="Always open to discussions about software architecture, college internship roles, or collaborating on ambitious projects. Good questions and ideas are always welcome."
         />
 
-        <Reveal variant="zoom" className="mt-12">
-          <div className="grid sm:grid-cols-2 gap-5">
-            <a
-              href={CONFIG.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="card-spot card-sheen group block p-7 sm:p-9 rounded-2xl border border-border bg-surface hover:border-primary transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl relative overflow-hidden"
-            >
-              <span className="flex items-center gap-4">
-                <span
-                  aria-hidden="true"
-                  className="w-14 h-14 rounded-2xl grid place-items-center bg-surface2 border border-border text-2xl transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="w-7 h-7" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-1.97c-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.02 1.75 2.68 1.25 3.33.95.1-.74.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.78 1.05.78 2.12v3.14c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z" />
-                  </svg>
+        <div className="grid md:grid-cols-12 gap-5 sm:gap-6 mt-8 sm:mt-12 w-full min-w-0">
+          {/* Email Direct Action Card */}
+          <Reveal
+            variant="left"
+            className="md:col-span-7 card-spot card-sheen group p-5 sm:p-8 rounded-2xl sm:rounded-3xl border border-border bg-surface flex flex-col justify-between hover:border-primary/40 transition-all duration-300 hover:shadow-xl w-full min-w-0"
+          >
+            <div className="w-full min-w-0">
+              <div className="flex items-center justify-between mb-4 sm:mb-6">
+                <span className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-surface2 border border-border flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all">
+                  <Mail className="w-5 h-5 sm:w-6 sm:h-6" />
                 </span>
-                <span>
-                  <span className="font-display font-semibold text-lg block">GitHub</span>
-                  <span className="block text-muted text-sm mt-1">
-                    Where the code lives · <span className="text-secondary font-mono">{githubHandle}</span>
-                  </span>
+                <span className="pill pill--ok text-[10px] sm:text-xs">
+                  Primary Contact
                 </span>
-              </span>
-            </a>
+              </div>
 
-            <a
-              href={`mailto:${CONFIG.email}`}
-              className="card-spot card-sheen group block p-7 sm:p-9 rounded-2xl border border-border bg-surface hover:border-primary transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl relative overflow-hidden"
-            >
-              <span className="flex items-center gap-4">
-                <span
-                  aria-hidden="true"
-                  className="w-14 h-14 rounded-2xl grid place-items-center bg-surface2 border border-border text-2xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6"
+              <h3 className="font-display font-bold text-xl sm:text-2xl text-ink">
+                Send a Direct Message
+              </h3>
+              <p className="text-muted text-xs sm:text-base leading-relaxed mt-2 max-w-lg">
+                Whether you have an internship opportunity, a project proposal, or just want to discuss software engineering, my inbox is open.
+              </p>
+
+              {/* Email Address Highlight Bar with Responsive Wrap */}
+              <div className="mt-5 sm:mt-6 p-3 sm:p-3.5 rounded-xl border border-border bg-surface2 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 sm:gap-3 w-full min-w-0">
+                <span className="font-mono text-xs sm:text-base text-ink font-semibold break-all select-all min-w-0">
+                  {CONFIG.email}
+                </span>
+                <button
+                  type="button"
+                  onClick={copyEmail}
+                  className="px-3 py-2 sm:py-1.5 rounded-lg border border-border bg-surface hover:border-primary text-xs font-mono font-medium flex items-center justify-center gap-1.5 text-ink hover:text-primary transition-all active:scale-95 shrink-0"
+                  aria-label="Copy email address"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <rect x="2" y="4" width="20" height="16" rx="2" />
-                    <path d="m22 7-10 5L2 7" />
-                  </svg>
-                </span>
-                <span>
-                  <span className="font-display font-semibold text-lg block">Email</span>
-                  <span className="block text-muted text-sm mt-1 break-all">
-                    <span className="hidden sm:inline">{CONFIG.email}</span>
-                    <span className="sm:hidden">Send me a message</span>
+                  {copied ? (
+                    <>
+                      <Check className="w-3.5 h-3.5 text-ok" />
+                      <span className="text-ok">Copied!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-3.5 h-3.5" />
+                      <span>Copy</span>
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
+
+            <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-border flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+              <a
+                href={`mailto:${CONFIG.email}`}
+                className="btn-primary btn-shine px-5 py-2.5 rounded-xl font-semibold text-xs sm:text-sm inline-flex items-center justify-center gap-2"
+              >
+                <Send className="w-4 h-4" />
+                <span>Open in Email App</span>
+              </a>
+
+              <p className="text-[11px] font-mono text-muted flex items-center justify-center sm:justify-start gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-ok" />
+                <span>Typically replies within 24 hours</span>
+              </p>
+            </div>
+          </Reveal>
+
+          {/* Right Column: GitHub & Live Timezone */}
+          <div className="md:col-span-5 space-y-4 sm:space-y-6 w-full min-w-0">
+            {/* GitHub Card */}
+            <Reveal
+              variant="right"
+              className="card-spot card-sheen group p-5 sm:p-7 rounded-2xl sm:rounded-3xl border border-border bg-surface hover:border-primary/40 transition-all duration-300 hover:shadow-xl w-full min-w-0"
+            >
+              <a
+                href={CONFIG.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full min-w-0"
+              >
+                <div className="flex items-center justify-between mb-3 sm:mb-4">
+                  <span className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-surface2 border border-border flex items-center justify-center text-ink group-hover:scale-110 group-hover:text-primary transition-all">
+                    <GithubIcon className="w-5 h-5 sm:w-6 sm:h-6" />
                   </span>
+                  <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 text-muted group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                </div>
+
+                <h3 className="font-display font-bold text-lg sm:text-xl text-ink">
+                  GitHub Profile
+                </h3>
+                <p className="text-muted text-xs sm:text-sm mt-1">
+                  Where the code lives ·{' '}
+                  <span className="text-secondary font-mono font-medium">{githubHandle}</span>
+                </p>
+                <p className="text-xs text-muted/80 mt-2.5 sm:mt-3 pt-2.5 sm:pt-3 border-t border-border/60">
+                  Inspect repositories for Financial Encoder, Notepad, and upcoming experimental builds.
+                </p>
+              </a>
+            </Reveal>
+
+            {/* Live Timezone & Availability Widget */}
+            <Reveal
+              variant="right"
+              delay={60}
+              className="p-5 sm:p-6 rounded-2xl sm:rounded-3xl border border-border bg-surface2/60 relative overflow-hidden w-full min-w-0"
+            >
+              <div className="flex items-center justify-between mb-2 sm:mb-3">
+                <span className="inline-flex items-center gap-1.5 text-[11px] font-mono text-muted uppercase tracking-wider">
+                  <Clock className="w-3.5 h-3.5 text-secondary" />
+                  <span>Local Timezone</span>
                 </span>
-              </span>
-            </a>
+                <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-mono text-ok font-semibold bg-ok/10 px-2 py-0.5 rounded-full border border-ok/20">
+                  <span className="w-1.5 h-1.5 rounded-full bg-ok animate-pulse" />
+                  PHT (UTC+8)
+                </span>
+              </div>
+
+              <p className="font-display font-bold text-2xl sm:text-3xl text-ink tracking-tight font-mono">
+                {localTime || '12:00:00 PM'}
+              </p>
+              <p className="text-xs text-muted mt-1">
+                Manila, Philippines · Open for global remote collaboration
+              </p>
+            </Reveal>
           </div>
-        </Reveal>
-
-        <Reveal className="mt-6">
-          <p className="text-muted text-sm">
-            GitHub is the only account I&apos;m listing. I&apos;d rather link one place I actually use
-            than pad this out.
-          </p>
-        </Reveal>
+        </div>
       </div>
     </section>
   )

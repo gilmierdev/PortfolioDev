@@ -18,7 +18,7 @@ export type ProjectFlag = 'ok' | 'ongoing' | 'idea'
 export interface Project {
   title: string
   kind: string
-  /** Filter group used by the Work gallery tabs, e.g. "Full-stack". */
+  /** Filter group used by the Work gallery tabs, e.g. "Website", "Desktop". */
   category: string
   flag?: { label: string; tone: ProjectFlag }
   tagline: string
@@ -33,16 +33,26 @@ export interface Project {
   emoji: string
 }
 
+export interface SkillItem {
+  name: string
+  category: 'frontend' | 'backend' | 'desktop' | 'tools'
+  highlight?: boolean
+}
+
 export interface SiteConfig {
   name: string
   role: string
   eyebrow: string
   tagline: string
+  bio?: string
   email: string
   github: string
+  location?: string
+  availability?: string
   aboutParagraphs: string[]
   traits: Trait[]
   loopSteps: LoopStep[]
+  skills?: SkillItem[]
   projects: Project[]
 }
 

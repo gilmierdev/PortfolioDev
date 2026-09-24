@@ -1,3 +1,5 @@
+import { ArrowDown } from 'lucide-react'
+
 interface NextSectionProps {
   /** Target section id, without the "#". */
   id: string
@@ -5,34 +7,18 @@ interface NextSectionProps {
   label: string
 }
 
-/**
- * Forward link at the end of a section. On desktop the navbar is always there,
- * but on a phone it is behind a hamburger — so without this the only way
- * onward is to keep scrolling and hope.
- */
 export default function NextSection({ id, label }: NextSectionProps) {
   return (
-    <div className="mt-14 pt-8 border-t border-border">
+    <div className="mt-16 pt-8 border-t border-border/80">
       <a
         href={`#${id}`}
-        className="group inline-flex items-center gap-2.5 text-sm font-semibold hover:text-primary transition-colors"
+        className="group inline-flex items-center gap-3 text-xs sm:text-sm font-semibold text-ink hover:text-primary transition-colors"
       >
-        <span className="tag text-muted uppercase tracking-[.14em]">Next</span>
-        {label}
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-4 h-4 text-primary transition-transform group-hover:translate-y-0.5"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          aria-hidden="true"
-        >
-          <line x1="12" y1="5" x2="12" y2="19" />
-          <polyline points="19 12 12 19 5 12" />
-        </svg>
+        <span className="font-mono text-xs uppercase tracking-widest text-muted bg-surface2 px-2.5 py-1 rounded-md border border-border">
+          Next
+        </span>
+        <span>{label}</span>
+        <ArrowDown className="w-4 h-4 text-primary transition-transform group-hover:translate-y-1" />
       </a>
     </div>
   )
