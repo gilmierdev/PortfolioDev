@@ -5,7 +5,6 @@ import Hero from './components/sections/Hero'
 import Skills from './components/sections/Skills'
 import Projects from './components/sections/Projects'
 import Approach from './components/sections/Approach'
-import Services from './components/sections/Services'
 import About from './components/sections/About'
 import Contact from './components/sections/Contact'
 import Footer from './components/layout/Footer'
@@ -50,7 +49,6 @@ export default function App() {
         <Skills />
         <Projects onSelect={handleSelectProject} />
         <Approach />
-        <Services />
         <About theme={theme} />
         <Contact />
       </main>

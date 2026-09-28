@@ -60,7 +60,7 @@ export default function Contact() {
 
       <div className="max-w-6xl mx-auto relative w-full min-w-0">
         <SectionHeading
-          step="06"
+          step="05"
           eyebrow="contact"
           title="Let's build something real"
           intro="Always open to discussions about software architecture, college internship roles, or collaborating on ambitious projects. Good questions and ideas are always welcome."

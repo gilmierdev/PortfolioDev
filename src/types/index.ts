@@ -35,7 +35,7 @@ export interface Project {
 
 export interface SkillItem {
   name: string
-  category: 'frontend' | 'backend' | 'desktop' | 'tools'
+  category: 'frontend' | 'backend' | 'desktop' | 'security' | 'tools'
   highlight?: boolean
 }
 

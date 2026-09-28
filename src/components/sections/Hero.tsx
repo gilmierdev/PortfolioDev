@@ -72,9 +72,9 @@ export default function Hero({ onSelectProject }: HeroProps) {
 
           {/* Role Subheading */}
           <p className="mt-3.5 sm:mt-5 font-mono text-xs sm:text-base text-ink flex items-center flex-wrap gap-x-2 gap-y-1">
-            <span className="text-primary font-semibold">Gilmier Cabil</span>
+            <span className="text-primary font-semibold">GilmierDev</span>
             <span className="text-muted/60" aria-hidden="true">•</span>
-            <span>IT Student & Developer</span>
+            <span>AI-Assisted Full-Stack Developer</span>
             <span className="text-muted/60 hidden sm:inline" aria-hidden="true">•</span>
             <span className="text-secondary font-medium block sm:inline">MERN & Desktop</span>
           </p>

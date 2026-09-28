@@ -16,12 +16,13 @@ interface IntroTerminalProps {
 
 const COMMAND_MAP: Record<string, string | string[]> = {
   whoami:
-    'Gilmier Cabil — IT student & developer learning software engineering the practical way.',
+    'GilmierDev — AI-assisted full-stack developer learning software engineering the practical way.',
   stack: [
     '• Frontend: React, TypeScript, Tailwind CSS, Vite',
     '• Backend: Node.js, Express, REST APIs, JWT Auth',
     '• Database: MongoDB, SQLite, better-sqlite3',
     '• Desktop: Electron, electron-builder, IPC architecture',
+    '• AI & Security: AI assistance workflow, route guards, API hardening, sandboxed IPC',
   ],
   philosophy:
     'Build the smallest working slice. Break it on purpose. Fix the root cause. Refactor.',
@@ -32,7 +33,7 @@ const COMMAND_MAP: Record<string, string | string[]> = {
 
 const INITIAL_STEPS = [
   { cmd: 'whoami', out: COMMAND_MAP.whoami },
-  { cmd: 'cat focus.txt', out: 'Full-Stack Web & Offline-First Desktop Systems' },
+  { cmd: 'cat focus.txt', out: 'Full-Stack Web, Offline Desktop & AI Assistance' },
   { cmd: 'echo $STATUS', out: 'Ready to build, break, and learn.' },
 ]
 

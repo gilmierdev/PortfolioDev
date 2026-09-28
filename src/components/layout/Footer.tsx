@@ -52,7 +52,7 @@ export default function Footer() {
 
         {/* Copyright & Status */}
         <div className="flex flex-col items-center md:items-end gap-1 font-mono text-xs text-muted">
-          <p>© {new Date().getFullYear()} Gilmier Cabil. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} GilmierDev. All rights reserved.</p>
           <p className="flex items-center gap-1.5 text-[11px] text-ok">
             <span className="w-1.5 h-1.5 rounded-full bg-ok animate-pulse" />
             <span>Built with React, TypeScript & Vite</span>

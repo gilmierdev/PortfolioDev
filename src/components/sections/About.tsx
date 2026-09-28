@@ -77,7 +77,7 @@ export default function About({ theme }: AboutProps) {
 
       <div className="max-w-6xl mx-auto w-full min-w-0">
         <SectionHeading
-          step="05"
+          step="04"
           eyebrow="story-and-mindset"
           title="Practical learning over passive theory"
           intro="An honest look at who I am, how I approach software, and what drives me to keep breaking and rebuilding systems."
@@ -221,7 +221,7 @@ export default function About({ theme }: AboutProps) {
                       <div className="w-20 h-28 sm:w-24 sm:h-32 rounded-xl overflow-hidden border-2 border-border bg-surface2 shadow-md">
                         <img
                           src={profileImage}
-                          alt="Gilmier Cabil"
+                          alt="GilmierDev"
                           className="w-full h-full object-cover"
                         />
                       </div>
@@ -237,7 +237,7 @@ export default function About({ theme }: AboutProps) {
                           Candidate
                         </p>
                         <p className="font-display font-bold text-base sm:text-lg leading-tight text-ink">
-                          Gilmier Cabil
+                          GilmierDev
                         </p>
                       </div>
 

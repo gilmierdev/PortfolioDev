@@ -2,7 +2,7 @@ import type { SiteConfig } from '../types'
 
 export const CONFIG: SiteConfig = {
   name: 'GilmierDev',
-  role: 'IT Student • Full-Stack & Desktop Developer',
+  role: 'AI-Assisted Full-Stack Developer • MERN & Desktop',
   eyebrow: 'College IT Student & Builder',
   tagline: 'Learning technology by building real, resilient software.',
   bio: 'College IT student teaching myself full-stack and desktop development through deliberate, hands-on building. I believe working beats perfect, and finished beats clever.',
@@ -82,10 +82,12 @@ export const CONFIG: SiteConfig = {
     { name: 'PDFKit', category: 'desktop' },
     { name: 'electron-builder', category: 'desktop' },
 
-    { name: 'Git & GitHub', category: 'tools', highlight: true },
-    { name: 'VS Code', category: 'tools' },
-    { name: 'Postman', category: 'tools' },
-    { name: 'AI Assisted Dev', category: 'tools' },
+    { name: 'AI Assistance', category: 'security', highlight: true },
+    { name: 'Endpoint Hardening & Rate Limiting', category: 'security', highlight: true },
+    { name: 'JWT Auth & Protected Routes', category: 'security', highlight: true },
+    { name: 'Electron IPC & Context Isolation', category: 'security', highlight: true },
+    { name: 'Data Validation & Sanitization', category: 'security' },
+    { name: 'Git & Secrets Hygiene', category: 'security' },
   ],
 
   projects: [

@@ -113,7 +113,7 @@ export default function Approach() {
           </div>
         </Reveal>
 
-        <NextSection id="services" label="Services — what I can build for you" />
+        <NextSection id="about" label="About Me — student developer journey" />
       </div>
     </section>
   )

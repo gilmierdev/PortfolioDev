@@ -14,9 +14,8 @@ const NAV_ITEMS = [
   { id: 'skills', label: 'STACK', step: '01' },
   { id: 'work', label: 'WORK', step: '02' },
   { id: 'approach', label: 'APPROACH', step: '03' },
-  { id: 'services', label: 'SERVICES', step: '04' },
-  { id: 'about', label: 'ABOUT', step: '05' },
-  { id: 'contact', label: 'CONTACT', step: '06' },
+  { id: 'about', label: 'ABOUT', step: '04' },
+  { id: 'contact', label: 'CONTACT', step: '05' },
 ]
 
 export default function Navbar({ theme, onToggleTheme }: NavbarProps) {
