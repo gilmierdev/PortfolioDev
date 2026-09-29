@@ -1,179 +1,158 @@
-import {
-  Code,
-  Database,
-  Monitor,
-  ShieldCheck,
-} from 'lucide-react'
-import { CONFIG } from '../../data/config'
+import { useState } from 'react'
+import { ArrowDown, ArrowRight, CheckCircle2 } from 'lucide-react'
 import Reveal from '../ui/Reveal'
-import SectionHeading from '../ui/SectionHeading'
-import NextSection from './NextSection'
 
-const CATEGORIES = [
+interface ServiceItem {
+  id: string
+  num: string
+  title: string
+  skills: string[]
+  description: string
+}
+
+const SERVICES_DATA: ServiceItem[] = [
   {
     id: 'frontend',
-    title: 'Frontend Architecture',
-    subtitle: 'Reactive UIs & Responsive Layouts',
-    icon: Code,
-    badge: 'UI & State',
+    num: '01',
+    title: 'FRONTEND ARCHITECTURE & REACT ECOSYSTEM',
+    skills: ['React 18', 'TypeScript', 'Tailwind CSS', 'Vite', 'HTML5 & CSS3', 'JavaScript ES6+'],
+    description:
+      'Designing reactive, component-driven user interfaces with strict TypeScript contracts, instant Vite HMR, and responsive layout ergonomics.',
   },
   {
     id: 'backend',
-    title: 'Backend & APIs',
-    subtitle: 'REST Services & Data Persistence',
-    icon: Database,
-    badge: 'Server & DB',
+    num: '02',
+    title: 'SERVER RUNTIMES, REST & SECURE APIS',
+    skills: ['Node.js', 'Express.js', 'REST APIs', 'JWT Tokens', 'MongoDB & Mongoose', 'bcrypt'],
+    description:
+      'Engineering robust server middleware pipelines, document modeling with Mongoose, secure JWT token lifecycle, and role-based route guards.',
   },
   {
     id: 'desktop',
-    title: 'Desktop Systems',
-    subtitle: 'Electron & Local Offline SQLite',
-    icon: Monitor,
-    badge: 'Offline-First',
+    num: '03',
+    title: 'DESKTOP ELECTRON & LOCAL SQLITE STORAGE',
+    skills: ['Electron', 'better-sqlite3', 'electron-builder', 'Recharts', 'ExcelJS', 'PDFKit'],
+    description:
+      'Building Windows native desktop software with zero-latency embedded SQLite, IPC context isolation, dynamic financial charting, and batch file export.',
+  },
+  {
+    id: 'ai',
+    num: '04',
+    title: 'AI-ASSISTED DEVELOPMENT & CODE VERIFICATION',
+    skills: ['AI Pair Programming', 'Strict Code Verification', 'Prompt Engineering', 'Rapid Prototyping'],
+    description:
+      'Leveraging cutting-edge AI coding models as high-speed development partners while maintaining rigorous manual verification, edge-case testing, and clean architecture.',
   },
   {
     id: 'security',
-    title: 'AI & Security',
-    subtitle: 'AI Assistance & Hardened Security',
-    icon: ShieldCheck,
-    badge: 'Protected',
+    num: '05',
+    title: 'APPLICATION HARDENING & SECRETS HYGIENE',
+    skills: ['Endpoint Hardening', 'Anti-Spam Rate Limits', 'Input Sanitization', 'IPC Context Isolation', 'Zero Secrets Leakage'],
+    description:
+      'Implementing server-side permission validation, request throttling to prevent abuse, secure cookie policies, and defense-in-depth data parsing.',
   },
-] as const
-
-const SKILL_DETAILS: Record<string, string> = {
-  React: 'Component architecture, custom hooks & reactive state.',
-  TypeScript: 'Strict static typing & robust runtime contracts.',
-  'Tailwind CSS': 'Utility-first styling & dark/light theme systems.',
-  'JavaScript (ES6+)': 'Modern ES features, async/await & modular code.',
-  'HTML5 & CSS3': 'Semantic markup, flexbox/grid & clean layouts.',
-  Vite: 'Instant HMR and optimized production bundles.',
-
-  'Node.js': 'Asynchronous server runtime & data streams.',
-  'Express.js': 'REST API routing, middleware pipelines & error handling.',
-  'MongoDB & Mongoose': 'Document schema modeling, validation & indexing.',
-  SQLite: 'ACID relational embedded database engine.',
-  'JWT Authentication': 'Stateless tokens, HTTP-only cookies & route guards.',
-  'RESTful API Design': 'Standard HTTP methods, status codes & validation.',
-
-  Electron: 'Cross-platform native Windows desktop shell.',
-  'better-sqlite3': 'Ultra-fast synchronous SQLite bindings in C++.',
-  Recharts: 'Interactive data visualization & trend charts.',
-  'ExcelJS / CSV': 'Spreadsheet parsing, validation & batch export.',
-  PDFKit: 'Dynamic formatted PDF generation pipeline.',
-  'electron-builder': 'Windows installer packaging & auto-updates.',
-
-  'AI Assistance': 'Modern AI-assisted engineering with strict verification for reliable code.',
-  'Endpoint Hardening & Rate Limiting': 'Anti-spam cooldowns, CORS & brute-force protection.',
-  'JWT Auth & Protected Routes': 'Token authorization, route guards & bcrypt hashing.',
-  'Electron IPC & Context Isolation': 'Sandboxed preload scripts & secure bidirectional IPC.',
-  'Data Validation & Sanitization': 'Schema checks, injection protection & payload parsing.',
-  'Git & Secrets Hygiene': 'Zero leaked secrets, clean .env & verified version control.',
-}
+]
 
 export default function Skills() {
-  const allSkills = CONFIG.skills ?? []
+  const [activeId, setActiveId] = useState<string>('desktop') // Row 03 is default active
+
+  function toggleService(id: string) {
+    setActiveId((prev) => (prev === id ? '' : id))
+  }
 
   return (
-    <section id="skills" className="py-14 sm:py-18 px-4 sm:px-6 relative overflow-hidden">
-      <div
-        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-border to-transparent"
-        aria-hidden="true"
-      />
+    <section id="services" className="py-20 sm:py-28 px-4 sm:px-8 lg:px-12 bg-white">
+      <div className="max-w-4xl mx-auto">
+        {/* Main Centered Heading with Original Software Engineering Copy */}
+        <div className="text-center space-y-3">
+          <Reveal as="p" className="font-mono text-xs uppercase tracking-widest text-gray-500 font-semibold">
+            03 // TECHNICAL EXPERTISE & DOMAINS
+          </Reveal>
+          <Reveal as="h2" className="font-display font-bold text-4xl sm:text-6xl md:text-7xl uppercase tracking-tight text-black">
+            ENGINEERING
+            <br />
+            CAPABILITIES
+          </Reveal>
 
-      <div className="max-w-6xl mx-auto">
-        <SectionHeading
-          step="01"
-          eyebrow="technologies"
-          title="Stack & Security"
-          intro="Full-stack & desktop development powered by AI assistance and hardened security."
-        />
+          <Reveal as="p" className="max-w-xl mx-auto text-xs sm:text-sm font-mono text-gray-500 leading-relaxed pt-1">
+            Full-stack architecture, high-performance desktop software, offline SQLite databases, and hardened security.
+          </Reveal>
+        </div>
 
-        {/* Minimal AI Assistance & Security Pill */}
-        <Reveal variant="up" className="mt-4 sm:mt-5">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-xs font-mono text-ink">
-            <span className="w-2 h-2 rounded-full bg-ok animate-pulse" />
-            <span className="font-semibold text-primary">AI Assistance & Security</span>
-            <span className="text-muted/60" aria-hidden="true">•</span>
-            <span className="text-muted">Accelerated AI workflow paired with route guards, input sanitization & sandboxed IPC</span>
-          </div>
-        </Reveal>
-
-        {/* 4 Clean Grouped Category Cards */}
-        <div className="grid md:grid-cols-2 gap-4 sm:gap-5 mt-6 sm:mt-8">
-          {CATEGORIES.map((cat, idx) => {
-            const Icon = cat.icon
-            const skills = allSkills.filter((s) => s.category === cat.id)
-            const isSecurity = cat.id === 'security'
+        {/* Numbered Pill Row List */}
+        <div className="mt-14 space-y-3.5">
+          {SERVICES_DATA.map((srv, idx) => {
+            const isActive = activeId === srv.id
 
             return (
-              <Reveal
-                key={cat.id}
-                delay={idx * 40}
-                variant="up"
-                className={`card-spot card-sheen rounded-2xl border bg-surface p-5 sm:p-6 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md ${
-                  isSecurity ? 'border-primary/40 bg-surface/90' : 'border-border'
-                }`}
-              >
-                {/* Category Header */}
-                <div className="flex items-center justify-between pb-3.5 border-b border-border/70">
-                  <div className="flex items-center gap-2.5">
-                    <span
-                      className={`w-8 h-8 rounded-lg flex items-center justify-center border ${
-                        isSecurity
-                          ? 'bg-ok/10 text-ok border-ok/30'
-                          : 'bg-primary/10 text-primary border-primary/20'
+              <Reveal key={srv.id} delay={idx * 60} variant="up">
+                <div
+                  onClick={() => toggleService(srv.id)}
+                  className={`w-full transition-all duration-300 cursor-pointer select-none border overflow-hidden ${
+                    isActive
+                      ? 'rounded-3xl sm:rounded-[36px] bg-black text-white border-black shadow-2xl scale-[1.01]'
+                      : 'rounded-full bg-white text-black border-gray-300 hover:border-black hover:shadow-sm'
+                  }`}
+                >
+                  {/* Top Bar of the Pill Row */}
+                  <div className="flex items-center justify-between px-4 sm:px-7 py-3.5 sm:py-4 gap-3">
+                    {/* Left Number Circle */}
+                    <div
+                      className={`w-10 h-10 sm:w-11 sm:h-11 rounded-full border flex items-center justify-center font-mono text-xs sm:text-sm font-semibold shrink-0 transition-colors ${
+                        isActive
+                          ? 'border-zinc-700 bg-zinc-900 text-white'
+                          : 'border-gray-200 bg-white text-black'
                       }`}
                     >
-                      <Icon className="w-4 h-4" />
+                      {srv.num}
+                    </div>
+
+                    {/* Center Service Title */}
+                    <span className="font-display font-bold text-xs sm:text-base uppercase tracking-wider text-center flex-1 px-2">
+                      {srv.title}
                     </span>
-                    <div>
-                      <h3 className="font-display font-bold text-base text-ink leading-tight">
-                        {cat.title}
-                      </h3>
-                      <p className="text-[11px] font-mono text-muted">{cat.subtitle}</p>
+
+                    {/* Right Arrow Circle */}
+                    <div
+                      className={`w-10 h-10 sm:w-11 sm:h-11 rounded-full border flex items-center justify-center shrink-0 transition-colors ${
+                        isActive
+                          ? 'border-zinc-700 bg-zinc-900 text-white'
+                          : 'border-gray-200 bg-white text-black'
+                      }`}
+                    >
+                      {isActive ? (
+                        <ArrowRight className="w-4 h-4 text-white" />
+                      ) : (
+                        <ArrowDown className="w-4 h-4 text-black" />
+                      )}
                     </div>
                   </div>
 
-                  <span
-                    className={`text-[10px] font-mono px-2 py-0.5 rounded-md border ${
-                      isSecurity
-                        ? 'bg-ok/10 text-ok border-ok/25 font-semibold'
-                        : 'bg-surface2 text-muted border-border'
-                    }`}
-                  >
-                    {cat.badge}
-                  </span>
-                </div>
+                  {/* Expanded Content Drawer when row is active */}
+                  {isActive && (
+                    <div className="px-6 sm:px-10 pb-7 pt-3 text-left border-t border-zinc-800/90 animate-fadeUp space-y-4">
+                      <p className="text-zinc-300 text-xs sm:text-sm leading-relaxed max-w-2xl font-body">
+                        {srv.description}
+                      </p>
 
-                {/* Skill Pills */}
-                <div className="flex flex-wrap gap-2 mt-4">
-                  {skills.map((skill) => (
-                    <span
-                      key={skill.name}
-                      title={SKILL_DETAILS[skill.name] ?? skill.name}
-                      className={`px-2.5 py-1.5 rounded-lg text-xs font-mono border transition-all inline-flex items-center gap-1.5 cursor-default ${
-                        skill.highlight
-                          ? 'bg-surface2 text-ink border-border hover:border-primary/50 font-medium'
-                          : 'bg-surface text-muted border-border/60 hover:text-ink hover:border-border'
-                      }`}
-                    >
-                      {skill.highlight && (
-                        <span
-                          className={`w-1.5 h-1.5 rounded-full ${
-                            isSecurity ? 'bg-ok' : 'bg-primary'
-                          }`}
-                        />
-                      )}
-                      {skill.name}
-                    </span>
-                  ))}
+                      <div className="flex flex-wrap gap-2 pt-1">
+                        {srv.skills.map((s) => (
+                          <span
+                            key={s}
+                            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono bg-zinc-900 border border-zinc-700/80 text-zinc-200 hover:border-zinc-500 hover:text-white transition-colors"
+                          >
+                            <CheckCircle2 className="w-3.5 h-3.5 text-white shrink-0" />
+                            <span>{s}</span>
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </Reveal>
             )
           })}
         </div>
-
-        <NextSection id="work" label="Featured Projects — engineered from scratch" />
       </div>
     </section>
   )

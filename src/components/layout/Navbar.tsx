@@ -1,24 +1,16 @@
 import { useEffect, useState } from 'react'
-import { Sun, Moon, Menu, X, Mail } from 'lucide-react'
+import { Menu, X, ArrowUpRight } from 'lucide-react'
 import { GithubIcon } from '../ui/Icons'
 import { CONFIG } from '../../data/config'
-import type { ThemeMode } from '../../types'
-
-interface NavbarProps {
-  theme: ThemeMode
-  onToggleTheme: () => void
-}
 
 const NAV_ITEMS = [
-  { id: 'home', label: 'HOME', step: '00' },
-  { id: 'skills', label: 'STACK', step: '01' },
-  { id: 'work', label: 'WORK', step: '02' },
-  { id: 'approach', label: 'APPROACH', step: '03' },
-  { id: 'about', label: 'ABOUT', step: '04' },
-  { id: 'contact', label: 'CONTACT', step: '05' },
+  { id: 'home', label: 'HOME' },
+  { id: 'about', label: 'ABOUT ME' },
+  { id: 'work', label: 'PROJECT' },
+  { id: 'services', label: 'SERVICES' },
 ]
 
-export default function Navbar({ theme, onToggleTheme }: NavbarProps) {
+export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeId, setActiveId] = useState('home')
   const [scrolled, setScrolled] = useState(false)
@@ -35,24 +27,24 @@ export default function Navbar({ theme, onToggleTheme }: NavbarProps) {
           if (entry.isIntersecting) setActiveId(entry.target.id)
         })
       },
-      { rootMargin: '-30% 0px -45% 0px' },
+      { rootMargin: '-25% 0px -40% 0px' },
     )
 
     sections.forEach((s) => observer.observe(s))
     return () => observer.disconnect()
   }, [])
 
-  // Header glass effect on scroll
+  // Header elevation on scroll
   useEffect(() => {
     function onScroll() {
-      setScrolled(window.scrollY > 15)
+      setScrolled(window.scrollY > 20)
     }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Close mobile menu on Escape & lock body scroll on mobile
+  // Close mobile menu on Escape
   useEffect(() => {
     if (!mobileOpen) {
       document.body.style.overflow = ''
@@ -79,36 +71,36 @@ export default function Navbar({ theme, onToggleTheme }: NavbarProps) {
         <div
           aria-hidden="true"
           onClick={() => setMobileOpen(false)}
-          className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm md:hidden animate-fadeUp"
+          className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm md:hidden animate-fadeUp"
         />
       )}
 
-      <header className="fixed top-0 inset-x-0 z-50 px-3 sm:px-6 pt-3 pointer-events-none">
+      <header className="fixed top-0 inset-x-0 z-50 px-4 sm:px-8 pt-4 sm:pt-6 pointer-events-none">
         <nav
-          className={`mx-auto max-w-6xl rounded-2xl px-3.5 sm:px-6 py-2 sm:py-2.5 flex items-center justify-between pointer-events-auto transition-all duration-300 ${
+          className={`mx-auto max-w-6xl px-4 sm:px-6 py-3 flex items-center justify-between pointer-events-auto transition-all duration-300 rounded-full ${
             scrolled || mobileOpen
-              ? 'glass shadow-xl shadow-black/5 border border-border bg-surface/90 backdrop-blur-md'
-              : 'bg-transparent border border-transparent'
+              ? 'bg-white/95 backdrop-blur-md border border-gray-200 shadow-md'
+              : 'bg-white/80 backdrop-blur-sm border border-transparent'
           }`}
           aria-label="Primary navigation"
         >
-          {/* Brand Logo */}
+          {/* Custom Brand Logo */}
           <a
             href="#home"
             onClick={() => setMobileOpen(false)}
-            className="group flex items-center gap-2 font-display font-bold text-base sm:text-lg text-ink"
+            className="group flex items-center gap-2 font-display font-bold text-base sm:text-lg tracking-tight text-black"
             aria-label="GilmierDev - Return to top"
           >
-            <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg grid place-items-center text-white bg-primary shadow-sm group-hover:scale-105 transition-transform font-bold text-xs sm:text-sm">
+            <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black text-white text-xs font-bold flex items-center justify-center font-mono shadow-sm group-hover:scale-105 transition-transform">
               G
             </span>
             <span className="tracking-tight text-sm sm:text-base">
-              Gilmier<span className="text-primary">Dev</span>
+              GILMIER<span className="text-gray-400 font-medium">.DEV</span>
             </span>
           </a>
 
           {/* Desktop Nav Items */}
-          <ul className="hidden md:flex items-center gap-1 font-mono text-xs">
+          <ul className="hidden md:flex items-center gap-2 text-xs font-semibold uppercase tracking-wider">
             {NAV_ITEMS.map((item) => {
               const active = activeId === item.id
               return (
@@ -116,37 +108,40 @@ export default function Navbar({ theme, onToggleTheme }: NavbarProps) {
                   <a
                     href={`#${item.id}`}
                     aria-current={active ? 'page' : undefined}
-                    className={`px-3 py-1.5 rounded-lg transition-all duration-200 inline-flex items-center gap-1.5 ${
+                    className={`px-5 py-2 rounded-full border transition-all duration-200 inline-block ${
                       active
-                        ? 'bg-primary/10 text-primary font-semibold'
-                        : 'text-muted hover:text-ink hover:bg-surface2'
+                        ? 'bg-black text-white border-black shadow-sm'
+                        : 'bg-white text-black border-gray-200 hover:border-black'
                     }`}
                   >
-                    <span className={active ? 'text-primary/70' : 'text-muted/60'}>
-                      {item.step}
-                    </span>
-                    <span>{item.label}</span>
+                    {item.label}
                   </a>
                 </li>
               )
             })}
           </ul>
 
-          {/* Action Controls */}
-          <div className="flex items-center gap-1.5 sm:gap-2">
-            {/* Theme Switcher Button */}
-            <button
-              type="button"
-              aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-              onClick={onToggleTheme}
-              className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl border border-border bg-surface/80 hover:bg-surface text-ink grid place-items-center transition-all hover:scale-105 active:scale-95 shadow-sm"
+          {/* Right Action Icons */}
+          <div className="flex items-center gap-2">
+            <a
+              href={CONFIG.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub Profile"
+              className="w-9 h-9 rounded-full border border-gray-200 hover:border-black flex items-center justify-center text-black hover:bg-black hover:text-white transition-all shadow-sm"
+              title="GitHub Profile"
             >
-              {theme === 'dark' ? (
-                <Sun className="w-4 h-4 text-amber-400" />
-              ) : (
-                <Moon className="w-4 h-4 text-slate-700" />
-              )}
-            </button>
+              <GithubIcon className="w-4 h-4" />
+            </a>
+
+            <a
+              href="#contact"
+              className="hidden sm:flex items-center gap-1 px-4 py-2 rounded-full border border-gray-200 hover:border-black text-xs font-mono font-semibold uppercase tracking-wider text-black hover:bg-black hover:text-white transition-all shadow-sm"
+              title="Let's Build"
+            >
+              <span>CONNECT</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </a>
 
             {/* Mobile Menu Toggle Button */}
             <button
@@ -154,7 +149,7 @@ export default function Navbar({ theme, onToggleTheme }: NavbarProps) {
               aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={mobileOpen}
               onClick={() => setMobileOpen((v) => !v)}
-              className="md:hidden w-8 h-8 rounded-xl border border-border bg-surface/80 text-ink grid place-items-center transition-all active:scale-95"
+              className="md:hidden w-9 h-9 rounded-full border border-gray-200 text-black flex items-center justify-center hover:border-black transition-all active:scale-95"
             >
               {mobileOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
             </button>
@@ -165,9 +160,9 @@ export default function Navbar({ theme, onToggleTheme }: NavbarProps) {
         {mobileOpen && (
           <div
             id="mobileMenu"
-            className="md:hidden mt-2 rounded-2xl glass border border-border p-3.5 pointer-events-auto shadow-2xl animate-fadeUp max-h-[82vh] overflow-y-auto bg-surface/95 backdrop-blur-xl"
+            className="md:hidden mt-2 rounded-3xl border border-gray-200 p-5 pointer-events-auto shadow-2xl animate-fadeUp bg-white"
           >
-            <ul className="flex flex-col font-mono text-xs space-y-1">
+            <ul className="flex flex-col space-y-2 text-xs font-semibold uppercase tracking-wider">
               {NAV_ITEMS.map((item) => {
                 const active = activeId === item.id
                 return (
@@ -176,49 +171,38 @@ export default function Navbar({ theme, onToggleTheme }: NavbarProps) {
                       href={`#${item.id}`}
                       onClick={() => setMobileOpen(false)}
                       aria-current={active ? 'page' : undefined}
-                      className={`flex items-center justify-between px-4 py-3 rounded-xl transition-colors active:scale-[0.98] ${
+                      className={`flex items-center justify-between px-5 py-3 rounded-full border transition-all ${
                         active
-                          ? 'bg-primary text-white font-semibold shadow-sm'
-                          : 'text-ink hover:bg-surface2'
+                          ? 'bg-black text-white border-black'
+                          : 'bg-white text-black border-gray-200 hover:border-black'
                       }`}
                     >
-                      <span className="flex items-center gap-2.5">
-                        <span className={active ? 'text-white/80' : 'text-primary'}>
-                          {item.step}
-                        </span>
-                        <span className="text-sm">{item.label}</span>
-                      </span>
-                      {active ? (
-                        <span className="w-2 h-2 rounded-full bg-white" />
-                      ) : (
-                        <span className="text-muted text-[10px]">→</span>
-                      )}
+                      <span>{item.label}</span>
+                      <span>→</span>
                     </a>
                   </li>
                 )
               })}
             </ul>
 
-            {/* Mobile Quick Action Footer */}
-            <div className="mt-4 pt-3 border-t border-border grid grid-cols-2 gap-2">
+            <div className="mt-4 pt-3 border-t border-gray-200 flex gap-2">
               <a
                 href={CONFIG.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl border border-border bg-surface2 text-xs font-mono text-ink active:scale-95 transition-transform"
+                className="flex-1 flex items-center justify-center gap-2 py-3 rounded-full border border-gray-300 text-xs font-semibold uppercase tracking-wider text-black hover:border-black transition-colors"
               >
-                <GithubIcon className="w-3.5 h-3.5" />
+                <GithubIcon className="w-4 h-4" />
                 <span>GitHub</span>
               </a>
 
               <a
-                href={`mailto:${CONFIG.email}`}
+                href="#contact"
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-primary text-white text-xs font-mono font-semibold active:scale-95 transition-transform shadow-sm"
+                className="flex-1 flex items-center justify-center gap-2 py-3 rounded-full bg-black text-white text-xs font-semibold uppercase tracking-wider hover:bg-zinc-800 transition-colors"
               >
-                <Mail className="w-3.5 h-3.5" />
-                <span>Email</span>
+                <span>Connect</span>
               </a>
             </div>
           </div>

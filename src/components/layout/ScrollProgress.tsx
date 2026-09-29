@@ -1,13 +1,5 @@
 import { useEffect, useRef } from 'react'
 
-/**
- * Thin bar across the very top showing how far through the page you are.
- * Purely an orientation cue — the nav already conveys position semantically,
- * so this is hidden from assistive tech.
- *
- * Writes straight to the DOM node instead of going through state: scroll fires
- * often, and a re-render per event would be wasteful.
- */
 export default function ScrollProgress() {
   const barRef = useRef<HTMLDivElement>(null)
 
@@ -30,10 +22,10 @@ export default function ScrollProgress() {
   }, [])
 
   return (
-    <div className="fixed top-0 inset-x-0 h-[3px] z-[60] pointer-events-none" aria-hidden="true">
+    <div className="fixed top-0 inset-x-0 h-[2px] z-[60] pointer-events-none" aria-hidden="true">
       <div
         ref={barRef}
-        className="h-full origin-left bg-gradient-to-r from-primary via-secondary to-primary"
+        className="h-full origin-left bg-black"
         style={{ transform: 'scaleX(0)' }}
       />
     </div>

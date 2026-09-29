@@ -26,10 +26,10 @@ export default function BackToTop() {
     <a
       href="#home"
       aria-label="Scroll back to top of page"
-      className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-40 h-9 sm:h-10 px-3 sm:px-3.5 rounded-full border border-border bg-surface/90 backdrop-blur-md text-ink flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-mono font-semibold shadow-lg hover:border-primary hover:text-primary transition-all duration-200 hover:-translate-y-1 animate-fadeUp select-none active:scale-95"
-      style={{ bottom: 'max(1.25rem, env(safe-area-inset-bottom, 1.25rem))' }}
+      className="fixed bottom-6 right-6 z-40 h-10 px-3.5 rounded-full border border-gray-300 bg-white/95 backdrop-blur-md text-black flex items-center gap-1.5 text-xs font-mono font-semibold shadow-lg hover:border-black transition-all duration-200 hover:-translate-y-1 animate-fadeUp select-none active:scale-95"
+      style={{ bottom: 'max(1.5rem, env(safe-area-inset-bottom, 1.5rem))' }}
     >
-      <ArrowUp className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+      <ArrowUp className="w-3.5 h-3.5" />
       <span>{scrollProgress}%</span>
     </a>
   )

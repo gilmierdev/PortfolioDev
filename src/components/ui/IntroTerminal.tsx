@@ -183,14 +183,14 @@ export default function IntroTerminal({ onOpenProject }: IntroTerminalProps) {
       onClick={() => inputRef.current?.focus()}
     >
       {/* Header bar */}
-      <div className="flex items-center justify-between px-3.5 py-2.5 sm:px-4 sm:py-3 border-b border-border bg-surface2 select-none">
+      <div className="flex items-center justify-between px-3.5 py-2.5 sm:px-4 sm:py-3 border-b border-border bg-surface2/80 select-none">
         <div className="flex items-center gap-1.5 sm:gap-2">
-          <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500/80 inline-block" />
-          <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500/80 inline-block" />
-          <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500/80 inline-block" />
-          <div className="ml-1 sm:ml-2 flex items-center gap-1.5 text-muted text-[11px] sm:text-xs">
-            <Terminal className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary" />
-            <span className="font-semibold text-ink">gilmier@box</span>
+          <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-zinc-600/80 inline-block" />
+          <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-zinc-500/70 inline-block" />
+          <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-zinc-400/60 inline-block" />
+          <div className="ml-1 sm:ml-2 flex items-center gap-1.5 text-zinc-400 text-[11px] sm:text-xs">
+            <Terminal className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white" />
+            <span className="font-semibold text-white">gilmier@box</span>
             <span className="opacity-50 hidden sm:inline">~ zsh</span>
           </div>
         </div>
@@ -203,12 +203,12 @@ export default function IntroTerminal({ onOpenProject }: IntroTerminalProps) {
               copyAll()
             }}
             title="Copy terminal content"
-            className="p-1 rounded-md text-muted hover:text-ink hover:bg-surface transition-colors"
+            className="p-1 rounded-md text-zinc-400 hover:text-white hover:bg-surface transition-colors"
           >
-            {copied ? <Check className="w-3.5 h-3.5 text-ok" /> : <Copy className="w-3.5 h-3.5" />}
+            {copied ? <Check className="w-3.5 h-3.5 text-white" /> : <Copy className="w-3.5 h-3.5" />}
           </button>
-          <span className="inline-flex items-center gap-1 text-[10px] sm:text-[11px] text-ok font-medium bg-ok/10 px-2 py-0.5 rounded-full border border-ok/20">
-            <span className="w-1.5 h-1.5 rounded-full bg-ok animate-pulse" />
+          <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] text-zinc-300 font-medium bg-white/5 px-2 py-0.5 rounded-full border border-white/10">
+            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse shadow-[0_0_6px_rgba(255,255,255,0.8)]" />
             interactive
           </span>
         </div>
@@ -221,24 +221,24 @@ export default function IntroTerminal({ onOpenProject }: IntroTerminalProps) {
       >
         {history.map((entry, idx) => (
           <div key={`${entry.cmd}-${idx}`} className="space-y-1">
-            <div className="flex items-center gap-1.5 text-primary font-semibold">
-              <span className="text-secondary">$</span>
+            <div className="flex items-center gap-1.5 text-white font-semibold">
+              <span className="text-zinc-500">$</span>
               <span>{entry.cmd}</span>
             </div>
 
             {/* Special Project List with Clickable Modal Triggers */}
             {entry.isProjectList ? (
-              <div className="text-muted pl-3 sm:pl-4 space-y-2 border-l border-border/60 my-2">
-                <p className="text-[11px] sm:text-xs text-ink/80">{entry.output}</p>
+              <div className="text-zinc-400 pl-3 sm:pl-4 space-y-2 border-l border-zinc-800 my-2">
+                <p className="text-[11px] sm:text-xs text-zinc-300">{entry.output}</p>
                 <div className="space-y-1.5 pt-1">
                   {CONFIG.projects.map((proj, pIdx) => (
                     <div
                       key={proj.title}
-                      className="flex items-center justify-between gap-2 p-2 rounded-lg bg-surface2/60 border border-border hover:border-primary/40 transition-colors"
+                      className="flex items-center justify-between gap-2 p-2 rounded-lg bg-surface2/60 border border-border hover:border-zinc-500 transition-colors"
                     >
                       <div className="flex items-center gap-2 truncate">
                         <span>{proj.emoji}</span>
-                        <span className="font-semibold text-ink truncate text-[11px] sm:text-xs">
+                        <span className="font-semibold text-white truncate text-[11px] sm:text-xs">
                           {pIdx + 1}. {proj.title}
                         </span>
                       </div>
@@ -248,7 +248,7 @@ export default function IntroTerminal({ onOpenProject }: IntroTerminalProps) {
                           e.stopPropagation()
                           onOpenProject?.(proj)
                         }}
-                        className="text-[10px] sm:text-[11px] font-mono text-primary hover:underline px-2 py-0.5 rounded border border-primary/25 bg-primary/10 flex items-center gap-1 shrink-0"
+                        className="text-[10px] sm:text-[11px] font-mono text-zinc-200 hover:text-white px-2 py-0.5 rounded border border-white/20 bg-white/5 hover:bg-white hover:text-black flex items-center gap-1 shrink-0 transition-colors"
                       >
                         <span>Inspect</span>
                         <ExternalLink className="w-3 h-3" />
@@ -258,13 +258,13 @@ export default function IntroTerminal({ onOpenProject }: IntroTerminalProps) {
                 </div>
               </div>
             ) : Array.isArray(entry.output) ? (
-              <div className="text-muted pl-3 sm:pl-4 space-y-0.5 border-l border-border/60">
+              <div className="text-zinc-400 pl-3 sm:pl-4 space-y-0.5 border-l border-zinc-800">
                 {entry.output.map((line, lIdx) => (
                   <p key={lIdx}>{line}</p>
                 ))}
               </div>
             ) : (
-              <p className={entry.isError ? 'text-danger pl-3 sm:pl-4 font-semibold' : 'text-muted pl-3 sm:pl-4'}>
+              <p className={entry.isError ? 'text-zinc-300 pl-3 sm:pl-4 font-semibold border-l border-zinc-700' : 'text-zinc-400 pl-3 sm:pl-4'}>
                 {entry.output}
               </p>
             )}
@@ -273,8 +273,8 @@ export default function IntroTerminal({ onOpenProject }: IntroTerminalProps) {
 
         {/* Live typing line during initial playback */}
         {!autoTypingDone && (
-          <div className="flex items-center gap-1.5 text-primary font-semibold">
-            <span className="text-secondary">$</span>
+          <div className="flex items-center gap-1.5 text-white font-semibold">
+            <span className="text-zinc-500">$</span>
             <span>{typed}</span>
             <span className="code-caret" />
           </div>
@@ -283,7 +283,7 @@ export default function IntroTerminal({ onOpenProject }: IntroTerminalProps) {
         {/* Interactive CLI Input once ready */}
         {autoTypingDone && (
           <div className="pt-1 flex items-center gap-2">
-            <span className="text-secondary font-semibold">$</span>
+            <span className="text-zinc-500 font-semibold">$</span>
             <input
               ref={inputRef}
               type="text"
@@ -292,14 +292,14 @@ export default function IntroTerminal({ onOpenProject }: IntroTerminalProps) {
               onKeyDown={handleKeyDown}
               disabled={isRateLimited}
               placeholder={isRateLimited ? 'cooldown active (rate limited)...' : "type 'projects' or tap pills below..."}
-              className="flex-1 bg-transparent text-ink placeholder:text-muted/50 focus:outline-none font-mono text-sm disabled:opacity-50"
+              className="flex-1 bg-transparent text-white placeholder:text-zinc-600 focus:outline-none font-mono text-sm disabled:opacity-50"
               aria-label="Interactive terminal input"
             />
             {inputVal.trim() && !isRateLimited && (
               <button
                 type="button"
                 onClick={() => handleRunCommand(inputVal)}
-                className="text-muted hover:text-primary transition-colors p-1"
+                className="text-zinc-400 hover:text-white transition-colors p-1"
                 aria-label="Run command"
               >
                 <CornerDownLeft className="w-3.5 h-3.5" />
@@ -314,9 +314,9 @@ export default function IntroTerminal({ onOpenProject }: IntroTerminalProps) {
         className="px-3 sm:px-4 py-2 sm:py-2.5 bg-surface2/60 border-t border-border flex items-center gap-1.5 overflow-x-auto select-none no-scrollbar"
         style={{ WebkitOverflowScrolling: 'touch' }}
       >
-        <span className="text-[10px] uppercase font-mono tracking-wider text-muted shrink-0 mr-1 flex items-center gap-1">
+        <span className="text-[10px] uppercase font-mono tracking-wider text-zinc-500 shrink-0 mr-1 flex items-center gap-1">
           {isRateLimited ? (
-            <span className="text-danger flex items-center gap-1">
+            <span className="text-zinc-300 flex items-center gap-1">
               <ShieldAlert className="w-3 h-3" />
               Wait
             </span>
@@ -335,10 +335,10 @@ export default function IntroTerminal({ onOpenProject }: IntroTerminalProps) {
             }}
             className={`px-2.5 py-1.5 sm:py-1 rounded-lg text-[11px] font-mono border transition-all active:scale-95 shrink-0 min-h-[30px] flex items-center justify-center ${
               isRateLimited
-                ? 'opacity-40 border-border bg-surface text-muted cursor-not-allowed'
+                ? 'opacity-40 border-border bg-surface text-zinc-500 cursor-not-allowed'
                 : c === 'projects'
-                ? 'bg-primary/10 border-primary/40 text-primary font-semibold hover:bg-primary hover:text-white'
-                : 'bg-surface border-border text-muted hover:text-primary hover:border-primary/50'
+                ? 'bg-white/10 border-white/25 text-white font-semibold hover:bg-white hover:text-black'
+                : 'bg-surface border-border text-zinc-400 hover:text-white hover:border-zinc-500'
             }`}
           >
             {c}

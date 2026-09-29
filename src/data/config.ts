@@ -1,39 +1,14 @@
 import type { SiteConfig } from '../types'
 
 export const CONFIG: SiteConfig = {
-  name: 'GilmierDev',
-  role: 'AI-Assisted Full-Stack Developer • MERN & Desktop',
-  eyebrow: 'College IT Student & Builder',
-  tagline: 'Learning technology by building real, resilient software.',
-  bio: 'College IT student teaching myself full-stack and desktop development through deliberate, hands-on building. I believe working beats perfect, and finished beats clever.',
+  name: 'Gilmier.Dev',
   email: 'gilmiercabil@gmail.com',
   github: 'https://github.com/gilmierdev',
-  location: 'Philippines (GMT+8)',
-  availability: 'Open for Internships & Projects',
 
   aboutParagraphs: [
     "I'm a college Information Technology student teaching myself full-stack and systems development the practical way. Reading about a concept rarely makes it stick for me, so I start a project instead and find out where my understanding runs out.",
     'My interests span beyond typical web apps: backend architecture and API security, desktop software with offline databases, UI design that feels responsive and intuitive, using modern AI tools as an accelerated coding partner, and hardware systems. Every project feeds into the next.',
     "I'm early in my journey. There's plenty I haven't learned yet, and I'd rather say that than pretend otherwise. What I can say is that I finish things, stress-test them until they break, and understand them deeply afterward.",
-  ],
-
-  traits: [
-    {
-      name: 'Curiosity First',
-      desc: 'I want to know why an architecture works, not just that a tutorial made it work.',
-    },
-    {
-      name: 'Hands-on Problem Solving',
-      desc: 'I debug my way to understanding through root causes rather than temporary patches.',
-    },
-    {
-      name: 'Interface & Craft',
-      desc: 'A working system with a sloppy interface is only half-done. Details and ergonomics matter.',
-    },
-    {
-      name: 'Continuous Iteration',
-      desc: "Every project should teach me something the last one didn't. Build, break, fix, refine.",
-    },
   ],
 
   loopSteps: [
@@ -58,36 +33,6 @@ export const CONFIG: SiteConfig = {
       key: 'improve',
       note: 'Refactor, clean up, and optimize. If the code is not clearer than the previous draft, the loop is not finished.',
     },
-  ],
-
-  skills: [
-    { name: 'React', category: 'frontend', highlight: true },
-    { name: 'TypeScript', category: 'frontend', highlight: true },
-    { name: 'Tailwind CSS', category: 'frontend', highlight: true },
-    { name: 'JavaScript (ES6+)', category: 'frontend' },
-    { name: 'HTML5 & CSS3', category: 'frontend' },
-    { name: 'Vite', category: 'frontend' },
-
-    { name: 'Node.js', category: 'backend', highlight: true },
-    { name: 'Express.js', category: 'backend', highlight: true },
-    { name: 'MongoDB & Mongoose', category: 'backend', highlight: true },
-    { name: 'SQLite', category: 'backend', highlight: true },
-    { name: 'JWT Authentication', category: 'backend' },
-    { name: 'RESTful API Design', category: 'backend' },
-
-    { name: 'Electron', category: 'desktop', highlight: true },
-    { name: 'better-sqlite3', category: 'desktop', highlight: true },
-    { name: 'Recharts', category: 'desktop' },
-    { name: 'ExcelJS / CSV', category: 'desktop' },
-    { name: 'PDFKit', category: 'desktop' },
-    { name: 'electron-builder', category: 'desktop' },
-
-    { name: 'AI Assistance', category: 'security', highlight: true },
-    { name: 'Endpoint Hardening & Rate Limiting', category: 'security', highlight: true },
-    { name: 'JWT Auth & Protected Routes', category: 'security', highlight: true },
-    { name: 'Electron IPC & Context Isolation', category: 'security', highlight: true },
-    { name: 'Data Validation & Sanitization', category: 'security' },
-    { name: 'Git & Secrets Hygiene', category: 'security' },
   ],
 
   projects: [
@@ -124,7 +69,6 @@ export const CONFIG: SiteConfig = {
         'electron-builder',
       ],
       github: 'https://github.com/gilmierdev/financial_encoder',
-      accent: 'tile--plum',
       emoji: '💼',
     },
     {
@@ -144,7 +88,6 @@ export const CONFIG: SiteConfig = {
       challenges:
         'Authentication and security architecture were the core breakthroughs. Hiding an admin button on the client felt like protection until I realized anyone could call API endpoints directly with Postman. Learning to enforce role verification server-side and safely sign tokens was the turning point in understanding web security.',
       tech: ['MongoDB', 'Express.js', 'React', 'Node.js', 'JWT', 'REST API', 'Tailwind CSS'],
-      accent: 'tile--sage',
       emoji: '🛒',
     },
     {
@@ -164,7 +107,6 @@ export const CONFIG: SiteConfig = {
       challenges:
         'Restraint was the hardest part. Avoiding feature bloat and keeping the typing experience instantaneous, cursor-stable, and undo-friendly across browser refreshes required thoughtful state orchestration in React and TypeScript.',
       tech: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'LocalStorage API'],
-      accent: 'tile--honey',
       emoji: '📝',
     },
   ],

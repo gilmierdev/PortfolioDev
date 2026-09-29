@@ -8,8 +8,6 @@ import {
 } from 'lucide-react'
 import { CONFIG } from '../../data/config'
 import Reveal from '../ui/Reveal'
-import SectionHeading from '../ui/SectionHeading'
-import NextSection from './NextSection'
 
 const STEP_ICONS = [Compass, Hammer, Bug, SearchCode, Sparkles]
 
@@ -31,89 +29,76 @@ const STEP_MARKERS: Record<string, string> = {
 
 export default function Approach() {
   return (
-    <section id="approach" className="py-16 sm:py-24 px-4 sm:px-6 relative">
-      <div
-        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-border to-transparent"
-        aria-hidden="true"
-      />
-
+    <section id="approach" className="py-20 sm:py-28 px-4 sm:px-8 lg:px-12 bg-white border-t border-gray-100">
       <div className="max-w-6xl mx-auto">
-        <SectionHeading
-          step="03"
-          eyebrow="engineering-loop"
-          title="How I build: 5 disciplined moves"
-          intro="The consistent lifecycle behind every project on this site. Working software beats hypothetical perfection, and finished code beats clever hacks."
-        />
+        {/* Section Header */}
+        <div className="text-center space-y-3">
+          <Reveal as="p" className="font-mono text-xs uppercase tracking-widest text-gray-500 font-semibold">
+            ENGINEERING LIFECYCLE
+          </Reveal>
+          <Reveal as="h2" className="font-display font-bold text-4xl sm:text-6xl uppercase tracking-tight text-black">
+            HOW I BUILD
+          </Reveal>
+          <Reveal as="p" className="max-w-xl mx-auto text-xs sm:text-sm text-gray-500 leading-relaxed pt-1">
+            Working software beats hypothetical perfection, and finished code beats clever hacks.
+          </Reveal>
+        </div>
 
-        {/* Pipeline Grid */}
-        <ol className="mt-8 sm:mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+        {/* 5 disciplined moves cards */}
+        <ol className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {CONFIG.loopSteps.map((step, i) => {
             const Icon = STEP_ICONS[i] ?? Sparkles
             return (
               <Reveal
                 key={step.key}
                 as="li"
-                delay={i * 60}
+                delay={i * 50}
                 variant="up"
-                className="card-sheen card-spot group rounded-2xl border border-border bg-surface p-5 sm:p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg"
+                className="rounded-3xl border border-gray-200 bg-[#FAFAFA] p-6 sm:p-7 flex flex-col justify-between hover:border-black hover:bg-white hover:shadow-lg transition-all duration-300"
               >
                 <div>
-                  <div className="flex items-center justify-between mb-3 sm:mb-4">
-                    <span className="font-mono text-[11px] sm:text-xs text-secondary font-medium tracking-wider uppercase">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="font-mono text-[11px] text-gray-500 font-semibold tracking-wider uppercase">
                       {STEP_MARKERS[step.key] ?? step.key}
                     </span>
-                    <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-surface2 border border-border flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all">
-                      <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                    <span className="w-8 h-8 rounded-full border border-gray-200 bg-white flex items-center justify-center text-black">
+                      <Icon className="w-4 h-4" />
                     </span>
                   </div>
 
-                  <h3 className="font-display font-bold text-base sm:text-lg text-ink">
+                  <h3 className="font-display font-bold text-base sm:text-lg text-black uppercase tracking-tight">
                     {STEP_TITLES[step.key] ?? step.key}
                   </h3>
 
-                  <p className="text-muted text-xs sm:text-sm leading-relaxed mt-2 sm:mt-2.5">
+                  <p className="text-gray-500 text-xs sm:text-sm leading-relaxed mt-2.5">
                     {step.note}
                   </p>
                 </div>
 
-                <div className="mt-5 sm:mt-6 pt-3 sm:pt-4 border-t border-border/60 flex items-center justify-between text-xs font-mono text-muted">
+                <div className="mt-6 pt-4 border-t border-gray-200/80 flex items-center justify-between text-xs font-mono text-gray-400">
                   <span>Step {String(i + 1).padStart(2, '0')}</span>
-                  <span className="text-primary font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                    deliberate practice →
-                  </span>
+                  <span className="text-black font-semibold">DELIBERATE PRACTICE</span>
                 </div>
               </Reveal>
             )
           })}
         </ol>
 
-        {/* Manifesto Highlight Card */}
+        {/* Manifesto Quote Card */}
         <Reveal
           variant="zoom"
-          className="mt-10 sm:mt-14 relative rounded-2xl sm:rounded-3xl border border-primary/25 bg-surface2/70 p-6 sm:p-12 text-center overflow-hidden terminal-shadow"
+          className="mt-12 rounded-3xl border border-gray-200 bg-[#F4F4F6] p-8 sm:p-12 text-center"
         >
-          <div
-            className="aurora aurora--2 pointer-events-none left-[-5%] top-[-30%] w-[260px] sm:w-[320px] h-[260px] sm:h-[320px] bg-primary/15"
-            aria-hidden="true"
-          />
-          <div
-            className="aurora aurora--1 pointer-events-none right-[-5%] bottom-[-30%] w-[220px] sm:w-[280px] h-[220px] sm:h-[280px] bg-secondary/15"
-            aria-hidden="true"
-          />
-
-          <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
-            <Quote className="w-6 h-6 sm:w-8 sm:h-8 text-primary mb-3 sm:mb-4 opacity-75" />
-            <blockquote className="font-display font-bold text-base sm:text-2xl leading-snug tracking-tight text-ink">
-              &ldquo;A solid application isn&apos;t luck. It comes from understanding the problem deeply, building the smallest slice that works, and{' '}
-              <span className="text-gradient">breaking it until you understand why it holds together</span>.&rdquo;
+          <div className="max-w-2xl mx-auto flex flex-col items-center">
+            <Quote className="w-7 h-7 text-black mb-4 opacity-75" />
+            <blockquote className="font-display font-bold text-base sm:text-2xl leading-snug tracking-tight text-black uppercase">
+              &ldquo;A solid application isn&apos;t luck. It comes from understanding the problem deeply, building the smallest slice that works, and breaking it until you understand why it holds together.&rdquo;
             </blockquote>
-            <p className="mt-3 sm:mt-4 font-mono text-[10px] sm:text-xs uppercase tracking-widest text-muted">
+            <p className="mt-4 font-mono text-[10px] sm:text-xs uppercase tracking-widest text-gray-500">
               — Personal Engineering Philosophy
             </p>
           </div>
         </Reveal>
-
-        <NextSection id="about" label="About Me — student developer journey" />
       </div>
     </section>
   )

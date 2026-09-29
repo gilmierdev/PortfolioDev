@@ -1,19 +1,25 @@
-import { useState, useRef } from 'react'
-import { ArrowRight, FolderGit2, Mail, Sparkles } from 'lucide-react'
+import { useRef, useState } from 'react'
+import { ArrowDownRight, Sparkles, Terminal } from 'lucide-react'
 import { CONFIG } from '../../data/config'
-import IntroTerminal from '../ui/IntroTerminal'
-import { GithubIcon } from '../ui/Icons'
 import type { Project } from '../../types'
 
 interface HeroProps {
   onSelectProject?: (project: Project) => void
+  onToggleTerminal?: () => void
 }
 
-export default function Hero({ onSelectProject }: HeroProps) {
+const HERO_TAGS = [
+  'MERN FULL-STACK',
+  'OFFLINE SQLITE',
+  'ELECTRON DESKTOP',
+  'AI-ASSISTED DEV',
+  'SYSTEM SECURITY',
+]
+
+export default function Hero({ onSelectProject, onToggleTerminal }: HeroProps) {
   const [cooldown, setCooldown] = useState(false)
   const lastClickRef = useRef<number>(0)
 
-  // Anti-spam limited quick preview trigger
   function handleAutoSeeWork() {
     const now = Date.now()
     if (now - lastClickRef.current < 800 || cooldown) {
@@ -23,7 +29,6 @@ export default function Hero({ onSelectProject }: HeroProps) {
     setCooldown(true)
     setTimeout(() => setCooldown(false), 900)
 
-    // Open featured project or first project
     const featured =
       CONFIG.projects.find((p) => p.flag?.tone === 'ok') ?? CONFIG.projects[0]
     if (featured && onSelectProject) {
@@ -34,146 +39,117 @@ export default function Hero({ onSelectProject }: HeroProps) {
   return (
     <section
       id="home"
-      className="relative w-full max-w-full min-h-[90svh] flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 overflow-hidden pt-24 sm:pt-28 pb-12 sm:pb-16"
+      className="relative w-full max-w-full min-h-screen flex flex-col justify-start items-center px-4 sm:px-8 lg:px-12 pt-28 sm:pt-36 pb-12 overflow-hidden bg-white"
     >
-      {/* Background ambient lighting and fine grid */}
-      <div className="absolute inset-0 grid-bg pointer-events-none" aria-hidden="true" />
-      <div
-        className="aurora aurora--1 pointer-events-none left-0 sm:left-[-6%] top-[-8%] w-[280px] sm:w-[450px] h-[280px] sm:h-[450px] bg-primary/20"
-        aria-hidden="true"
-      />
-      <div
-        className="aurora aurora--2 pointer-events-none right-0 sm:right-[-5%] top-[12%] w-[260px] sm:w-[380px] h-[260px] sm:h-[380px] bg-secondary/20"
-        aria-hidden="true"
-      />
-      <div
-        className="aurora aurora--3 pointer-events-none left-[15%] sm:left-[35%] bottom-[-15%] w-[300px] sm:w-[500px] h-[220px] sm:h-[350px] bg-primary/10"
-        aria-hidden="true"
-      />
+      {/* Subtle Hairline Grid */}
+      <div className="absolute inset-0 grid-bg-light pointer-events-none" aria-hidden="true" />
 
-      <div className="relative max-w-6xl mx-auto w-full min-w-0 grid lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-14 items-center">
-        {/* Left Column: Narrative & Actions */}
-        <div className="lg:col-span-7 flex flex-col items-start animate-fadeUp w-full min-w-0">
-          {/* Status Badge */}
-          <div className="inline-flex items-center gap-2 sm:gap-2.5 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full border border-border bg-surface/85 backdrop-blur-sm text-ink mb-4 sm:mb-6 text-[11px] sm:text-xs font-mono shadow-sm max-w-full">
-            <span className="relative flex w-2 h-2 shrink-0">
-              <span className="pulse-ring absolute inset-0 rounded-full bg-ok" />
-              <span className="relative inline-flex w-2 h-2 rounded-full bg-ok" />
-            </span>
-            <span className="truncate">{CONFIG.availability ?? 'Open for Internships & Projects'}</span>
+      {/* Main Massive Editorial Headline (Custom & Original to GilmierDev) */}
+      <div className="relative z-10 w-full max-w-6xl mx-auto text-center">
+        <h1 className="font-display font-bold text-5xl sm:text-7xl md:text-8xl lg:text-[7.2rem] xl:text-[8rem] tracking-tight leading-[0.92] uppercase hero-headline-gradient select-none">
+          BUILDING REAL
+          <br />
+          SOFTWARE.
+        </h1>
+      </div>
+
+      {/* Hero 3-Column Visual Layout */}
+      <div className="relative z-10 w-full max-w-6xl mx-auto mt-4 sm:mt-6 md:mt-2 grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-start">
+        {/* Left Column: Origin info & Circular Arrow Button */}
+        <div className="md:col-span-3 flex flex-col items-start justify-between self-stretch order-2 md:order-1 pt-3 sm:pt-5 md:pt-8">
+          <div className="space-y-4">
+            <div className="space-y-1">
+              <p className="font-mono text-xs uppercase tracking-widest text-black font-semibold">
+                BUILDER · EST.2024
+              </p>
+              <p className="font-mono text-[10px] uppercase tracking-wider text-gray-500">
+                MANILA, PH (UTC+8)
+              </p>
+            </div>
+
+            <a
+              href="#about"
+              aria-label="Scroll down to about section"
+              className="circle-arrow-btn group hover:scale-105"
+            >
+              <ArrowDownRight className="w-5 h-5 text-black group-hover:text-white transition-colors" />
+            </a>
           </div>
 
-          {/* Main Title */}
-          <h1 className="font-display font-bold text-3xl sm:text-5xl lg:text-[4.2rem] leading-[1.08] tracking-tight text-ink break-words max-w-full">
-            Building software with
-            <br />
-            <span className="text-gradient">practical purpose.</span>
-          </h1>
-
-          {/* Role Subheading */}
-          <p className="mt-3.5 sm:mt-5 font-mono text-xs sm:text-base text-ink flex items-center flex-wrap gap-x-2 gap-y-1">
-            <span className="text-primary font-semibold">GilmierDev</span>
-            <span className="text-muted/60" aria-hidden="true">•</span>
-            <span>AI-Assisted Full-Stack Developer</span>
-            <span className="text-muted/60 hidden sm:inline" aria-hidden="true">•</span>
-            <span className="text-secondary font-medium block sm:inline">MERN & Desktop</span>
-          </p>
-
-          {/* Description */}
-          <p className="mt-3 sm:mt-4 text-muted text-sm sm:text-lg leading-relaxed max-w-xl">
-            {CONFIG.bio ??
-              'College IT student teaching myself full-stack and systems engineering by building real things: web applications, offline desktop systems, and clean interfaces.'}
-          </p>
-
-          {/* Primary Action Buttons */}
-          <div className="mt-6 sm:mt-8 flex flex-wrap items-center gap-2.5 sm:gap-3.5 w-full sm:w-auto">
-            {/* Quick Auto-See Work Modal Button with Anti-Spam Cooldown */}
+          {/* Quick Interactive Actions */}
+          <div className="mt-8 space-y-2.5">
             <button
               type="button"
               onClick={handleAutoSeeWork}
               disabled={cooldown}
-              className={`btn-primary btn-shine font-semibold px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl shadow-md hover:shadow-lg inline-flex items-center justify-center gap-2 text-xs sm:text-sm flex-1 sm:flex-initial transition-all active:scale-95 ${
-                cooldown ? 'opacity-70 cursor-not-allowed' : ''
-              }`}
-              title="Open case study modal for featured work directly"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-black text-white text-xs font-semibold uppercase tracking-wider hover:bg-zinc-800 transition-all shadow-sm active:scale-95"
             >
-              <Sparkles className="w-4 h-4 text-white" />
+              <Sparkles className="w-3.5 h-3.5" />
               <span>{cooldown ? 'Opening...' : 'Quick See Work'}</span>
             </button>
 
-            <a
-              href="#work"
-              className="px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl font-semibold border border-border bg-surface hover:border-primary/50 hover:text-primary transition-all text-xs sm:text-sm inline-flex items-center justify-center gap-2 text-ink flex-1 sm:flex-initial"
-            >
-              <FolderGit2 className="w-4 h-4 text-muted" />
-              <span>All Projects</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </a>
-
-            <a
-              href="#contact"
-              className="p-2.5 sm:p-3 rounded-xl border border-border bg-surface hover:border-primary/50 text-muted hover:text-primary transition-all flex items-center justify-center"
-              title="Get in touch"
-              aria-label="Contact section"
-            >
-              <Mail className="w-4 h-4" />
-            </a>
-
-            <a
-              href={CONFIG.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub Profile"
-              className="p-2.5 sm:p-3 rounded-xl border border-border bg-surface hover:border-primary/50 text-muted hover:text-primary transition-all flex items-center justify-center"
-              title="View GitHub Profile"
-            >
-              <GithubIcon className="w-4 h-4" />
-            </a>
-          </div>
-
-          {/* Credential / Quick Highlights */}
-          <div className="mt-8 sm:mt-10 pt-4 sm:pt-6 border-t border-border/80 w-full grid grid-cols-3 gap-2 sm:gap-4 text-left">
-            <div>
-              <p className="font-display font-bold text-lg sm:text-2xl text-ink">3+</p>
-              <p className="text-[10px] sm:text-xs text-muted font-mono mt-0.5">Real Builds</p>
-            </div>
-            <div>
-              <p className="font-display font-bold text-lg sm:text-2xl text-ink">Full-Stack</p>
-              <p className="text-[10px] sm:text-xs text-muted font-mono mt-0.5">MERN & Desktop</p>
-            </div>
-            <div>
-              <p className="font-display font-bold text-lg sm:text-2xl text-ink">BS IT</p>
-              <p className="text-[10px] sm:text-xs text-muted font-mono mt-0.5">College Undergrad</p>
-            </div>
+            {onToggleTerminal && (
+              <button
+                type="button"
+                onClick={onToggleTerminal}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-gray-300 bg-white text-black text-xs font-semibold uppercase tracking-wider hover:border-black transition-all shadow-sm active:scale-95"
+              >
+                <Terminal className="w-3.5 h-3.5" />
+                <span>Interactive CLI</span>
+              </button>
+            )}
           </div>
         </div>
 
-        {/* Right Column: Interactive Terminal */}
-        <div
-          className="lg:col-span-5 animate-fadeUp opacity-0 mt-4 lg:mt-0 w-full min-w-0 max-w-full"
-          style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}
-        >
-          <div className="relative group w-full min-w-0 max-w-full">
+        {/* Center Column: Cutout Portrait (Accurate to GilmierDev) */}
+        <div className="md:col-span-6 flex flex-col items-center justify-end order-1 md:order-2 relative -mt-4 sm:-mt-8 md:-mt-14 lg:-mt-20 xl:-mt-24 z-10">
+          <div className="relative w-80 sm:w-96 md:w-[480px] lg:w-[560px] max-w-full flex items-end justify-center select-none group">
+            {/* Architectural Studio Backdrop Frame with Border & Elevation Shadow */}
             <div
+              className="absolute inset-x-3 sm:inset-x-6 md:inset-x-8 bottom-0 top-16 sm:top-20 md:top-24 rounded-t-[120px] sm:rounded-t-[160px] md:rounded-t-[200px] rounded-b-3xl border border-gray-200/90 bg-gradient-to-b from-[#F7F7F8] via-[#F4F4F6] to-white shadow-[0_20px_50px_-15px_rgba(0,0,0,0.12),0_10px_20px_-5px_rgba(0,0,0,0.06)] -z-10 transition-all duration-500 group-hover:border-black/30 group-hover:shadow-[0_28px_60px_-15px_rgba(0,0,0,0.16)]"
               aria-hidden="true"
-              className="absolute inset-0 rounded-3xl bg-gradient-to-r from-primary/30 via-secondary/20 to-primary/30 opacity-60 blur-lg sm:blur-xl transition-opacity duration-500 group-hover:opacity-90 pointer-events-none"
+            >
+              {/* Micro-dot texture inside arch frame */}
+              <div className="absolute inset-0 rounded-t-[120px] sm:rounded-t-[160px] md:rounded-t-[200px] rounded-b-3xl opacity-35 bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:16px_16px]" />
+              {/* Soft radial highlight */}
+              <div className="absolute inset-0 rounded-t-[120px] sm:rounded-t-[160px] md:rounded-t-[200px] rounded-b-3xl bg-[radial-gradient(circle_at_50%_35%,rgba(255,255,255,0.95),transparent_70%)]" />
+            </div>
+
+            {/* Grounding Contact Shadow */}
+            <div
+              className="absolute inset-x-12 bottom-1 h-8 bg-black/20 rounded-[100%] blur-xl -z-10"
+              aria-hidden="true"
             />
-            <IntroTerminal onOpenProject={onSelectProject} />
+
+            {/* Portrait Cutout with Layered Silhouette Drop Shadow */}
+            <img
+              src="/image2.png"
+              alt="GilmierDev Portrait"
+              className="w-full h-auto max-h-[560px] sm:max-h-[660px] md:max-h-[740px] lg:max-h-[820px] object-contain object-bottom drop-shadow-[0_15px_25px_rgba(0,0,0,0.12)] drop-shadow-[0_30px_45px_rgba(0,0,0,0.08)] [mask-image:linear-gradient(to_bottom,black_90%,transparent_100%)] transition-transform duration-500 group-hover:scale-[1.02]"
+            />
+          </div>
+        </div>
+
+        {/* Right Column: Statement & Vertical Stack Tags */}
+        <div className="md:col-span-3 flex flex-col items-start md:items-end justify-between self-stretch order-3 text-left md:text-right pt-3 sm:pt-5 md:pt-8">
+          {/* Engineering Statement */}
+          <p className="font-display font-medium text-xs sm:text-sm uppercase tracking-wider text-black max-w-xs leading-relaxed">
+            TEACHING MYSELF FULL-STACK & SYSTEMS ENGINEERING BY DELIBERATELY BUILDING WORKING SOFTWARE.
+          </p>
+
+          {/* Vertical Stack List */}
+          <div className="mt-8 space-y-2">
+            {HERO_TAGS.map((tag) => (
+              <p
+                key={tag}
+                className="font-display font-semibold text-xs sm:text-sm tracking-wider uppercase text-black hover:text-gray-500 transition-colors cursor-default"
+              >
+                {tag}
+              </p>
+            ))}
           </div>
         </div>
       </div>
-
-      {/* Subtle Scroll Cue */}
-      <a
-        href="#skills"
-        aria-label="Scroll to technologies"
-        className="mt-8 sm:mt-12 flex flex-col items-center gap-1 text-muted hover:text-primary transition-colors text-xs font-mono group"
-      >
-        <span className="tracking-widest uppercase text-[9px] sm:text-[10px] opacity-75">Scroll</span>
-        <div className="w-4 sm:w-5 h-7 sm:h-8 rounded-full border border-border flex justify-center pt-1 sm:pt-1.5 group-hover:border-primary/50 transition-colors">
-          <span className="w-1 h-1.5 sm:h-2 rounded-full bg-primary animate-bounce" />
-        </div>
-      </a>
     </section>
   )
 }
