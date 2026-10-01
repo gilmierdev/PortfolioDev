@@ -70,6 +70,9 @@ export const CONFIG: SiteConfig = {
       ],
       github: 'https://github.com/gilmierdev/financial_encoder',
       emoji: '💼',
+      image: '/projects/crypto.jpg',
+      // Replace with your Google Drive share link (e.g. 'https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing')
+      video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
     },
     {
       title: 'MERN E-Commerce Application',
@@ -88,7 +91,11 @@ export const CONFIG: SiteConfig = {
       challenges:
         'Authentication and security architecture were the core breakthroughs. Hiding an admin button on the client felt like protection until I realized anyone could call API endpoints directly with Postman. Learning to enforce role verification server-side and safely sign tokens was the turning point in understanding web security.',
       tech: ['MongoDB', 'Express.js', 'React', 'Node.js', 'JWT', 'REST API', 'Tailwind CSS'],
+      github: 'https://github.com/gilmierdev',
       emoji: '🛒',
+      image: '/projects/ecommerce.jpg',
+      // Replace with your Google Drive share link
+      video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
     },
     {
       title: 'Notepad Website',
@@ -107,7 +114,11 @@ export const CONFIG: SiteConfig = {
       challenges:
         'Restraint was the hardest part. Avoiding feature bloat and keeping the typing experience instantaneous, cursor-stable, and undo-friendly across browser refreshes required thoughtful state orchestration in React and TypeScript.',
       tech: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'LocalStorage API'],
+      github: 'https://github.com/gilmierdev',
       emoji: '📝',
+      image: '/projects/task.jpg',
+      // Replace with your Google Drive share link
+      video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4',
     },
   ],
 }

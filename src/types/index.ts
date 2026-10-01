@@ -20,6 +20,8 @@ export interface Project {
   demo?: string
   github?: string
   emoji: string
+  image?: string
+  video?: string
 }
 
 export interface SiteConfig {

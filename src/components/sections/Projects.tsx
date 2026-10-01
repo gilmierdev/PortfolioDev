@@ -1,12 +1,7 @@
 import { useMemo, useState } from 'react'
-import {
-  ExternalLink,
-  Maximize2,
-  ArrowUpRight,
-} from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 import { CONFIG } from '../../data/config'
 import Reveal from '../ui/Reveal'
-import { GithubIcon } from '../ui/Icons'
 import type { Project } from '../../types'
 
 interface ProjectsProps {
@@ -27,10 +22,10 @@ export default function Projects({ onSelect }: ProjectsProps) {
   }, [selectedFilter])
 
   return (
-    <section id="work" className="py-20 sm:py-28 px-4 sm:px-8 lg:px-12 bg-white">
-      <div className="max-w-6xl mx-auto">
-        {/* Main Section Heading with Custom Editorial Styling */}
-        <div className="text-center space-y-2">
+    <section id="work" className="py-20 sm:py-28 px-4 sm:px-8 lg:px-12 bg-white text-black relative">
+      <div className="max-w-6xl mx-auto relative z-10">
+        {/* Main Section Heading */}
+        <div className="text-center space-y-2.5">
           <Reveal as="p" className="font-mono text-xs uppercase tracking-widest text-gray-500 font-semibold">
             02 // SELECTED WORK & CASE STUDIES
           </Reveal>
@@ -40,6 +35,11 @@ export default function Projects({ onSelect }: ProjectsProps) {
           <Reveal as="p" className="max-w-lg mx-auto text-xs sm:text-sm text-gray-500 font-mono pt-1">
             Engineered from scratch. Solving real systems, offline storage & authentication challenges.
           </Reveal>
+
+          {/* Centered Accent Pill Bar */}
+          <div className="pt-2">
+            <div className="w-14 h-1 rounded-full bg-black mx-auto" />
+          </div>
         </div>
 
         {/* Filter Navigation Row */}
@@ -73,115 +73,73 @@ export default function Projects({ onSelect }: ProjectsProps) {
           </a>
         </div>
 
-        {/* Project Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+        {/* Project Cards Grid (123.png Structure in Portfolio Aesthetic) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 mt-12">
           {filteredProjects.map((project, i) => (
             <Reveal
               key={project.title}
-              as="article"
-              delay={i * 70}
+              as="div"
+              delay={i * 80}
               variant="up"
-              className="group flex flex-col justify-between"
+              className="h-full"
             >
-              <div>
-                {/* Showcase Preview Frame */}
-                <div
-                  className="w-full aspect-[4/3] rounded-3xl border border-gray-200 bg-[#F4F4F6] p-6 flex flex-col justify-between relative overflow-hidden group-hover:shadow-xl transition-all duration-300 group-hover:-translate-y-1 cursor-pointer"
-                  onClick={() => onSelect(project)}
-                >
-                  {/* Top Bar inside showcase */}
-                  <div className="flex items-center justify-between z-10">
-                    <span className="text-2xl select-none">{project.emoji}</span>
-                    <span className="px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider font-semibold bg-white border border-gray-200 text-black shadow-sm">
-                      {project.category}
+              <article
+                className="h-full group flex flex-col justify-between rounded-2xl bg-white border border-gray-200 p-4 sm:p-5 transition-all duration-300 hover:-translate-y-1.5 hover:border-black hover:shadow-xl cursor-pointer shadow-sm"
+                onClick={() => onSelect(project)}
+              >
+                <div>
+                  {/* Top Image Preview Frame */}
+                  <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-[#F4F4F6] border border-gray-200">
+                    {/* Number Badge (01, 02, 03) */}
+                    <span className="absolute top-3.5 left-4 font-mono font-bold text-xs sm:text-sm z-10 select-none px-2.5 py-1 rounded-full bg-black/85 backdrop-blur-sm text-white border border-white/20 shadow-md">
+                      {String(i + 1).padStart(2, '0')}
                     </span>
+
+                    {/* Preview Image */}
+                    {project.image ? (
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-4xl select-none">
+                        {project.emoji}
+                      </div>
+                    )}
                   </div>
 
-                  {/* Center UI Preview Card */}
-                  <div className="w-full bg-white rounded-2xl p-4 border border-gray-200 shadow-sm space-y-2 z-10 group-hover:scale-[1.02] transition-transform">
-                    <div className="flex items-center justify-between">
-                      <p className="font-display font-bold text-xs uppercase tracking-tight text-black">
-                        {project.title}
-                      </p>
-                      <span className="w-2 h-2 rounded-full bg-black" />
-                    </div>
-                    <p className="text-[11px] text-gray-500 line-clamp-2 leading-relaxed">
+                  {/* Project Title & Description */}
+                  <div className="mt-4 space-y-1.5">
+                    <h3 className="font-display font-bold text-lg sm:text-xl text-black uppercase tracking-tight group-hover:text-gray-700 transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-gray-500 text-xs sm:text-sm leading-relaxed line-clamp-2">
                       {project.tagline}
                     </p>
                   </div>
-
-                  {/* Subtle Background Pattern */}
-                  <div
-                    className="absolute inset-0 opacity-20 bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:16px_16px]"
-                    aria-hidden="true"
-                  />
                 </div>
 
-                {/* Project Meta Underneath */}
-                <div className="mt-5 space-y-1">
-                  <p className="font-mono text-[11px] font-semibold uppercase tracking-widest text-gray-400">
-                    {project.kind.toUpperCase()}
-                  </p>
-                  <h3 className="font-display font-bold text-lg text-black uppercase tracking-tight group-hover:text-gray-700 transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-xs text-gray-500 line-clamp-2 mt-1 leading-relaxed">
-                    {project.description}
-                  </p>
+                {/* Action Buttons Footer */}
+                <div className="mt-5 pt-3.5 border-t border-gray-100 flex items-center justify-between">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-black font-semibold px-2.5 py-1 rounded-full bg-gray-100 border border-gray-200">
+                    {project.category}
+                  </span>
+
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      onSelect(project)
+                    }}
+                    className="text-black hover:text-gray-600 text-xs sm:text-sm font-semibold uppercase tracking-wider inline-flex items-center gap-1.5 transition-colors group/link"
+                  >
+                    <span>View Project</span>
+                    <ArrowUpRight className="w-4 h-4 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+                  </button>
                 </div>
-
-                {/* Features & Tech */}
-                <div className="mt-4 pt-3 border-t border-gray-100 flex flex-wrap gap-1.5">
-                  {project.tech.slice(0, 4).map((t) => (
-                    <span
-                      key={t}
-                      className="text-[10px] font-mono px-2.5 py-1 rounded-full border border-gray-200 bg-white text-gray-700 font-medium"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Action Buttons Footer */}
-              <div className="mt-5 pt-3 border-t border-gray-200 flex items-center justify-between">
-                <button
-                  type="button"
-                  onClick={() => onSelect(project)}
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-black hover:text-gray-600 transition-colors py-1"
-                >
-                  <Maximize2 className="w-3.5 h-3.5" />
-                  <span>Architecture</span>
-                </button>
-
-                <div className="flex items-center gap-1.5">
-                  {project.demo && (
-                    <a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      title="Open Live Demo"
-                      aria-label={`Open live demo of ${project.title}`}
-                      className="w-8 h-8 rounded-full border border-gray-200 hover:border-black flex items-center justify-center text-black hover:bg-black hover:text-white transition-all"
-                    >
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
-                  )}
-
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      title="View GitHub Repository"
-                      aria-label={`View GitHub repository of ${project.title}`}
-                      className="w-8 h-8 rounded-full border border-gray-200 hover:border-black flex items-center justify-center text-black hover:bg-black hover:text-white transition-all"
-                    >
-                      <GithubIcon className="w-3.5 h-3.5" />
-                    </a>
-                  )}
-                </div>
-              </div>
+              </article>
             </Reveal>
           ))}
         </div>

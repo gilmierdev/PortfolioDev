@@ -52,9 +52,9 @@ export default function CustomCursor() {
       )
       isHovered.current = !!interactive && !inputEl
 
-      // Detect dark backgrounds (e.g. footer, black buttons, dark modals)
-      const darkContainer = target?.closest('footer, .bg-black, [data-theme="dark"], dialog')
-      isDarkArea.current = !!darkContainer
+      // Detect dark backgrounds (e.g. footer, black buttons, dark modals, video players)
+      const closestThemed = target?.closest('.bg-black, footer, [data-theme="dark"], .bg-white')
+      isDarkArea.current = closestThemed ? !closestThemed.classList.contains('bg-white') : false
     }
 
     const onMouseDown = (e: MouseEvent) => {

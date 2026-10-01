@@ -277,8 +277,10 @@ html.custom-cursor-active summary {
 
 html.custom-cursor-active input,
 html.custom-cursor-active textarea,
-html.custom-cursor-active [contenteditable="true"] {
-  cursor: text !important;
+html.custom-cursor-active [contenteditable="true"],
+html.custom-cursor-active iframe,
+html.custom-cursor-active video {
+  cursor: auto !important;
 }
 
 @keyframes cursor-ripple {
