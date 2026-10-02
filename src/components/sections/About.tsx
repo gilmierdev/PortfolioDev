@@ -56,7 +56,7 @@ export default function About() {
           {/* Right: Engineering Manifesto Quote */}
           <Reveal variant="right" className="max-w-md">
             <p className="font-display font-medium text-xs sm:text-sm uppercase tracking-wider text-black leading-relaxed">
-              &ldquo;WORKING BEATS PERFECT, AND FINISHED BEATS CLEVER. I BELIEVE IN ARCHITECTURAL RIGOR, DELIBERATE PRACTICE, AND DEEP ROOT-CAUSE DISCOVERY.&rdquo;
+              &ldquo;AI DELIVERS SPEED. HANDS-ON TESTING DELIVERS STABILITY. FINISHED SOFTWARE BEATS UNTESTED CODE.&rdquo;
             </p>
           </Reveal>
         </div>
@@ -66,10 +66,10 @@ export default function About() {
           <div className="grid grid-cols-1 md:grid-cols-3 border border-gray-200 divide-y md:divide-y-0 md:divide-x divide-gray-200 bg-white">
             <div className="p-8 sm:p-12 text-center md:text-left space-y-2">
               <p className="font-display font-bold text-4xl sm:text-6xl text-black tracking-tight">
-                3+
+                5+
               </p>
               <p className="font-mono text-xs uppercase tracking-widest text-gray-500 font-semibold">
-                PACKAGED REAL BUILDS
+                SYSTEMS & LAB BUILDS
               </p>
             </div>
 
@@ -78,7 +78,7 @@ export default function About() {
                 100%
               </p>
               <p className="font-mono text-xs uppercase tracking-widest text-gray-500 font-semibold">
-                OFFLINE-FIRST ARCHITECTURE
+                TESTED & VALIDATED
               </p>
             </div>
 
@@ -98,7 +98,7 @@ export default function About() {
           {/* Left: About Narrative */}
           <Reveal variant="left" className="lg:col-span-7 space-y-4">
             <h3 className="font-display font-bold text-xl sm:text-2xl text-black uppercase tracking-tight">
-              Practical learning over passive theory
+              AI speed paired with personal engineering accountability
             </h3>
             {CONFIG.aboutParagraphs.map((p, idx) => (
               <p key={idx} className="text-gray-600 text-sm sm:text-base leading-relaxed">
@@ -153,7 +153,7 @@ export default function About() {
                 </div>
                 <div className="space-y-1.5 min-w-0">
                   <p className="font-mono text-[9px] uppercase tracking-widest text-gray-400">Track</p>
-                  <p className="font-display font-bold text-sm text-black truncate">Full-Stack & Desktop</p>
+                  <p className="font-display font-bold text-sm text-black truncate">AI-Assisted Developer</p>
                   <p className="font-mono text-[9px] uppercase tracking-widest text-gray-400 pt-1">Status</p>
                   <p className="font-mono text-xs text-black font-semibold flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" />

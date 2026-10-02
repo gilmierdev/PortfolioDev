@@ -1,30 +1,41 @@
 import {
-  Compass,
-  Hammer,
-  Bug,
+  FileText,
+  Bot,
+  Play,
   SearchCode,
+  Wrench,
+  PackageCheck,
   Sparkles,
   Quote,
 } from 'lucide-react'
 import { CONFIG } from '../../data/config'
 import Reveal from '../ui/Reveal'
 
-const STEP_ICONS = [Compass, Hammer, Bug, SearchCode, Sparkles]
+const STEP_ICONS: Record<string, React.ElementType> = {
+  scope: FileText,
+  'ai-dev': Bot,
+  test: Play,
+  diagnose: SearchCode,
+  remediate: Wrench,
+  release: PackageCheck,
+}
 
 const STEP_TITLES: Record<string, string> = {
-  learn: 'Understand the Architecture',
-  build: 'Ship the Smallest Slice',
-  break: 'Stress-Test & Break It',
-  fix: 'Root-Cause Discovery',
-  improve: 'Refactor, Polish & Clean',
+  scope: 'Define & Scope Requirements',
+  'ai-dev': 'AI-Assisted Code Generation',
+  test: 'Hands-On Execution & Testing',
+  diagnose: 'Error Isolation & Analysis',
+  remediate: 'Targeted Fixes & Iteration',
+  release: 'Build, Package & Release',
 }
 
 const STEP_MARKERS: Record<string, string> = {
-  learn: 'Phase 01 · Discovery',
-  build: 'Phase 02 · Execution',
-  break: 'Phase 03 · Adversarial',
-  fix: 'Phase 04 · Synthesis',
-  improve: 'Phase 05 · Polish',
+  scope: 'Step 01 · Specification',
+  'ai-dev': 'Step 02 · Acceleration',
+  test: 'Step 03 · Manual Testing',
+  diagnose: 'Step 04 · Error Analysis',
+  remediate: 'Step 05 · Remediation',
+  release: 'Step 06 · Production Build',
 }
 
 export default function Approach() {
@@ -34,20 +45,20 @@ export default function Approach() {
         {/* Section Header */}
         <div className="text-center space-y-3">
           <Reveal as="p" className="font-mono text-xs uppercase tracking-widest text-gray-500 font-semibold">
-            ENGINEERING LIFECYCLE
+            DEVELOPMENT LIFECYCLE
           </Reveal>
           <Reveal as="h2" className="font-display font-bold text-4xl sm:text-6xl uppercase tracking-tight text-black">
             HOW I BUILD
           </Reveal>
           <Reveal as="p" className="max-w-xl mx-auto text-xs sm:text-sm text-gray-500 leading-relaxed pt-1">
-            Working software beats hypothetical perfection, and finished code beats clever hacks.
+            Accelerated by AI, validated by hands-on engineering. Working software beats hypothetical perfection.
           </Reveal>
         </div>
 
-        {/* 5 disciplined moves cards */}
+        {/* 6-step disciplined moves cards */}
         <ol className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {CONFIG.loopSteps.map((step, i) => {
-            const Icon = STEP_ICONS[i] ?? Sparkles
+            const Icon = STEP_ICONS[step.key] ?? Sparkles
             return (
               <Reveal
                 key={step.key}
@@ -77,7 +88,7 @@ export default function Approach() {
 
                 <div className="mt-6 pt-4 border-t border-gray-200/80 flex items-center justify-between text-xs font-mono text-gray-400">
                   <span>Step {String(i + 1).padStart(2, '0')}</span>
-                  <span className="text-black font-semibold">DELIBERATE PRACTICE</span>
+                  <span className="text-black font-semibold uppercase">AI-Assisted Workflow</span>
                 </div>
               </Reveal>
             )
@@ -92,7 +103,7 @@ export default function Approach() {
           <div className="max-w-2xl mx-auto flex flex-col items-center">
             <Quote className="w-7 h-7 text-black mb-4 opacity-75" />
             <blockquote className="font-display font-bold text-base sm:text-2xl leading-snug tracking-tight text-black uppercase">
-              &ldquo;A solid application isn&apos;t luck. It comes from understanding the problem deeply, building the smallest slice that works, and breaking it until you understand why it holds together.&rdquo;
+              &ldquo;AI accelerates drafting, but true reliability comes from stress-testing edge cases and validating every feature by hand.&rdquo;
             </blockquote>
             <p className="mt-4 font-mono text-[10px] sm:text-xs uppercase tracking-widest text-gray-500">
               — Personal Engineering Philosophy

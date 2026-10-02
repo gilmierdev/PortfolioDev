@@ -12,49 +12,79 @@ interface ServiceItem {
 
 const SERVICES_DATA: ServiceItem[] = [
   {
-    id: 'frontend',
+    id: 'ai-workflow',
     num: '01',
-    title: 'FRONTEND ARCHITECTURE & REACT ECOSYSTEM',
-    skills: ['React 18', 'TypeScript', 'Tailwind CSS', 'Vite', 'HTML5 & CSS3', 'JavaScript ES6+'],
-    description:
-      'Designing reactive, component-driven user interfaces with strict TypeScript contracts, instant Vite HMR, and responsive layout ergonomics.',
+    title: 'AI-ASSISTED DEVELOPMENT & RAPID PROTOTYPING',
+    skills: [
+      'AI-Assisted Software Dev',
+      'ChatGPT, OpenCode & Antigravity',
+      'Prompt Engineering',
+      'Rapid Prototyping',
+      'Accelerated Delivery',
+    ],
+    description: 'Using AI tools to accelerate development velocity while maintaining strict human oversight and clean code standards.',
   },
   {
-    id: 'backend',
+    id: 'testing-debugging',
     num: '02',
-    title: 'SERVER RUNTIMES, REST & SECURE APIS',
-    skills: ['Node.js', 'Express.js', 'REST APIs', 'JWT Tokens', 'MongoDB & Mongoose', 'bcrypt'],
-    description:
-      'Engineering robust server middleware pipelines, document modeling with Mongoose, secure JWT token lifecycle, and role-based route guards.',
+    title: 'APPLICATION TESTING, DEBUGGING & ERROR RESOLUTION',
+    skills: [
+      'Hands-On Application Testing',
+      'Debugging & Troubleshooting',
+      'Error Detection & Isolation',
+      'Stack Trace Analysis',
+      'Targeted AI Fix Guidance',
+      'Iterative Validation',
+    ],
+    description: 'Personally stress-testing apps to detect bugs, analyzing root causes, and guiding AI to implement verified fixes.',
   },
   {
-    id: 'desktop',
+    id: 'fullstack-crud',
     num: '03',
-    title: 'DESKTOP ELECTRON & LOCAL SQLITE STORAGE',
-    skills: ['Electron', 'better-sqlite3', 'electron-builder', 'Recharts', 'ExcelJS', 'PDFKit'],
-    description:
-      'Building Windows native desktop software with zero-latency embedded SQLite, IPC context isolation, dynamic financial charting, and batch file export.',
+    title: 'FRONTEND, BACKEND & CRUD ARCHITECTURE',
+    skills: [
+      'Frontend Development',
+      'Backend Development',
+      'SQL & Supabase',
+      'Database Integration',
+      'CRUD Systems',
+      'Authentication & Authorization',
+      'API Integration',
+      'Responsive UI Design',
+    ],
+    description: 'Designing responsive UIs and robust backend pipelines with secure auth, protected routes, and structured databases.',
   },
   {
-    id: 'ai',
+    id: 'desktop-mobile',
     num: '04',
-    title: 'AI-ASSISTED DEVELOPMENT & CODE VERIFICATION',
-    skills: ['AI Pair Programming', 'Strict Code Verification', 'Prompt Engineering', 'Rapid Prototyping'],
-    description:
-      'Leveraging cutting-edge AI coding models as high-speed development partners while maintaining rigorous manual verification, edge-case testing, and clean architecture.',
+    title: 'DESKTOP, MOBILE & OFFLINE-FIRST APPLICATIONS',
+    skills: [
+      'Desktop Application Dev',
+      'Mobile Application Dev',
+      'Local & Offline Applications',
+      'Embedded SQLite Databases',
+      'Zero Cloud Dependency',
+      'Native OS Integration',
+    ],
+    description: 'Engineering self-contained desktop software and mobile utilities that operate reliably offline with persistent local storage.',
   },
   {
-    id: 'security',
+    id: 'data-devops',
     num: '05',
-    title: 'APPLICATION HARDENING & SECRETS HYGIENE',
-    skills: ['Endpoint Hardening', 'Anti-Spam Rate Limits', 'Input Sanitization', 'IPC Context Isolation', 'Zero Secrets Leakage'],
-    description:
-      'Implementing server-side permission validation, request throttling to prevent abuse, secure cookie policies, and defense-in-depth data parsing.',
+    title: 'DATA PROCESSING, BUILDS & RELEASE DEPLOYMENT',
+    skills: [
+      'Excel & CSV Import / Export',
+      'Git & GitHub Version Control',
+      'Application Packaging',
+      'Native Builds & Releases',
+      'Production Deployment',
+    ],
+    description: 'Handling automated spreadsheet data pipelines, managing version control, and packaging production-ready release binaries.',
   },
 ]
 
 export default function Skills() {
-  const [activeId, setActiveId] = useState<string>('desktop') // Row 03 is default active
+  const [activeId, setActiveId] = useState<string>('ai-workflow')
 
   function toggleService(id: string) {
     setActiveId((prev) => (prev === id ? '' : id))
@@ -63,7 +93,7 @@ export default function Skills() {
   return (
     <section id="services" className="py-20 sm:py-28 px-4 sm:px-8 lg:px-12 bg-white">
       <div className="max-w-4xl mx-auto">
-        {/* Main Centered Heading with Original Software Engineering Copy */}
+        {/* Main Centered Heading */}
         <div className="text-center space-y-3">
           <Reveal as="p" className="font-mono text-xs uppercase tracking-widest text-gray-500 font-semibold">
             03 // TECHNICAL EXPERTISE & DOMAINS
@@ -75,7 +105,7 @@ export default function Skills() {
           </Reveal>
 
           <Reveal as="p" className="max-w-xl mx-auto text-xs sm:text-sm font-mono text-gray-500 leading-relaxed pt-1">
-            Full-stack architecture, high-performance desktop software, offline SQLite databases, and hardened security.
+            AI-assisted development, full-stack & desktop engineering, offline databases, and disciplined error resolution.
           </Reveal>
         </div>
 

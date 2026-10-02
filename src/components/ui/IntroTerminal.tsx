@@ -16,17 +16,17 @@ interface IntroTerminalProps {
 
 const COMMAND_MAP: Record<string, string | string[]> = {
   whoami:
-    'GilmierDev — AI-assisted full-stack developer learning software engineering the practical way.',
+    'GilmierDev — AI-assisted developer. Rapid workflows paired with hands-on testing.',
   stack: [
-    '• Frontend: React, TypeScript, Tailwind CSS, Vite',
-    '• Backend: Node.js, Express, REST APIs, JWT Auth',
-    '• Database: MongoDB, SQLite, better-sqlite3',
-    '• Desktop: Electron, electron-builder, IPC architecture',
-    '• AI & Security: AI assistance workflow, route guards, API hardening, sandboxed IPC',
+    '• AI & Workflow: AI-assisted development, rapid prototyping, ChatGPT, OpenCode, Antigravity',
+    '• Core Dev: Frontend, Backend, SQL, Supabase, Database integration, CRUD systems, REST APIs',
+    '• Platforms: Desktop apps (Electron, SQLite), Mobile apps (offline-first), Responsive Web UI',
+    '• QA & Reliability: Hands-on testing, error detection, root-cause troubleshooting, validation',
+    '• Data & DevOps: Excel/CSV import/export, Git & GitHub, native builds, packaging & deployment',
   ],
   philosophy:
-    'Build the smallest working slice. Break it on purpose. Fix the root cause. Refactor.',
-  status: 'Open for software development internships and collaborative projects.',
+    'Use AI for speed. Test locally. Break edge cases. Iterate until reliable.',
+  status: 'Open for client projects, internships, and collaborative software roles.',
   contact: 'Email: gilmiercabil@gmail.com  |  GitHub: @gilmierdev',
   help: 'Available commands: whoami, stack, projects, philosophy, status, contact, clear',
 }

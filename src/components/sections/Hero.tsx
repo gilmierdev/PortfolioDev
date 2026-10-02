@@ -9,11 +9,11 @@ interface HeroProps {
 }
 
 const HERO_TAGS = [
-  'MERN FULL-STACK',
-  'OFFLINE SQLITE',
-  'ELECTRON DESKTOP',
   'AI-ASSISTED DEV',
-  'SYSTEM SECURITY',
+  'RAPID PROTOTYPING',
+  'DESKTOP & OFFLINE APPS',
+  'HANDS-ON TESTING',
+  'CRUD & API INTEGRATION',
 ]
 
 export default function Hero({ onSelectProject, onToggleTerminal }: HeroProps) {
@@ -134,7 +134,7 @@ export default function Hero({ onSelectProject, onToggleTerminal }: HeroProps) {
         <div className="md:col-span-3 flex flex-col items-start md:items-end justify-between self-stretch order-3 text-left md:text-right pt-3 sm:pt-5 md:pt-8">
           {/* Engineering Statement */}
           <p className="font-display font-medium text-xs sm:text-sm uppercase tracking-wider text-black max-w-xs leading-relaxed">
-            TEACHING MYSELF FULL-STACK & SYSTEMS ENGINEERING BY DELIBERATELY BUILDING WORKING SOFTWARE.
+            ACCELERATING DEVELOPMENT WITH AI. VALIDATING EVERY BUILD WITH RIGOROUS TESTING.
           </p>
 
           {/* Vertical Stack List */}
